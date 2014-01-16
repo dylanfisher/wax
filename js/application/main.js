@@ -2,19 +2,20 @@
 
 $('#test').on('click', function(){
   loader($(this));
-  getData.api('get_post/?post_id=14/', function(data){
+  getData.api('get_page/?id=2', function(data){
+    data = data.page;
     $('#ajax-here').html(
       'this post title = ' + data.title +
-      '<br/>and more content = ' + data.custom_fields.test +
-      '<br/>and even more stuff like an image = <img src="' + data.acf.image.url + '"/>');
+      '<br/>and CONTENT = ' + data.content +
+      '<br/>and a DATE = ' + data.date);
   });
 });
 
 var getData = function(){
-  var apiUrl = '/5andbox-test-install/api/',
+  var apiUrl = '/wax/api/',
   api = function(method, callback){
     $.getJSON(apiUrl + method, function(data) {
-      callback(data.post);
+      callback(data);
       $('.loading').remove();
     });
   };

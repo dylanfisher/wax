@@ -572,6 +572,60 @@ h6 {
   padding: 0.2em 0;
 }
 
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.frame-one,
+.frame-two {
+  position: absolute;
+  height: 100%;
+}
+
+.frame-one {
+  width: -webkit-calc(100% - 50px);
+  width: calc(100% - 50px);
+  right: 0;
+  box-shadow: 0px 0 20px 7px #8A8A8A;
+}
+
+.frame-two {
+  width: -webkit-calc(100% - 100px);
+  width: calc(100% - 100px);
+  right: 100%;
+}
+
+.featured-project {
+  height: 100%;
+  font-size: 0;
+}
+
+.featured-project iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  position: absolute;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.sidebar:hover {
+  background: #000;
+  color: #fff;
+}
+
+.sidebar.menu-right {
+  position: absolute;
+  right: -50px;
+  width: 50px;
+  word-break: break-all;
+}
+
 .alignnone {
   margin: 5px 20px 20px 0;
 }

@@ -1,5 +1,5 @@
 <?php get_header() ?>
-		<div class="content">
+		<div id="content" class="content">
 
 			<!-- JUST TESTING SOME THINGS: -->
 			<div id="test" data-category="1">TEST_BUTTON</div>
