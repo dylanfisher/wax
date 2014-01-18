@@ -1,0 +1,27 @@
+//
+// UI Elements
+//
+
+.button {
+	display: inline-block;
+	&.style-1 {
+		border: 3px solid;
+		padding: 8px;
+		&:hover {
+			background: #000;
+			border-color: #000;
+			color: #fff;
+			.dark & {
+				background: #fff;
+				border-color: #fff;
+				color: #000;
+			}
+		}
+	}
+}
+
+.blur {
+	filter: blur($blur);
+	transition: filter $fade_speed / 2;
+	-webkit-transition: -webkit-filter $fade_speed / 2;
+}
