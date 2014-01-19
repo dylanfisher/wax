@@ -5,25 +5,6 @@ Template Name: Page - Application
 ?>
 
 <?php get_header() ?>
-
-<div class="main-content-fixed">
-	<h2>A Magazine for Urban Surfers</h2>
-	<h1>WAX</h1>
-</div>
-
-<?php // Create first loop for frame-one
-$args = array(
-	'post_type' => 'page',
-	'post__in' => array(19)
-);
-$query_one = new WP_Query($args);
-if ($query_one->have_posts()) :
-	while($query_one->have_posts()) :
-		$query_one->the_post();
-?>
-	<div id="sidebar-primary" class="sidebar sidebar-primary">
-		<h2>WAX</h2>
-	</div>
 	<div id="frame-one" class="frame-one">
 		<div id="frame-one-container" class="frame-one-container">
 			<div id="frame-one-show-overlay" class="show-overlay">(EYE)</div>
@@ -68,27 +49,13 @@ if ($query_one->have_posts()) :
 			</div>
 		</div>
 	</div>
-<?php
-	endwhile;
-endif;
-wp_reset_postdata(); 
-?>
 
-<?php // Create second loop for frame two
-$args2 = array(
-	'post_type' => 'page',
-	'post__in' => array(6)
-);
-$query_two = new WP_Query($args2);
-if ($query_two->have_posts()) :
-	while($query_two->have_posts()) :
-		$query_two->the_post();
-?>
-	<div id="sidebar-secondary" class="sidebar sidebar-secondary">
-		<h2>MAGAZINE</h2>
+	<div id="sidebar-primary" class="sidebar sidebar-primary">
+		<h2>WAX</h2>
 	</div>
-	<div id="frame-two" class="frame-two">
-		<div class="main-content">
+
+	<div id="frame-two" class="frame-two fixed">
+		<div id="main-content" class="main-content">
 			<div class="story" style="background: url(https://hhhhold.com/xl/w/b?1) no-repeat center center;">
 				<div class="container">
 					<h2>Derek Hynd in conversation with Tyler Breuer</h2>
@@ -114,19 +81,51 @@ if ($query_two->have_posts()) :
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div id="sub-content-left" class="sub-content sub-content-left">
-			<h2>Issue 3: Territories</h2>
-			<img src="https://hhhhold.com/400x600">
-			<p>&larr; &rarr;</p>
-			<p>Featuring some cool people.</p>
+	<div id="sidebar-secondary" class="sidebar sidebar-secondary">
+		<h2>MAGAZINE</h2>
+	</div>
+
+	<div id="frame-three" class="frame-three fixed">
+		<h2>Issue 3: Territories</h2>
+		<img src="https://hhhhold.com/400x600">
+		<p>&larr; &rarr;</p>
+		<p>Featuring some cool people.</p>
+		<h2>Issue 4: Places</h2>
+		<img src="https://hhhhold.com/400x600?1">
+		<p>&larr; &rarr;</p>
+		<p>Featuring some other cool people.</p>
+	</div>
+	<?php // Fixed position elements must be outside frames due to transform issue ?>
+	<div class="fixed-nav-elements">
+		<h2 class="nav-tagline">A Magazine for Urban Surfers</h2>
+		<h1 id="nav-site-title" class="nav-site-title">WAX</h1>
+		<h3 id="nav-about" class="nav-about">About</h3>
+		<h3 id="nav-finds" class="nav-finds">Finds</h3>
+	</div>
+	<div id="about-overlay" class="about-overlay overlay hidden">
+		<p>WAX is a bi-annual print publication exploring the intersection of art, culture and surfing in and around New York City. We believe that beauty and meaning can be found on sidewalks, boardwalks, skyscrapers and beaches alike. We’re interested in exploring the rich history of New York surfing, its beaches and residents and in finding a pathway of cultural creativity on and off the break. WAX shares the stories of area surfers who are also artists, designers, authors and auteurs. Each issue is organized around a unique theme, debuting with Issue #1: Dialogues in Spring 2012.</p>
+		<div>
+			<h3>Mailing List</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus libero mauris, eget tempor ligula tristique sed. Nullam sed tellus eu tellus aliquet porta. Vivamus ut sodales neque. Cras aliquam libero sit amet magna gravida, lobortis rhoncus lacus ultrices. Nam pretium libero eget lacus ullamcorper, non accumsan lacus varius.</p>
+		</div>
+		<div>
+			<h3>Stockist</h3>
+			<p>Quisque eu odio eget ligula dictum auctor. Phasellus consequat massa ac risus dapibus, a semper eros hendrerit. Nunc hendrerit nibh nec sem tempor dignissim.</p>
+		</div>
+		<div>
+			<h3>Contact Us</h3>
+			<p>WAX Magazine<br>
+				145 Calyer St, 4th Floor<br>
+				Brooklyn, NY 11222<br>
+				info@readwax.com</p>
+			<p>Advertising<br>
+				Contact ads@readwax.com</p>
+			<p>Visit WAX Magazine on Facebook<br>
+				Follow us on Twitter</p>
 		</div>
 	</div>
-<?php
-	endwhile;
-endif;
-wp_reset_postdata(); 
-?>
 
 <?php get_footer() ?>
 
