@@ -23,6 +23,16 @@
 .blur {
 	position: fixed !important;
 	filter: blur($blur) opacity(.8);
+	// Force hardware accelaration with translate3d
+	-webkit-transform: translate3d(0, 0, 0);
 	transition: filter $fade_speed / 2, opacity $fade_speed / 2;
 	-webkit-transition: -webkit-filter $fade_speed / 2, opacity $fade_speed / 2;
+}
+
+.lazy {
+	background: #c2c2c2 url('../../../images/grey.gif') repeat center center;
+}
+
+.drop-shadow {
+	drop-shadow: -5px 5px 10px $gray_light;
 }

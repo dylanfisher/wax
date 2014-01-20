@@ -20,13 +20,13 @@ body {
 	width: 100%;
 	right: 0;
 	background-color: #fff;
-	z-index: 11;
+	z-index: 12;
 	.show-overlay,
 	.overlay {
 		position: absolute;
 	}
 	.show-overlay {
-		z-index: 10;
+		z-index: 11;
 		top: 10px;
 		right: 10px;
 		cursor: pointer;
@@ -51,18 +51,30 @@ body {
 	right: calc(100% - #{$sidebar});
 	background-color: #fff;
 	text-align: center;
-	z-index: 11;
+	z-index: 13;
+	&.fixed {
+		z-index: 8;
+	}
+}
+.issue {
+	margin: 20px 0 50px;
+}
+.issue-slides {
+	margin: 0 auto;
+	width: 400px;
 }
 .fixed {
 	position: fixed;
 }
 .overlay {
+	position: absolute;
 	top: 0;
 	opacity: 1;
 	transition: visibility $fade_speed, opacity $fade_speed;
 	width: 100%;
 	height: 100%;
-	z-index: 1;
+	z-index: 10;
+	text-align: center;
 	&.hidden {
 		visibility: hidden;
 		opacity: 0;
@@ -90,13 +102,20 @@ body {
 		z-index: 0;
 	}
 	h2, h3 {
-		z-index: 10;
+		z-index: 11;
 	}
 	.nav-site-title {
 		top: 65px;
 	}
 	.nav-tagline {
 		top: 15px;
+	}
+	.nav-about,
+	.nav-finds {
+		cursor: pointer;
+		&:hover {
+			border-bottom: 2px solid;
+		}
 	}
 	.nav-about {
 		right: $sidebar * 2 + $sidebar / 2;
@@ -105,6 +124,9 @@ body {
 	.nav-finds {
 		left: $sidebar + $sidebar / 2;
 		bottom: 15px;
+		&:hover {
+			bottom: 13px;
+		}
 	}
 }
 .main-content {
@@ -115,13 +137,19 @@ body {
 	top: 250px;
 }
 .about-overlay {
-	position: absolute;
 	width: 60%;
 	top: 80px;
 	left: 50%;
 	-webkit-transform: translate(-50%, 0);
-	z-index: 10;
 	text-align: justify;
+}
+.finds-overlay {
+	margin-top: 100px;
+	img {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 30px;
+	}
 }
 .overlay-disable {
 	position: fixed;
@@ -158,7 +186,7 @@ body {
 		z-index: 15
 	}
 	&.sidebar-secondary {
-		left: 0;
+		right: calc(200% - #{$sidebar} * 3);
 		z-index: 14
 	}
 	h2 {

@@ -6,7 +6,16 @@ function app(){
   var animSpeed = 800,
       animEasing = 'snap',
       fadeSpeed = 800,
-      sidebar = 50;
+      sidebar = 50,
+      $imgs = $('.lazy');
+
+// Lazy load images
+$('.lazy').lazyload({
+  threshold : 400,
+  skip_invisible : false,
+  // Set failure limit to be the number of lazy images in the DOM (since images are non sequential)
+  failure_limit: Math.max($imgs.length - 1, 0)
+});
 
 //
 // Sidebar logic and content pane animations
@@ -26,19 +35,22 @@ function secondaryFrameOpen(){
   $('#frame-one').transition({x: $('#frame-one').width() - 100}, animSpeed, animEasing, function(){
     $('#frame-one-container').prepend('<div id="overlay-disable" class="overlay-disable"></div>');
   });
+  $('#sidebar-secondary').transition({x: $('#frame-two').width()}, animSpeed, animEasing);
   $('#frame-two').transition({x: $('#frame-two').width()}, animSpeed, animEasing, function(){
-    $('#frame-one, #frame-two').toggleClass('fixed');
     // This forces DOM redraw and calculates correct Document height/shows scrollbars
     $('h1').hide().show(0);
-    scrollToTop();
+    triggerScroll();
   });
   $('#sidebar-primary').transition({x: $('#frame-one').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#frame-one, #frame-two').toggleClass('fixed');
+  scrollToTop();
 }
 
 function secondaryFrameClose(){
   $('#frame-one').transition({x: 0}, animSpeed, animEasing);
   $('#frame-one #overlay-disable').remove();
   $('#frame-two').transition({x: 0}, animSpeed, animEasing);
+  $('#sidebar-secondary').transition({x: $('#frame-two').width() * -1}, animSpeed, animEasing);
   $('#frame-one, #frame-two').toggleClass('fixed');
   $('#sidebar-primary').transition({x: 0}, animSpeed, animEasing);
   scrollToTop();
@@ -55,16 +67,20 @@ $('#sidebar-secondary').on('click', function(){
 });
 
 function tertiaryFrameOpen(){
-  $('#frame-three').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#frame-three').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing, function(){
+    triggerScroll();
+  });
   $('#frame-two, #frame-three').toggleClass('fixed');
-  $('#sidebar-secondary').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#sidebar-secondary').transition({x: $('#frame-three').width() * 2 - sidebar * 4}, animSpeed, animEasing);
   scrollToTop();
 }
 
 function tertiaryFrameClose(){
-  $('#frame-three').transition({x: 0}, animSpeed, animEasing);
-  $('#frame-two, #frame-three').toggleClass('fixed');
-  $('#sidebar-secondary').transition({x: 0}, animSpeed, animEasing);
+  $('#frame-three').transition({x: 0}, animSpeed, animEasing, function(){
+    $('#frame-three').toggleClass('fixed');  
+  });
+  $('#sidebar-secondary').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#frame-two').toggleClass('fixed');
   scrollToTop();
 }
 
@@ -86,14 +102,22 @@ $('#frame-one-show-overlay').on('click', function(){
 // Frame two various functions
 //
 
+// Save the original top value when closing the overlays
 assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
 
-$('#nav-about').on('click', function(){
+// Open the About and Find overlays and set background content to fixed
+$('#nav-about, #nav-finds').on('click', function(){
   positionFixedContent($('#frame-two'));
-  $('#about-overlay').toggleClass('hidden');
   $('#main-content, #nav-site-title').toggleClass('blur');
   scrollToTop();
 });
+$('#nav-about').on('click', function(){
+  $('#about-overlay').toggleClass('hidden');
+});
+$('#nav-finds').on('click', function(){
+  $('#finds-overlay').toggleClass('hidden');
+});
+
 
 //
 // Helper functions
@@ -102,6 +126,11 @@ $('#nav-about').on('click', function(){
 // Scroll to window top
 function scrollToTop(){
   $(window).scrollTop(0);
+}
+
+// Trigger scroll event (for loading lazy images)
+function triggerScroll(){
+  $(window).trigger('scroll');
 }
 
 // Get the original values of elements before we change them
@@ -125,39 +154,5 @@ function positionFixedContent(el){
     el.toggleClass('fixed');
   }
 }
-
-//
-// Testing AJAX calls
-//
-
-$('#test').on('click', function(){
-  loader($(this));
-  getData.api('get_page/?id=2', function(data){
-    data = data.page;
-    $('#ajax-here').html(
-      'this post title = ' + data.title +
-      '<br/>and CONTENT = ' + data.content +
-      '<br/>and a DATE = ' + data.date);
-  });
-});
-
-var getData = function(){
-  var apiUrl = '/wax/api/',
-  api = function(method, callback){
-    $.getJSON(apiUrl + method, function(data) {
-      callback(data);
-      $('.loading').remove();
-    });
-  };
-  return {
-    api: api
-  };
-} ();
-
-// AJAX loader
-var loader = function(el){
-  var animation = '<div class="loading">loading...</div>';
-  el.append(animation);
-};
 
 } // End App

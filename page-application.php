@@ -56,25 +56,25 @@ Template Name: Page - Application
 
 	<div id="frame-two" class="frame-two fixed">
 		<div id="main-content" class="main-content">
-			<div class="story" style="background: url(https://hhhhold.com/xl/w/b?1) no-repeat center center;">
+			<div class="story lazy" data-original="https://hhhhold.com/xl/w/b?1">
 				<div class="container">
 					<h2>Derek Hynd in conversation with Tyler Breuer</h2>
 					<div class="button style-1">View Story</div>
 				</div>
 			</div>
-			<div class="story dark" style="background: url(https://hhhhold.com/xl/w/d?2) no-repeat center center;">
+			<div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?2">
 				<div class="container">
 					<h2>Lorem Ipsum Dolor Sit Amet</h2>
 					<div class="button style-1">View Story</div>
 				</div>
 			</div>
-			<div class="story" style="background: url(https://hhhhold.com/xl/w/b?3) no-repeat center center;">
+			<div class="story lazy" data-original="https://hhhhold.com/xl/w/b?3">
 				<div class="container">
 					<h2>Catching Big Waves at the Beach in 'Jersey</h2>
 					<div class="button style-1">View Story</div>
 				</div>
 			</div>
-			<div class="story dark" style="background: url(https://hhhhold.com/xl/w/d?4) no-repeat center center;">
+			<div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?4">
 				<div class="container">
 					<h2>An Interview with this Really Amazing Dude</h2>
 					<div class="button style-1">View Story</div>
@@ -88,14 +88,32 @@ Template Name: Page - Application
 	</div>
 
 	<div id="frame-three" class="frame-three fixed">
-		<h2>Issue 3: Territories</h2>
-		<img src="https://hhhhold.com/400x600">
-		<p>&larr; &rarr;</p>
-		<p>Featuring some cool people.</p>
-		<h2>Issue 4: Places</h2>
-		<img src="https://hhhhold.com/400x600?1">
-		<p>&larr; &rarr;</p>
-		<p>Featuring some other cool people.</p>
+		<div class="issue">
+			<h2>Issue 3: Territories</h2>
+			<div id="issue-slides-1" class="issue-slides">
+				<img class="lazy" data-original="http://hhhhold.com/400x450" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?1" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?2" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?3" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?4" width="400" height="450">
+			</div>
+			<p>Featuring some cool people.</p>
+			<div class="button style-1">Buy or Subscribe</div>
+		</div>
+		<div class="issue">
+			<h2>Issue 4: Places</h2>
+			<div id="issue-slides-2" class="issue-slides">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?5" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?6" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?7" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?8" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?9" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?10" width="400" height="450">
+				<img class="lazy" data-original="http://hhhhold.com/400x450?11" width="400" height="450">
+			</div>
+			<p>Featuring some other cool people.</p>
+			<div class="button style-1">Buy or Subscribe</div>
+		</div>
 	</div>
 	<?php // Fixed position elements must be outside frames due to transform issue ?>
 	<div class="fixed-nav-elements">
@@ -125,6 +143,18 @@ Template Name: Page - Application
 			<p>Visit WAX Magazine on Facebook<br>
 				Follow us on Twitter</p>
 		</div>
+	</div>
+	<div id="finds-overlay" class="finds-overlay overlay hidden">
+		<img class="lazy" data-original="http://25.media.tumblr.com/tumblr_mdjyy4VZD61qkbo6bo1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/7316fc267f0ef94944b22f2f51806598/tumblr_my2per5EmL1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/4fee5b489a71866a629e1687861e74af/tumblr_mxjplw9S8y1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/6a9467de092435b6bf0aab20fb2b4eba/tumblr_mxkrhnfvxX1r24dd9o1_500.png" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/e8f604c6f1022bfa82f924e92990643d/tumblr_mxjpknpahr1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/21e4f67402a0d490f7a85c8eaa7e1fe1/tumblr_mxahqxQ3Xy1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/a7ffb312fc22d934841b7c3869b12769/tumblr_mvx12m1CJY1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/2063c9579e112f6b43045810290bdc97/tumblr_mvww1dcSwB1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/c83b2dd36166f960a0cf6f73e042b539/tumblr_mvlsafwyly1r24dd9o1_500.jpg" width="500" height="600">
+		<img class="lazy" data-original="http://25.media.tumblr.com/931245fe4ce0e681de41c0cee179fd95/tumblr_mvl915K2Pn1r24dd9o1_500.jpg" width="500" height="600">
 	</div>
 
 <?php get_footer() ?>

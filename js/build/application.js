@@ -1,3 +1,5 @@
+/*! Lazy Load 1.9.2 - MIT license - Copyright 2010-2013 Mika Tuupola */
+!function(a,b,c,d){var e=a(b);a.fn.lazyload=function(f){function g(){var b=0;i.each(function(){var c=a(this);if(!j.skip_invisible||c.is(":visible"))if(a.abovethetop(this,j)||a.leftofbegin(this,j));else if(a.belowthefold(this,j)||a.rightoffold(this,j)){if(++b>j.failure_limit)return!1}else c.trigger("appear"),b=0})}var h,i=this,j={threshold:0,failure_limit:0,event:"scroll",effect:"show",container:b,data_attribute:"original",skip_invisible:!0,appear:null,load:null,placeholder:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"};return f&&(d!==f.failurelimit&&(f.failure_limit=f.failurelimit,delete f.failurelimit),d!==f.effectspeed&&(f.effect_speed=f.effectspeed,delete f.effectspeed),a.extend(j,f)),h=j.container===d||j.container===b?e:a(j.container),0===j.event.indexOf("scroll")&&h.bind(j.event,function(){return g()}),this.each(function(){var b=this,c=a(b);b.loaded=!1,(c.attr("src")===d||c.attr("src")===!1)&&c.is("img")&&c.attr("src",j.placeholder),c.one("appear",function(){if(!this.loaded){if(j.appear){var d=i.length;j.appear.call(b,d,j)}a("<img />").bind("load",function(){var d=c.attr("data-"+j.data_attribute);c.hide(),c.is("img")?c.attr("src",d):c.css("background-image","url('"+d+"')"),c[j.effect](j.effect_speed),b.loaded=!0;var e=a.grep(i,function(a){return!a.loaded});if(i=a(e),j.load){var f=i.length;j.load.call(b,f,j)}}).attr("src",c.attr("data-"+j.data_attribute))}}),0!==j.event.indexOf("scroll")&&c.bind(j.event,function(){b.loaded||c.trigger("appear")})}),e.bind("resize",function(){g()}),/(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion)&&e.bind("pageshow",function(b){b.originalEvent&&b.originalEvent.persisted&&i.each(function(){a(this).trigger("appear")})}),a(c).ready(function(){g()}),this},a.belowthefold=function(c,f){var g;return g=f.container===d||f.container===b?(b.innerHeight?b.innerHeight:e.height())+e.scrollTop():a(f.container).offset().top+a(f.container).height(),g<=a(c).offset().top-f.threshold},a.rightoffold=function(c,f){var g;return g=f.container===d||f.container===b?e.width()+e.scrollLeft():a(f.container).offset().left+a(f.container).width(),g<=a(c).offset().left-f.threshold},a.abovethetop=function(c,f){var g;return g=f.container===d||f.container===b?e.scrollTop():a(f.container).offset().top,g>=a(c).offset().top+f.threshold+a(c).height()},a.leftofbegin=function(c,f){var g;return g=f.container===d||f.container===b?e.scrollLeft():a(f.container).offset().left,g>=a(c).offset().left+f.threshold+a(c).width()},a.inviewport=function(b,c){return!(a.rightoffold(b,c)||a.leftofbegin(b,c)||a.belowthefold(b,c)||a.abovethetop(b,c))},a.extend(a.expr[":"],{"below-the-fold":function(b){return a.belowthefold(b,{threshold:0})},"above-the-top":function(b){return!a.belowthefold(b,{threshold:0})},"right-of-screen":function(b){return a.rightoffold(b,{threshold:0})},"left-of-screen":function(b){return!a.rightoffold(b,{threshold:0})},"in-viewport":function(b){return a.inviewport(b,{threshold:0})},"above-the-fold":function(b){return!a.belowthefold(b,{threshold:0})},"right-of-fold":function(b){return a.rightoffold(b,{threshold:0})},"left-of-fold":function(b){return!a.rightoffold(b,{threshold:0})}})}(jQuery,window,document);
 /*
   SlidesJS 3.0.4 http://slidesjs.com
   (c) 2013 by Nathan Searles http://nathansearles.com
@@ -734,136 +736,8 @@
   $.transit.getTransitionValue = getTransition;
 })(jQuery);
 
-$(document).ready(function(){
-  app();
-});
-
-function app(){
-  var animSpeed = 800,
-      animEasing = 'snap',
-      fadeSpeed = 800,
-      sidebar = 50;
-
 //
-// Sidebar logic and content pane animations
-//
-
-// Frame one
-// Main sidebar animation in front page view
-$('#sidebar-primary').on('click', function(){
-  secondaryFrameOpen();
-});
-
-$('#frame-one').on('click', '#overlay-disable', function(){
-  secondaryFrameClose();
-});
-
-function secondaryFrameOpen(){
-  $('#frame-one').transition({x: $('#frame-one').width() - 100}, animSpeed, animEasing, function(){
-    $('#frame-one-container').prepend('<div id="overlay-disable" class="overlay-disable"></div>');
-  });
-  $('#frame-two').transition({x: $('#frame-two').width()}, animSpeed, animEasing, function(){
-    $('#frame-one, #frame-two').toggleClass('fixed');
-    // This forces DOM redraw and calculates correct Document height/shows scrollbars
-    $('h1').hide().show(0);
-    scrollToTop();
-  });
-  $('#sidebar-primary').transition({x: $('#frame-one').width() - sidebar * 2}, animSpeed, animEasing);
-}
-
-function secondaryFrameClose(){
-  $('#frame-one').transition({x: 0}, animSpeed, animEasing);
-  $('#frame-one #overlay-disable').remove();
-  $('#frame-two').transition({x: 0}, animSpeed, animEasing);
-  $('#frame-one, #frame-two').toggleClass('fixed');
-  $('#sidebar-primary').transition({x: 0}, animSpeed, animEasing);
-  scrollToTop();
-}
-
-// Frame two
-// Left magazine sidebar animation
-$('#sidebar-secondary').on('click', function(){
-  if($(this).hasClass('active')){
-    tertiaryFrameClose();
-  } else {
-    tertiaryFrameOpen();
-  }
-});
-
-function tertiaryFrameOpen(){
-  $('#frame-three').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
-  $('#frame-two, #frame-three').toggleClass('fixed');
-  $('#sidebar-secondary').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
-  scrollToTop();
-}
-
-function tertiaryFrameClose(){
-  $('#frame-three').transition({x: 0}, animSpeed, animEasing);
-  $('#frame-two, #frame-three').toggleClass('fixed');
-  $('#sidebar-secondary').transition({x: 0}, animSpeed, animEasing);
-  scrollToTop();
-}
-
-// Sidebar class toggle
-$('.sidebar').on('click', function(){
-  $(this).toggleClass('active').not(this).remove('active');
-});
-
-//
-// Frame one various functions
-//
-
-$('#frame-one-show-overlay').on('click', function(){
-  $('#frame-one-overlay').toggleClass('hidden');
-  $('#featured-project').toggleClass('blur');
-});
-
-//
-// Frame two various functions
-//
-
-assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
-
-$('#nav-about').on('click', function(){
-  positionFixedContent($('#frame-two'));
-  $('#about-overlay').toggleClass('hidden');
-  $('#main-content, #nav-site-title').toggleClass('blur');
-  scrollToTop();
-});
-
-//
-// Helper functions
-//
-
-// Scroll to window top
-function scrollToTop(){
-  $(window).scrollTop(0);
-}
-
-// Get the original values of elements before we change them
-function assignDataValues(el, key, value){
-  el.data(key, value);
-}
-
-// This sets the vertical position of content when toggling between absolute and fixed positioning
-function positionFixedContent(el){
-  var offset = el.offset();
-  var posY = offset.top - $(window).scrollTop();
-  var originalTop = parseInt(el.data('originalTop'));
-  if(el.hasClass('fixed')){
-    el.css({top: originalTop});
-    el.toggleClass('fixed');
-    setTimeout(function(){
-      $(window).scrollTop(Math.abs(posY - originalTop));
-    }, 1);
-  } else {
-    el.css({top: posY});
-    el.toggleClass('fixed');
-  }
-}
-
-//
-// Testing AJAX calls
+// AJAX calls
 //
 
 $('#test').on('click', function(){
@@ -895,11 +769,182 @@ var loader = function(el){
   var animation = '<div class="loading">loading...</div>';
   el.append(animation);
 };
+$(document).ready(function(){
+  app();
+});
+
+function app(){
+  var animSpeed = 800,
+      animEasing = 'snap',
+      fadeSpeed = 800,
+      sidebar = 50,
+      $imgs = $('.lazy');
+
+// Lazy load images
+$('.lazy').lazyload({
+  threshold : 400,
+  skip_invisible : false,
+  // Set failure limit to be the number of lazy images in the DOM (since images are non sequential)
+  failure_limit: Math.max($imgs.length - 1, 0)
+});
+
+//
+// Sidebar logic and content pane animations
+//
+
+// Frame one
+// Main sidebar animation in front page view
+$('#sidebar-primary').on('click', function(){
+  secondaryFrameOpen();
+});
+
+$('#frame-one').on('click', '#overlay-disable', function(){
+  secondaryFrameClose();
+});
+
+function secondaryFrameOpen(){
+  $('#frame-one').transition({x: $('#frame-one').width() - 100}, animSpeed, animEasing, function(){
+    $('#frame-one-container').prepend('<div id="overlay-disable" class="overlay-disable"></div>');
+  });
+  $('#sidebar-secondary').transition({x: $('#frame-two').width()}, animSpeed, animEasing);
+  $('#frame-two').transition({x: $('#frame-two').width()}, animSpeed, animEasing, function(){
+    // This forces DOM redraw and calculates correct Document height/shows scrollbars
+    $('h1').hide().show(0);
+    triggerScroll();
+  });
+  $('#sidebar-primary').transition({x: $('#frame-one').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#frame-one, #frame-two').toggleClass('fixed');
+  scrollToTop();
+}
+
+function secondaryFrameClose(){
+  $('#frame-one').transition({x: 0}, animSpeed, animEasing);
+  $('#frame-one #overlay-disable').remove();
+  $('#frame-two').transition({x: 0}, animSpeed, animEasing);
+  $('#sidebar-secondary').transition({x: $('#frame-two').width() * -1}, animSpeed, animEasing);
+  $('#frame-one, #frame-two').toggleClass('fixed');
+  $('#sidebar-primary').transition({x: 0}, animSpeed, animEasing);
+  scrollToTop();
+}
+
+// Frame two
+// Left magazine sidebar animation
+$('#sidebar-secondary').on('click', function(){
+  if($(this).hasClass('active')){
+    tertiaryFrameClose();
+  } else {
+    tertiaryFrameOpen();
+  }
+});
+
+function tertiaryFrameOpen(){
+  $('#frame-three').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing, function(){
+    triggerScroll();
+  });
+  $('#frame-two, #frame-three').toggleClass('fixed');
+  $('#sidebar-secondary').transition({x: $('#frame-three').width() * 2 - sidebar * 4}, animSpeed, animEasing);
+  scrollToTop();
+}
+
+function tertiaryFrameClose(){
+  $('#frame-three').transition({x: 0}, animSpeed, animEasing, function(){
+    $('#frame-three').toggleClass('fixed');  
+  });
+  $('#sidebar-secondary').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
+  $('#frame-two').toggleClass('fixed');
+  scrollToTop();
+}
+
+// Sidebar class toggle
+$('.sidebar').on('click', function(){
+  $(this).toggleClass('active').not(this).remove('active');
+});
+
+//
+// Frame one various functions
+//
+
+$('#frame-one-show-overlay').on('click', function(){
+  $('#frame-one-overlay').toggleClass('hidden');
+  $('#featured-project').toggleClass('blur');
+});
+
+//
+// Frame two various functions
+//
+
+// Save the original top value when closing the overlays
+assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
+
+// Open the About and Find overlays and set background content to fixed
+$('#nav-about, #nav-finds').on('click', function(){
+  positionFixedContent($('#frame-two'));
+  $('#main-content, #nav-site-title').toggleClass('blur');
+  scrollToTop();
+});
+$('#nav-about').on('click', function(){
+  $('#about-overlay').toggleClass('hidden');
+});
+$('#nav-finds').on('click', function(){
+  $('#finds-overlay').toggleClass('hidden');
+});
+
+
+//
+// Helper functions
+//
+
+// Scroll to window top
+function scrollToTop(){
+  $(window).scrollTop(0);
+}
+
+// Trigger scroll event (for loading lazy images)
+function triggerScroll(){
+  $(window).trigger('scroll');
+}
+
+// Get the original values of elements before we change them
+function assignDataValues(el, key, value){
+  el.data(key, value);
+}
+
+// This sets the vertical position of content when toggling between absolute and fixed positioning
+function positionFixedContent(el){
+  var offset = el.offset();
+  var posY = offset.top - $(window).scrollTop();
+  var originalTop = parseInt(el.data('originalTop'));
+  if(el.hasClass('fixed')){
+    el.css({top: originalTop});
+    el.toggleClass('fixed');
+    setTimeout(function(){
+      $(window).scrollTop(Math.abs(posY - originalTop));
+    }, 1);
+  } else {
+    el.css({top: posY});
+    el.toggleClass('fixed');
+  }
+}
 
 } // End App
+//
+// Slides.js configurations
+//
+
 $(function(){
-  $("#project-slides").slidesjs({
-    width: 940,
-    height: 528
-  });
+	$('#project-slides').slidesjs({
+		width: 940,
+		height: 528,
+		navigation: {
+			active: false
+		}
+	});
+
+	$('#issue-slides-1, #issue-slides-2').slidesjs({
+		width: 400,
+		height: 450,
+			pagination: {
+				active: false
+		}
+	});
 });
