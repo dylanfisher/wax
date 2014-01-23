@@ -38,6 +38,9 @@ body {
 	width: calc(100% - 50px);
 	left: $sidebar;
 	box-shadow: 0 0 17px 4px #BEBEBE;
+	.overlay {
+		position: fixed;
+	}
 }
 .frame-two {
 	position: absolute;

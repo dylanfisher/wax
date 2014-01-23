@@ -617,6 +617,10 @@ body {
   box-shadow: 0 0 17px 4px #BEBEBE;
 }
 
+.frame-one-container .overlay {
+  position: fixed;
+}
+
 .frame-two {
   position: absolute;
   width: -webkit-calc(100% - 100px);

@@ -3,7 +3,6 @@
 Template Name: Page - Application
 */
 ?>
-
 <?php get_header() ?>
 	<div id="frame-one" class="frame-one">
 		<div id="frame-one-container" class="frame-one-container">
