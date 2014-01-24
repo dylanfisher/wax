@@ -979,8 +979,13 @@ function positionFixedContent(el){
 getProducts($('#product-container'));
 function getProducts(el){
   $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
-    var item = x.products,
-        iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
+    var item = x.products;
+
+    if (document.location.hostname == 'localhost'){
+      iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
+    } else {
+      iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
+    }
 
     $.each( item, function( key, product ) {
       // console.log(product);
