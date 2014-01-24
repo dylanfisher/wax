@@ -980,7 +980,7 @@ getProducts($('#product-container'));
 function getProducts(el){
   $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
     var item = x.products,
-        iframeSrc = 'http://localhost:3000/wax/wp-content/themes/wax/buy-button.php';
+        iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
 
     $.each( item, function( key, product ) {
       // console.log(product);
