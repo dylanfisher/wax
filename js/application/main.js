@@ -1,5 +1,6 @@
 $(document).ready(function(){
   app();
+  store();
 });
 
 function app(){
@@ -203,65 +204,6 @@ function positionFixedContent(el){
     el.addClass('fixed');
     scrollToTop();
   }
-}
-
-getProducts($('#product-container'));
-function getProducts(el){
-  $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
-    var item = x.products;
-
-    if (document.location.hostname == 'localhost'){
-      iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
-    } else {
-      iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
-    }
-
-    $.each( item, function( key, product ) {
-      // console.log(product);
-      el.append('<ul>' +
-        '<li>' + '<img src="' + product.images[0].src + '">' + '</li>' +
-        '<li>' + product.title + '</li>' +
-        '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '"></iframe>' +
-        '</ul>');
-    });
-  });
-}
-
-function constructCartPermalink(){
-  $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
-    var data = x.items,
-        itemCount = x.item_count;
-
-    // console.log('Item count = ' + itemCount);
-
-    $.each( data, function( key, value ) {
-      var item = value.variant_id + ':' + value.quantity;
-      // console.log('item = ' + item);
-    });
-
-    var allItems = $(data).map(function(val) {
-      return this.variant_id + ':' + this.quantity;
-    }).get().join();
-    // console.log(allItems);
-    $('#cart-permalink').attr('href', 'http://store.readwax.com/cart/' + allItems);
-  });
-}
-
-constructCartPermalink();
-$('#cart-permalink').on('mouseover', function(){
-  constructCartPermalink();
-});
-
-$(window, window.parent.document).load(function(){
-  // variantId();
-});
-
-function variantId(){
-  $('.buy-button-frame').each(function(key) {
-    var variant = $('#buy-button-frame-' + key, top.document).data('variant');
-    $('#buy-button-frame-' + key).contents().find('#add-to-cart input[name="id"]').val(variant);
-    $('#buy-button-frame-' + key).contents().find('#cart-tester').html(variant);
-  });
 }
 
 } // End App
