@@ -743,8 +743,8 @@ body {
   vertical-align: top;
 }
 .product-container iframe {
-  width: 90px;
-  height: 50px;
+  width: 200px;
+  height: 90px;
 }
 .product-container img {
   max-width: 150px;

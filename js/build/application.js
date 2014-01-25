@@ -1060,12 +1060,37 @@ function store(){
     console.log('variantIdUpdate() Ran');
   }
 
+  updateCartQuantity($('#cart-item-count'));
   function updateCartQuantity(el){
     $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
       count = x.item_count;
 
       el.html(count);
     });
+  }
+
+  $('#cart-count').on('click', function(event){
+    event.preventDefault();
+    updateCartQuantity($('#cart-item-count'));
+  });
+
+  $('#clear').on('click', function(event){
+    event.preventDefault();
+    loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/clear.js');
+  });
+
+  $('#update').on('click', function(event){
+    event.preventDefault();
+    loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/change/448372341?quantity=10');
+  });
+
+  function loadIframe(el, url) {
+      var $iframe = el;
+      if ( $iframe.length ) {
+          $iframe.attr('src',url);
+          return false;
+      }
+      return true;
   }
 
   // Check if iframes reload (when buy button is clicked)
