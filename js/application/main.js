@@ -206,4 +206,27 @@ function positionFixedContent(el){
   }
 }
 
+// Responsive WAX logo
+$(window).load(function(){
+  var docY = $(document).height(),
+      docX = $(document).width(),
+      winY = $(window).height(),
+      winX = $(window).width(),
+      docHeight = docY - winY;
+      docWidth = docX - winX;
+  $(window).scroll(function(){
+     var st = $(this).scrollTop(),
+         sl = $(this).scrollLeft(),
+         ratioY = st / docHeight,
+         ratioX = sl / docWidth,
+         posY = parseInt(ratioY * 100);
+         posX = parseInt(ratioX * 100);
+
+    $('#wax2').css({'margin-top': posY / 2 + '%'});
+    $('#wax2').css({'margin-left': posX / 2 + '%'});
+    $('#wax3').css({'margin-top': posY + '%'});
+    $('#wax3').css({'margin-left': posX / 2 + '%'});
+  });
+});
+
 } // End App

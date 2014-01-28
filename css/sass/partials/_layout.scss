@@ -2,11 +2,8 @@
 // Layout, size and positioning
 //
 
-html,
 body {
 	overflow-y: scroll;
-	// height: 100%;
-	// min-height: 100%;
 }
 .frame-one,
 .frame-two,
@@ -197,6 +194,31 @@ body {
 		-webkit-transform-origin: 0 0;
 		position: fixed;
 		margin-left: 1em;
+	}
+}
+
+// WAX logo test
+html {
+	margin-left: 1000px;
+	width: 2000px;
+}
+.wax-logo-container {
+	position: fixed;
+	display: block;
+	right: 150px;
+	top: 50px;
+	white-space: nowrap;
+	text-decoration: none;
+	.wax-logo {
+		position: relative;
+		display: inline-block;
+		transition: margin .01s;
+		&:nth-child(2) {
+			margin-left: 10px;
+		}
+		&:nth-child(3) {
+			margin-left: 10px;
+		}
 	}
 }
 
