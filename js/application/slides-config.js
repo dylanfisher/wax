@@ -2,7 +2,7 @@
 // Slides.js configurations
 //
 
-$(function(){
+(function(){
 	$('#project-slides').slidesjs({
 		width: 940,
 		height: 528,
@@ -18,4 +18,4 @@ $(function(){
 				active: false
 		}
 	});
-});
+})();

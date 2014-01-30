@@ -2,69 +2,80 @@
 // Layout, size and positioning
 //
 
-body {
-	overflow-y: scroll;
-}
-.frame-one,
-.frame-two,
-.frame-three {
-	min-height: 100%;
-	top: 0;
-	text-align: center;
-}
-.frame-one {
-	position: fixed;
+html {
 	width: 100%;
-	right: 0;
-	background-color: #fff;
-	z-index: 12;
-	.show-overlay,
+}
+
+.frame-featured {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
 	.overlay {
-		position: absolute;
+		position: fixed;
 	}
 	.show-overlay {
+		position: absolute;
 		z-index: 11;
 		top: 10px;
 		right: 10px;
 		cursor: pointer;
 	}
-}
-.frame-one-container {
-	position: relative;
-	height: 100%;
-	width: calc(100% - 50px);
-	left: $sidebar;
-	box-shadow: 0 0 17px 4px #BEBEBE;
-	.overlay {
-		position: fixed;
+	.featured-project {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-image: url(../../../images/ASHES_HD.gif);
+		background-color: rgba(169, 236, 255, 0.31);
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
-.frame-two {
-	position: absolute;
-	width: calc(100% - #{$sidebar * 2});
-	right: 100%;
-	z-index: 9;
+.nav-site-title,
+.fixed-nav {
+	position: fixed;
+	top: 40px;
 }
+.nav-site-title {
+	left: 20px;
+	z-index: 19;
+}
+.fixed-nav {
+	width: 100%;
+	text-align: center;
+	z-index: 18;
+	h3 {
+		display: inline-block;
+	}
+}
+.frame-container {
+	position: absolute;
+	width: 100%;
+}
+.frame-one,
+.frame-two,
 .frame-three {
 	position: absolute;
 	width: 100%;
-	right: calc(100% - #{$sidebar});
-	background-color: #fff;
 	text-align: center;
-	z-index: 13;
 	&.fixed {
-		z-index: 8;
+		// @extend %visually_hidden;
+		position: fixed;
+	}
+	.content {
+		margin-top: 200px;
 	}
 }
-.issue {
-	margin: 20px 0 50px;
+.frame-one {
+	left: -100%;
 }
-.issue-slides {
-	margin: 0 auto;
-	width: 400px;
+.frame-two {
+	left: 0;
 }
-.fixed {
-	position: fixed;
+.frame-three {
+	left: 100%;
 }
 .overlay {
 	position: absolute;
@@ -82,151 +93,193 @@ body {
 		overflow: hidden;
 	}
 }
-.featured-project {
-	width: 100%;
-	height: 100%;
-	iframe {
-		width: 100%;
-		height: 100%;
-	}
+.fixed {
+	// position: fixed;
 }
-.fixed-nav-elements {
-	h1, h2, h3 {
-		position: fixed;
-	}
-	h1, h2 {
-		left: 50%;
-		-webkit-transform: translate(-50%, 0);
-	}
-	h1 {
-		z-index: 0;
-	}
-	h2, h3 {
-		z-index: 11;
-	}
-	.nav-site-title {
-		top: 65px;
-	}
-	.nav-tagline {
-		top: 15px;
-	}
-	.nav-about,
-	.nav-finds {
-		cursor: pointer;
-		&:hover {
-			border-bottom: 2px solid;
-		}
-	}
-	.nav-about {
-		right: $sidebar * 2 + $sidebar / 2;
-		top: 15px;
-	}
-	.nav-finds {
-		left: $sidebar + $sidebar / 2;
-		bottom: 15px;
-		&:hover {
-			bottom: 13px;
-		}
-	}
-}
-.main-content {
-	position: absolute;
-	width: calc(100% - #{$sidebar});
-	min-height: 100%;
-	left: $sidebar;
-	top: 250px;
-}
-.about-overlay {
-	width: 60%;
-	top: 80px;
-	left: 50%;
-	-webkit-transform: translate(-50%, 0);
-	text-align: justify;
-}
-.finds-overlay {
-	margin-top: 100px;
-	img {
-		display: block;
-		margin: 0 auto;
-		margin-bottom: 30px;
-	}
-}
-.overlay-disable {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: $sidebar;
-	z-index: 20;
-}
-
-.sidebar {
-	position: fixed;
-	width: $sidebar;
-	height: 100%;
-	top: 0;
-	cursor: pointer;
-	background-color: #fff;
-	border-left: 2px solid $gray_light;
-	border-right: 2px solid $gray_light;
-	&:hover {
-		background: #000;
-		border-color: #000;
-		color: #fff;
-		z-index: 10;
-	}
-	&.sidebar-primary,
-	&.sidebar-secondary {
-		&.active {
-			z-index: 16;
-		}
-	}
-	&.sidebar-primary {
-		left: 0;
-		z-index: 15
-	}
-	&.sidebar-secondary {
-		right: calc(200% - #{$sidebar} * 3);
-		z-index: 14
-	}
-	h2 {
-		-webkit-transform: rotate(90deg);
-		-webkit-transform-origin: 0 0;
-		position: fixed;
-		margin-left: 1em;
-	}
+.force-redraw {
+	@extend %visually_hidden;
 }
 
 // WAX logo test
-html {
-	margin-left: 1000px;
-	width: 2000px;
-}
-.wax-logo-container {
+.nav-site-title {
 	position: fixed;
-	display: block;
-	right: 150px;
-	top: 50px;
 	white-space: nowrap;
-	text-decoration: none;
+	font-size: 24px;
+	a {
+		display: block;
+		text-decoration: none;
+		color: #000;
+	}
 	.wax-logo {
 		position: relative;
 		display: inline-block;
-		transition: margin .01s;
+		transition: color .4s;
 		&:nth-child(2) {
 			margin-left: 10px;
 		}
 		&:nth-child(3) {
 			margin-left: 10px;
 		}
+		&.active {
+			color: #528DFF;
+		}
+		&.transition {
+			transition: margin .2s;
+		}
 	}
 }
 
-// Temporarily disable WP-Admin bar
-#wpadminbar {
-	display: none;
-}
-// Override WP-Admin bar height
-body {
-	margin-top: -32px;
-}
+// old
+
+// .frame-one {
+// 	width: 100%;
+// 	right: 0;
+// 	background-color: #fff;
+// 	z-index: 12;
+// 	.show-overlay,
+// 	.overlay {
+// 		position: absolute;
+// 	}
+// }
+// .frame-one-container {
+// 	position: relative;
+// 	height: 100%;
+// 	width: calc(100% - 50px);
+// 	left: $sidebar;
+// 	box-shadow: 0 0 17px 4px #BEBEBE;
+// 	.overlay {
+// 		position: fixed;
+// 	}
+// }
+// .frame-two {
+// 	position: absolute;
+// 	width: calc(100% - #{$sidebar * 2});
+// 	right: 100%;
+// 	z-index: 9;
+// }
+// .frame-three {
+// 	position: absolute;
+// 	width: 100%;
+// 	right: calc(100% - #{$sidebar});
+// 	background-color: #fff;
+// 	text-align: center;
+// 	z-index: 13;
+// 	&.fixed {
+// 		z-index: 8;
+// 	}
+// }
+// .featured-project {
+// 	width: 100%;
+// 	height: 100%;
+// 	iframe {
+// 		width: 100%;
+// 		height: 100%;
+// 	}
+// }
+// .fixed-nav {
+// 	h1, h2, h3 {
+// 		position: fixed;
+// 		display: none; // Temporary
+// 	}
+// 	h1, h2 {
+// 		left: 50%;
+// 		-webkit-transform: translate(-50%, 0);
+// 	}
+// 	h1 {
+// 		z-index: 0;
+// 	}
+// 	h2, h3 {
+// 		z-index: 11;
+// 	}
+// 	.nav-site-title {
+// 		top: 65px;
+// 	}
+// 	.nav-tagline {
+// 		top: 15px;
+// 	}
+// 	.nav-about,
+// 	.nav-finds {
+// 		cursor: pointer;
+// 		&:hover {
+// 			border-bottom: 2px solid;
+// 		}
+// 	}
+// 	.nav-about {
+// 		right: $sidebar * 2 + $sidebar / 2;
+// 		top: 15px;
+// 	}
+// 	.nav-finds {
+// 		left: $sidebar + $sidebar / 2;
+// 		bottom: 15px;
+// 		&:hover {
+// 			bottom: 13px;
+// 		}
+// 	}
+// }
+// .main-content {
+// 	position: absolute;
+// 	width: calc(100% - #{$sidebar});
+// 	min-height: 100%;
+// 	left: $sidebar;
+// 	top: 250px;
+// }
+// .about-overlay {
+// 	width: 60%;
+// 	top: 80px;
+// 	left: 50%;
+// 	-webkit-transform: translate(-50%, 0);
+// 	text-align: justify;
+// }
+// .finds-overlay {
+// 	margin-top: 100px;
+// 	img {
+// 		display: block;
+// 		margin: 0 auto;
+// 		margin-bottom: 30px;
+// 	}
+// }
+// .overlay-disable {
+// 	position: fixed;
+// 	width: 100%;
+// 	height: 100%;
+// 	top: 0;
+// 	left: $sidebar;
+// 	z-index: 20;
+// }
+
+// .sidebar {
+// 	position: fixed;
+// 	width: $sidebar;
+// 	height: 100%;
+// 	top: 0;
+// 	cursor: pointer;
+// 	background-color: #fff;
+// 	border-left: 2px solid $gray_light;
+// 	border-right: 2px solid $gray_light;
+// 	&:hover {
+// 		background: #000;
+// 		border-color: #000;
+// 		color: #fff;
+// 		z-index: 10;
+// 	}
+// 	&.sidebar-primary,
+// 	&.sidebar-secondary {
+// 		&.active {
+// 			z-index: 16;
+// 		}
+// 	}
+// 	&.sidebar-primary {
+// 		left: 0;
+// 		z-index: 15
+// 	}
+// 	&.sidebar-secondary {
+// 		right: calc(200% - #{$sidebar} * 3);
+// 		z-index: 14
+// 	}
+// 	h2 {
+// 		-webkit-transform: rotate(90deg);
+// 		-webkit-transform-origin: 0 0;
+// 		position: fixed;
+// 		margin-left: 1em;
+// 	}
+// }

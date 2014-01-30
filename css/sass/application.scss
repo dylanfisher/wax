@@ -4,6 +4,7 @@
 @import "modules/mixins";
 
 // Base
+@import "modules/font_face";
 @import "base/normalize";
 @import "base/base_styles";
 @import "base/helper_classes";
@@ -13,6 +14,7 @@
 @import "partials/typography";
 @import "partials/ui_elements";
 @import "partials/layout";
+@import "partials/issues";
 @import "partials/store";
 @import "partials/content_areas";
 @import "partials/slidesjs";

@@ -1,3 +1,48 @@
+/*
+ * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+ *
+ * Uses the built in easing capabilities added In jQuery 1.1
+ * to offer multiple easing options
+ *
+ * TERMS OF USE - EASING EQUATIONS
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright Â© 2001 Robert Penner
+ * All rights reserved.
+ *
+ * TERMS OF USE - jQuery Easing
+ * 
+ * Open source under the BSD License. 
+ * 
+ * Copyright Â© 2008 George McGinley Smith
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * Redistributions of source code must retain the above copyright notice, this list of 
+ * conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * Neither the name of the author nor the names of contributors may be used to endorse 
+ * or promote products derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+ * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+*/
+jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeOutQuad",swing:function(e,f,a,h,g){return jQuery.easing[jQuery.easing.def](e,f,a,h,g)},easeInQuad:function(e,f,a,h,g){return h*(f/=g)*f+a},easeOutQuad:function(e,f,a,h,g){return -h*(f/=g)*(f-2)+a},easeInOutQuad:function(e,f,a,h,g){if((f/=g/2)<1){return h/2*f*f+a}return -h/2*((--f)*(f-2)-1)+a},easeInCubic:function(e,f,a,h,g){return h*(f/=g)*f*f+a},easeOutCubic:function(e,f,a,h,g){return h*((f=f/g-1)*f*f+1)+a},easeInOutCubic:function(e,f,a,h,g){if((f/=g/2)<1){return h/2*f*f*f+a}return h/2*((f-=2)*f*f+2)+a},easeInQuart:function(e,f,a,h,g){return h*(f/=g)*f*f*f+a},easeOutQuart:function(e,f,a,h,g){return -h*((f=f/g-1)*f*f*f-1)+a},easeInOutQuart:function(e,f,a,h,g){if((f/=g/2)<1){return h/2*f*f*f*f+a}return -h/2*((f-=2)*f*f*f-2)+a},easeInQuint:function(e,f,a,h,g){return h*(f/=g)*f*f*f*f+a},easeOutQuint:function(e,f,a,h,g){return h*((f=f/g-1)*f*f*f*f+1)+a},easeInOutQuint:function(e,f,a,h,g){if((f/=g/2)<1){return h/2*f*f*f*f*f+a}return h/2*((f-=2)*f*f*f*f+2)+a},easeInSine:function(e,f,a,h,g){return -h*Math.cos(f/g*(Math.PI/2))+h+a},easeOutSine:function(e,f,a,h,g){return h*Math.sin(f/g*(Math.PI/2))+a},easeInOutSine:function(e,f,a,h,g){return -h/2*(Math.cos(Math.PI*f/g)-1)+a},easeInExpo:function(e,f,a,h,g){return(f==0)?a:h*Math.pow(2,10*(f/g-1))+a},easeOutExpo:function(e,f,a,h,g){return(f==g)?a+h:h*(-Math.pow(2,-10*f/g)+1)+a},easeInOutExpo:function(e,f,a,h,g){if(f==0){return a}if(f==g){return a+h}if((f/=g/2)<1){return h/2*Math.pow(2,10*(f-1))+a}return h/2*(-Math.pow(2,-10*--f)+2)+a},easeInCirc:function(e,f,a,h,g){return -h*(Math.sqrt(1-(f/=g)*f)-1)+a},easeOutCirc:function(e,f,a,h,g){return h*Math.sqrt(1-(f=f/g-1)*f)+a},easeInOutCirc:function(e,f,a,h,g){if((f/=g/2)<1){return -h/2*(Math.sqrt(1-f*f)-1)+a}return h/2*(Math.sqrt(1-(f-=2)*f)+1)+a},easeInElastic:function(f,h,e,l,k){var i=1.70158;var j=0;var g=l;if(h==0){return e}if((h/=k)==1){return e+l}if(!j){j=k*0.3}if(g<Math.abs(l)){g=l;var i=j/4}else{var i=j/(2*Math.PI)*Math.asin(l/g)}return -(g*Math.pow(2,10*(h-=1))*Math.sin((h*k-i)*(2*Math.PI)/j))+e},easeOutElastic:function(f,h,e,l,k){var i=1.70158;var j=0;var g=l;if(h==0){return e}if((h/=k)==1){return e+l}if(!j){j=k*0.3}if(g<Math.abs(l)){g=l;var i=j/4}else{var i=j/(2*Math.PI)*Math.asin(l/g)}return g*Math.pow(2,-10*h)*Math.sin((h*k-i)*(2*Math.PI)/j)+l+e},easeInOutElastic:function(f,h,e,l,k){var i=1.70158;var j=0;var g=l;if(h==0){return e}if((h/=k/2)==2){return e+l}if(!j){j=k*(0.3*1.5)}if(g<Math.abs(l)){g=l;var i=j/4}else{var i=j/(2*Math.PI)*Math.asin(l/g)}if(h<1){return -0.5*(g*Math.pow(2,10*(h-=1))*Math.sin((h*k-i)*(2*Math.PI)/j))+e}return g*Math.pow(2,-10*(h-=1))*Math.sin((h*k-i)*(2*Math.PI)/j)*0.5+l+e},easeInBack:function(e,f,a,i,h,g){if(g==undefined){g=1.70158}return i*(f/=h)*f*((g+1)*f-g)+a},easeOutBack:function(e,f,a,i,h,g){if(g==undefined){g=1.70158}return i*((f=f/h-1)*f*((g+1)*f+g)+1)+a},easeInOutBack:function(e,f,a,i,h,g){if(g==undefined){g=1.70158}if((f/=h/2)<1){return i/2*(f*f*(((g*=(1.525))+1)*f-g))+a}return i/2*((f-=2)*f*(((g*=(1.525))+1)*f+g)+2)+a},easeInBounce:function(e,f,a,h,g){return h-jQuery.easing.easeOutBounce(e,g-f,0,h,g)+a},easeOutBounce:function(e,f,a,h,g){if((f/=g)<(1/2.75)){return h*(7.5625*f*f)+a}else{if(f<(2/2.75)){return h*(7.5625*(f-=(1.5/2.75))*f+0.75)+a}else{if(f<(2.5/2.75)){return h*(7.5625*(f-=(2.25/2.75))*f+0.9375)+a}else{return h*(7.5625*(f-=(2.625/2.75))*f+0.984375)+a}}}},easeInOutBounce:function(e,f,a,h,g){if(f<g/2){return jQuery.easing.easeInBounce(e,f*2,0,h,g)*0.5+a}return jQuery.easing.easeOutBounce(e,f*2-g,0,h,g)*0.5+h*0.5+a}});
+
 /*! Lazy Load 1.9.2 - MIT license - Copyright 2010-2013 Mika Tuupola */
 !function(a,b,c,d){var e=a(b);a.fn.lazyload=function(f){function g(){var b=0;i.each(function(){var c=a(this);if(!j.skip_invisible||c.is(":visible"))if(a.abovethetop(this,j)||a.leftofbegin(this,j));else if(a.belowthefold(this,j)||a.rightoffold(this,j)){if(++b>j.failure_limit)return!1}else c.trigger("appear"),b=0})}var h,i=this,j={threshold:0,failure_limit:0,event:"scroll",effect:"show",container:b,data_attribute:"original",skip_invisible:!0,appear:null,load:null,placeholder:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"};return f&&(d!==f.failurelimit&&(f.failure_limit=f.failurelimit,delete f.failurelimit),d!==f.effectspeed&&(f.effect_speed=f.effectspeed,delete f.effectspeed),a.extend(j,f)),h=j.container===d||j.container===b?e:a(j.container),0===j.event.indexOf("scroll")&&h.bind(j.event,function(){return g()}),this.each(function(){var b=this,c=a(b);b.loaded=!1,(c.attr("src")===d||c.attr("src")===!1)&&c.is("img")&&c.attr("src",j.placeholder),c.one("appear",function(){if(!this.loaded){if(j.appear){var d=i.length;j.appear.call(b,d,j)}a("<img />").bind("load",function(){var d=c.attr("data-"+j.data_attribute);c.hide(),c.is("img")?c.attr("src",d):c.css("background-image","url('"+d+"')"),c[j.effect](j.effect_speed),b.loaded=!0;var e=a.grep(i,function(a){return!a.loaded});if(i=a(e),j.load){var f=i.length;j.load.call(b,f,j)}}).attr("src",c.attr("data-"+j.data_attribute))}}),0!==j.event.indexOf("scroll")&&c.bind(j.event,function(){b.loaded||c.trigger("appear")})}),e.bind("resize",function(){g()}),/(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion)&&e.bind("pageshow",function(b){b.originalEvent&&b.originalEvent.persisted&&i.each(function(){a(this).trigger("appear")})}),a(c).ready(function(){g()}),this},a.belowthefold=function(c,f){var g;return g=f.container===d||f.container===b?(b.innerHeight?b.innerHeight:e.height())+e.scrollTop():a(f.container).offset().top+a(f.container).height(),g<=a(c).offset().top-f.threshold},a.rightoffold=function(c,f){var g;return g=f.container===d||f.container===b?e.width()+e.scrollLeft():a(f.container).offset().left+a(f.container).width(),g<=a(c).offset().left-f.threshold},a.abovethetop=function(c,f){var g;return g=f.container===d||f.container===b?e.scrollTop():a(f.container).offset().top,g>=a(c).offset().top+f.threshold+a(c).height()},a.leftofbegin=function(c,f){var g;return g=f.container===d||f.container===b?e.scrollLeft():a(f.container).offset().left,g>=a(c).offset().left+f.threshold+a(c).width()},a.inviewport=function(b,c){return!(a.rightoffold(b,c)||a.leftofbegin(b,c)||a.belowthefold(b,c)||a.abovethetop(b,c))},a.extend(a.expr[":"],{"below-the-fold":function(b){return a.belowthefold(b,{threshold:0})},"above-the-top":function(b){return!a.belowthefold(b,{threshold:0})},"right-of-screen":function(b){return a.rightoffold(b,{threshold:0})},"left-of-screen":function(b){return!a.rightoffold(b,{threshold:0})},"in-viewport":function(b){return a.inviewport(b,{threshold:0})},"above-the-fold":function(b){return!a.belowthefold(b,{threshold:0})},"right-of-fold":function(b){return a.rightoffold(b,{threshold:0})},"left-of-fold":function(b){return!a.rightoffold(b,{threshold:0})}})}(jQuery,window,document);
 /*
@@ -769,195 +814,205 @@ var loader = function(el){
   var animation = '<div class="loading">loading...</div>';
   el.append(animation);
 };
+//
+// Control the animations/transitions of the frame container
+//
+
 $(document).ready(function(){
-  app();
-  store();
+    var frames        = $('#frame-one, #frame-two, #frame-three'),
+        frameOne      = $('#frame-one'),
+        frameTwo      = $('#frame-two'),
+        frameThree    = $('#frame-three'),
+        nav           = $('#nav-issues, #nav-home, #nav-store'),
+        logo          = $('.wax-logo'),
+        container     = $('#frame-container'),
+        winX          = $(window).width(),
+        winY          = $(window).height(),
+        frameOnePos   = '100%',
+        frameTwoPos   = 0,
+        frameThreePos = '-100%',
+        containerTop  = container.offset().top,
+        oneOffset     = containerTop - frameOne.offset().top,
+        twoOffset     = containerTop - frameTwo.offset().top,
+        threeOffset   = containerTop - frameThree.offset().top,
+        navOffset     = 20,
+        easing        = 'easeInOutQuad';
+
+    //
+    // All frames
+    //
+
+    nav.on('click', function(){
+        logo.addClass('transition');
+    });
+
+    //
+    // Frame One
+    //
+
+    $('#nav-issues').on('click', function(e){
+        $('html').css({'overflow-x': 'hidden'});
+        $('#nav-site-title .wax-logo').removeClass('active');
+        $('#wax1').addClass('active');
+        frames.transition({x: frameOnePos}, easing, function(){
+            redraw();
+            scrollToTop();
+            $('html').css({overflow: ''});
+            logo.removeClass('transition');
+        });
+        frames.data('active', false);
+        frameOne.data('active', true);
+        frameOne.removeClass('fixed');
+        $('#frame-two, #frame-three').addClass('fixed');
+        e.preventDefault();
+    });
+
+    //
+    // Frame Two
+    //
+
+    $('#nav-home').on('click', function(e){
+        $('html').css({'overflow-x': 'hidden'});
+        $('#nav-site-title .wax-logo').removeClass('active');
+        $('#wax2').addClass('active');
+        frames.transition({x: frameTwoPos}, easing, function(){
+            redraw();
+            scrollToTop();
+            $('html').css({overflow: ''});
+            logo.removeClass('transition');
+        });
+        frames.data('active', false);
+        frameTwo.data('active', true);
+        frameTwo.removeClass('fixed');
+        $('#frame-one, #frame-three').addClass('fixed');
+        e.preventDefault();
+    });
+
+    //
+    // Frame Three
+    //
+
+    $('#nav-store').on('click', function(e){
+        $('html').css({'overflow-x': 'hidden'});
+        $('#nav-site-title .wax-logo').removeClass('active');
+        $('#wax3').addClass('active');
+        frames.transition({x: frameThreePos}, easing, function(){
+            redraw();
+            scrollToTop();
+            $('html').css({overflow: ''});
+            logo.removeClass('transition');
+        });
+        frames.data('active', false);
+        frameThree.data('active', true);
+        frameThree.removeClass('fixed');
+        $('#frame-one, #frame-two').addClass('fixed');
+        e.preventDefault();
+    });
+
+    function scrollToTop(){
+        $('html, body').animate({scrollTop: winY - navOffset}, 'fast', easing);
+        // This allows user input to cancel the scroll to top
+        $viewport = $('html, body');
+        $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
+            if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
+                 $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+            }
+        });
+    }
+
+    function redraw(){
+        // This forces DOM redraw and calculates correct Document height/shows scrollbars
+        // avoids some strange behavior with translate and fixed posiioned elements
+        $('body').append('<div class="force-redraw"></div>');
+        setTimeout(function(){
+            $('.force-redraw').remove();
+        }, 10);
+    }
 });
-
-function app(){
-  var animSpeed = 800,
-      animEasing = 'snap',
-      fadeSpeed = 800,
-      sidebar = 50,
-      $imgs = $('.lazy'),
-      featuredProjectOpen = false,
-      aboutOpen = false,
-      findsOpen = false,
-      mainContentBlur = $('#main-content, #nav-site-title');
-
-// Lazy load images
-$('.lazy').lazyload({
-  threshold : 400,
-  skip_invisible : false,
-  // Set failure limit to be the number of lazy images in the DOM (since images are non sequential)
-  failure_limit: Math.max($imgs.length - 1, 0)
-});
-
 //
-// Sidebar logic and content pane animations
+// Slides.js configurations
 //
 
-// Frame one
-// Main sidebar animation in front page view
-$('#sidebar-primary').on('click', function(){
-  secondaryFrameOpen();
-});
-
-$('#frame-one').on('click', '#overlay-disable', function(){
-  secondaryFrameClose();
-});
-
-function secondaryFrameOpen(){
-  // Close frame one
-  $('#frame-one').transition({x: $('#frame-one').width() - 100}, animSpeed, animEasing, function(){
-    $('#frame-one-container').prepend('<div id="overlay-disable" class="overlay-disable"></div>');
-  }).addClass('fixed');
-  $('#sidebar-primary').transition({x: $('#frame-one').width() - sidebar * 2}, animSpeed, animEasing);
-  // Open frame two
-  $('#frame-two').transition({x: $('#frame-two').width()}, animSpeed, animEasing, function(){
-    // This forces DOM redraw and calculates correct Document height/shows scrollbars
-    $('h1').hide().show(0);
-    triggerScroll();
-  }).removeClass('fixed').css({top: 0});
-  $('#sidebar-secondary').transition({x: $('#frame-two').width()}, animSpeed, animEasing);
-  hideAllOverlays();
-  scrollToTop();
-}
-
-function secondaryFrameClose(){
-  // Open frame one
-  $('#frame-one').transition({x: 0}, animSpeed, animEasing).removeClass('fixed');
-  $('#sidebar-primary').transition({x: 0}, animSpeed, animEasing);
-  $('#frame-one #overlay-disable').remove();
-  // Close frame two
-  $('#frame-two').transition({x: 0}, animSpeed, animEasing).addClass('fixed');
-  $('#sidebar-secondary').transition({x: $('#frame-two').width() * -1}, animSpeed, animEasing);
-  hideAllOverlays();
-  scrollToTop();
-}
-
-// Frame two
-// Left magazine sidebar animation
-$('#sidebar-secondary').on('click', function(){
-  if($(this).hasClass('active')){
-    tertiaryFrameClose();
-  } else {
-    tertiaryFrameOpen();
-  }
-});
-
-function tertiaryFrameOpen(){
-  // Open frame three
-  $('#frame-three').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing, function(){
-    triggerScroll();
-  }).removeClass('fixed');
-  $('#sidebar-secondary').transition({x: $('#frame-three').width() * 2 - sidebar * 4}, animSpeed, animEasing);
-  $('#frame-two').addClass('fixed');
-  hideAllOverlays();
-  scrollToTop();
-}
-
-function tertiaryFrameClose(){
-  // Close frame three
-  $('#frame-three').transition({x: 0}, animSpeed, animEasing, function(){
-    $('#frame-three').addClass('fixed');  
+$(function(){
+  var $imgs = $('.lazy');
+  // Lazy load images
+  $('.lazy').lazyload({
+    threshold : 400,
+    skip_invisible : false,
+    // Set failure limit to be the number of lazy images in the DOM (since images are non sequential)
+    failure_limit: Math.max($imgs.length - 1, 0)
   });
-  $('#sidebar-secondary').transition({x: $('#frame-three').width() - sidebar * 2}, animSpeed, animEasing);
-  $('#frame-two').removeClass('fixed').css({top: 0});
-  hideAllOverlays();
-  scrollToTop();
-}
-
-// Sidebar class toggle
-$('.sidebar').on('click', function(){
-  $(this).toggleClass('active').not(this).remove('active');
 });
+$(document).ready(function(){
+  var docY                = $(document).height(),
+      docX                = $(document).width(),
+      winY                = $(window).height(),
+      winX                = $(window).width(),
+      docHeight           = docY - winY,
+      docWidth            = docX - winX,
+      frameOne            = $('#frame-one'),
+      frameTwo            = $('#frame-two'),
+      frameThree          = $('#frame-three'),
+      frameOneHeight      = frameOne.height() - winY,
+      frameTwoHeight      = frameTwo.height() - winY,
+      frameThreeHeight    = frameThree.height() - winY,
+      animSpeed           = 800,
+      animEasing          = 'snap',
+      fadeSpeed           = 800,
+      sidebar             = 50,
+      featuredProjectOpen = false,
+      aboutOpen           = false,
+      findsOpen           = false,
+      mainContentBlur     = $('#main-content, #nav-site-title'),
+      navOffset           = 20;
 
-//
-// Toggle hiding and showing of overlays, and blurring of background
-//
+  // Scroll snap config
+  // $(document).scrollsnap({
+  //   snaps       : 'body',
+  //   proximity   : winY / 3,
+  //   offset      : -20
+  // });
 
-// Save the original top value when closing the overlays
-assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
+  $('#frame-container').css({y: winY});
 
-$('#frame-one-show-overlay').on('click', function(){
-  if(featuredProjectOpen === false){
-    featuredProjectOpen = true;
-    showOverlays($('#frame-one-overlay'), $('#featured-project'));
-  } else {
-    featuredProjectOpen = false;
-    hideOverlays($('#frame-one-overlay'), $('#featured-project'));
-  }
+  // Scroll to top of page when WAX logo is clicked
+  $('#nav-site-title').on('click', function(e){
+    $('html, body').animate({scrollTop: winY - navOffset});
+    e.preventDefault();
+  });
+
+  // Responsive WAX logo
+  $(window).scroll(function(){
+    var st     = $(this).scrollTop() - winY,
+        sl     = $(this).scrollLeft() - winX,
+        ratioY = st / docHeight * 100,
+        ratioX = sl / docWidth * 100,
+        posY   = Math.max( 0, ratioY ),
+        posX   = Math.max( 0, parseInt(ratioX) );
+    if(frameOne.data('active') === true){
+      ratioY = st / frameOneHeight * 100;
+    } else if (frameTwo.data('active' === true)){
+      ratioY = st / frameTwoHeight * 100;
+    } else {
+      ratioY = st / frameThreeHeight * 100;
+    }
+    posY   = Math.max( 0, ratioY );
+    if(posY >= 100){
+      posY = 100;
+    }
+    $('#wax2').css({marginTop  : posY / 2 + '%'});
+    $('#wax2').css({marginLeft : posX / 2 + '%'});
+    $('#wax3').css({marginTop  : posY     + '%'});
+    $('#wax3').css({marginLeft : posX / 2 + '%'});
+  });
+
+  // If a frame is shorter than the window height, set it to equal the window height
+  $('#frame-container .frame').each(function(){
+    if($(this).height() < winY){
+      $(this).css({height: winY});
+    }
+  });
 });
-
-$('#nav-about').on('click', function(){
-  if(findsOpen === true){
-    hideOverlays($('#finds-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-    findsOpen = false;
-  }
-  if(aboutOpen === false){
-    aboutOpen = true;
-    showOverlays($('#about-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-  } else {
-    aboutOpen = false;
-    hideOverlays($('#about-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-  }
-});
-
-$('#nav-finds').on('click', function(){
-  if(aboutOpen === true){
-    hideOverlays($('#about-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-    aboutOpen = false;
-  }
-  if(findsOpen === false){
-    findsOpen = true;
-    showOverlays($('#finds-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-  } else {
-    findsOpen = false;
-    hideOverlays($('#finds-overlay'), mainContentBlur);
-    positionFixedContent($('#frame-two'));
-  }
-});
-
-function showOverlays(overlayEl, blurEl){
-  $(overlayEl).removeClass('hidden');
-  $(blurEl).addClass('blur');
-}
-
-function hideOverlays(overlayEl, blurEl){
-  $(overlayEl).addClass('hidden');
-  $(blurEl).removeClass('blur');
-}
-
-function hideAllOverlays(){
-  hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
-  aboutOpen = false;
-  findsOpen = false;
-}
-
-//
-// Helper functions
-//
-
-// Scroll to window top
-function scrollToTop(){
-  $('html, body').scrollTop(0);
-}
-
-// Trigger scroll event (for loading lazy images)
-function triggerScroll(){
-  $(window).trigger('scroll');
-}
-
-// Get the original values of elements before we change them
-function assignDataValues(el, key, value){
-  el.data(key, value);
-}
 
 // This sets the vertical position of content when toggling between absolute and fixed positioning
 function positionFixedContent(el){
@@ -977,35 +1032,84 @@ function positionFixedContent(el){
   }
 }
 
-// Responsive WAX logo
-$(window).load(function(){
-  var docY = $(document).height(),
-      docX = $(document).width(),
-      winY = $(window).height(),
-      winX = $(window).width(),
-      docHeight = docY - winY;
-      docWidth = docX - winX;
-  $(window).scroll(function(){
-     var st = $(this).scrollTop(),
-         sl = $(this).scrollLeft(),
-         ratioY = st / docHeight,
-         ratioX = sl / docWidth,
-         posY = parseInt(ratioY * 100);
-         posX = parseInt(ratioX * 100);
+//
+// Toggle hiding and showing of overlays, and blurring of background
+//
 
-    $('#wax2').css({'margin-top': posY / 2 + '%'});
-    $('#wax2').css({'margin-left': posX / 2 + '%'});
-    $('#wax3').css({'margin-top': posY + '%'});
-    $('#wax3').css({'margin-left': posX / 2 + '%'});
-  });
-});
+(function(){
+    // Save the original top value when closing the overlays
+    assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
 
-} // End App
+    $('#frame-featured-show-overlay').on('click', function(){
+      if(featuredProjectOpen === false){
+        featuredProjectOpen = true;
+        showOverlays($('#frame-featured-overlay'), $('#featured-project'));
+      } else {
+        featuredProjectOpen = false;
+        hideOverlays($('#frame-featured-overlay'), $('#featured-project'));
+      }
+    });
+
+    $('#nav-about').on('click', function(){
+      if(findsOpen === true){
+        hideOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+        findsOpen = false;
+      }
+      if(aboutOpen === false){
+        aboutOpen = true;
+        showOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      } else {
+        aboutOpen = false;
+        hideOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      }
+    });
+
+    $('#nav-finds').on('click', function(){
+      if(aboutOpen === true){
+        hideOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+        aboutOpen = false;
+      }
+      if(findsOpen === false){
+        findsOpen = true;
+        showOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      } else {
+        findsOpen = false;
+        hideOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      }
+    });
+
+    function showOverlays(overlayEl, blurEl){
+      $(overlayEl).removeClass('hidden');
+      $(blurEl).addClass('blur');
+    }
+
+    function hideOverlays(overlayEl, blurEl){
+      $(overlayEl).addClass('hidden');
+      $(blurEl).removeClass('blur');
+    }
+
+    function hideAllOverlays(){
+      hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
+      aboutOpen = false;
+      findsOpen = false;
+    }
+
+    // Get the original values of elements before we change them
+    function assignDataValues(el, key, value){
+      el.data(key, value);
+    }
+})();
 //
 // Slides.js configurations
 //
 
-$(function(){
+(function(){
 	$('#project-slides').slidesjs({
 		width: 940,
 		height: 528,
@@ -1021,8 +1125,12 @@ $(function(){
 				active: false
 		}
 	});
-});
-function store(){
+})();
+//
+// Store
+// 
+
+(function(){
   getProducts($('#product-container'));
   function getProducts(el){
     $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
@@ -1130,4 +1238,4 @@ function store(){
       console.log('frame has (re)loaded');
     });
   });
-}
+})();

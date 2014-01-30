@@ -1,0 +1,73 @@
+//
+// Toggle hiding and showing of overlays, and blurring of background
+//
+
+(function(){
+    // Save the original top value when closing the overlays
+    assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
+
+    $('#frame-featured-show-overlay').on('click', function(){
+      if(featuredProjectOpen === false){
+        featuredProjectOpen = true;
+        showOverlays($('#frame-featured-overlay'), $('#featured-project'));
+      } else {
+        featuredProjectOpen = false;
+        hideOverlays($('#frame-featured-overlay'), $('#featured-project'));
+      }
+    });
+
+    $('#nav-about').on('click', function(){
+      if(findsOpen === true){
+        hideOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+        findsOpen = false;
+      }
+      if(aboutOpen === false){
+        aboutOpen = true;
+        showOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      } else {
+        aboutOpen = false;
+        hideOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      }
+    });
+
+    $('#nav-finds').on('click', function(){
+      if(aboutOpen === true){
+        hideOverlays($('#about-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+        aboutOpen = false;
+      }
+      if(findsOpen === false){
+        findsOpen = true;
+        showOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      } else {
+        findsOpen = false;
+        hideOverlays($('#finds-overlay'), mainContentBlur);
+        positionFixedContent($('#frame-two'));
+      }
+    });
+
+    function showOverlays(overlayEl, blurEl){
+      $(overlayEl).removeClass('hidden');
+      $(blurEl).addClass('blur');
+    }
+
+    function hideOverlays(overlayEl, blurEl){
+      $(overlayEl).addClass('hidden');
+      $(blurEl).removeClass('blur');
+    }
+
+    function hideAllOverlays(){
+      hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
+      aboutOpen = false;
+      findsOpen = false;
+    }
+
+    // Get the original values of elements before we change them
+    function assignDataValues(el, key, value){
+      el.data(key, value);
+    }
+})();

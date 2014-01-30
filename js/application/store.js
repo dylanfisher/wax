@@ -1,4 +1,8 @@
-function store(){
+//
+// Store
+// 
+
+(function(){
   getProducts($('#product-container'));
   function getProducts(el){
     $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
@@ -106,4 +110,4 @@ function store(){
       console.log('frame has (re)loaded');
     });
   });
-}
+})();

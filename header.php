@@ -3,15 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><?php wp_title( '-', true, 'right' ); echo wp_specialchars( get_bloginfo('name'), 1 ) ?></title>
+		<title><?php wp_title( '-', true, 'right' ); echo esc_html( get_bloginfo('name'), 1 ) ?></title>
 		<meta name="description" content="<?php echo get_bloginfo('description') ?>">
 		<meta name="keywords" content="">
 		<meta name="viewport" content="width=device-width">
-		<link rel="shortcut icon" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('stylesheet_url'); ?>" />
-		<link rel="stylesheet" type="text/css" href="<?php echo  get_bloginfo('template_url'); ?>/css/build/minified/application.css" />
+		<link rel="icon" type="image/png" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.png">
+		<link rel="stylesheet" type="text/css" href="<?php echo bloginfo('stylesheet_url'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo('template_url'); ?>/css/build/minified/application.css" />
 		<script src="<?php echo get_bloginfo('template_url'); ?>/js/modernizr-2.6.2.min.js"></script>
-	<?php wp_head() // For plugins ?>
+<?php wp_head() // For plugins ?>
 	</head>
 	<body class="<?php sandbox_body_class() ?>">
 		<!--[if lte IE 7]>
