@@ -697,6 +697,15 @@ html {
   display: inline-block;
 }
 
+.fixed-nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+.fixed-nav .nav-cart a {
+  color: #528dff;
+}
+
 .frame-container {
   position: absolute;
   width: 100%;
@@ -781,7 +790,7 @@ html {
 }
 
 .nav-site-title .wax-logo.active {
-  color: #528DFF;
+  color: #528dff;
 }
 
 .nav-site-title .wax-logo.transition {

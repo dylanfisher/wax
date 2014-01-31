@@ -44,9 +44,13 @@ $(document).ready(function(){
         ratioX = sl / docWidth * 100,
         posY   = Math.max( 0, ratioY ),
         posX   = Math.max( 0, parseInt(ratioX) );
+    // Recalculate the store height to account for the ajaxed content
+    $('#nav-store').one('click', function(){
+      frameThreeHeight = frameThree.height() - winY;
+    });
     if(frameOne.data('active') === true){
       ratioY = st / frameOneHeight * 100;
-    } else if (frameTwo.data('active' === true)){
+    } else if (frameTwo.data('active') === true){
       ratioY = st / frameTwoHeight * 100;
     } else {
       ratioY = st / frameThreeHeight * 100;
@@ -64,7 +68,7 @@ $(document).ready(function(){
   // If a frame is shorter than the window height, set it to equal the window height
   $('#frame-container .frame').each(function(){
     if($(this).height() < winY){
-      $(this).css({height: winY});
+      $(this).css({minHeight: winY});
     }
   });
 });

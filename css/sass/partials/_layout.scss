@@ -49,6 +49,13 @@ html {
 	h3 {
 		display: inline-block;
 	}
+	a {
+		text-decoration: none;
+		color: #000;
+	}
+	.nav-cart a {
+		color: $accent;
+	}
 }
 .frame-container {
 	position: absolute;
@@ -121,7 +128,7 @@ html {
 			margin-left: 10px;
 		}
 		&.active {
-			color: #528DFF;
+			color: $accent;
 		}
 		&.transition {
 			transition: margin .2s;

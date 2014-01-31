@@ -29,6 +29,8 @@ $(document).ready(function(){
     nav.on('click', function(){
         logo.addClass('transition');
     });
+    // Set current frame to active
+    frameTwo.data('active', true);
 
     //
     // Frame One

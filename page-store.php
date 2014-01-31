@@ -4,16 +4,8 @@ Template Name: Page - Store
 */
 ?>
 <?php get_header() ?>
-
-<!-- TESTING -->
-		<a href="#" class="wax-logo-container">
-			<div id="wax1" class="wax-logo">W</div>
-			<div id="wax2" class="wax-logo">A</div>
-			<div id="wax3" class="wax-logo">X</div>
-		</a>
-<!-- END TEST -->
-
-		<div class="content"><?php the_post() ?>
+		<div class="content">
+<?php the_post() ?>
 			<section id="post-<?php the_ID() ?>" class="<?php sandbox_post_class() ?>">
 				<h2 class="entry-title"><?php the_title() ?></h2>
 				<div class="entry-content">

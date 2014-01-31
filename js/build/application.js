@@ -845,6 +845,8 @@ $(document).ready(function(){
     nav.on('click', function(){
         logo.addClass('transition');
     });
+    // Set current frame to active
+    frameTwo.data('active', true);
 
     //
     // Frame One
@@ -989,9 +991,13 @@ $(document).ready(function(){
         ratioX = sl / docWidth * 100,
         posY   = Math.max( 0, ratioY ),
         posX   = Math.max( 0, parseInt(ratioX) );
+    // Recalculate the store height to account for the ajaxed content
+    $('#nav-store').one('click', function(){
+      frameThreeHeight = frameThree.height() - winY;
+    });
     if(frameOne.data('active') === true){
       ratioY = st / frameOneHeight * 100;
-    } else if (frameTwo.data('active' === true)){
+    } else if (frameTwo.data('active') === true){
       ratioY = st / frameTwoHeight * 100;
     } else {
       ratioY = st / frameThreeHeight * 100;
@@ -1009,7 +1015,7 @@ $(document).ready(function(){
   // If a frame is shorter than the window height, set it to equal the window height
   $('#frame-container .frame').each(function(){
     if($(this).height() < winY){
-      $(this).css({height: winY});
+      $(this).css({minHeight: winY});
     }
   });
 });
@@ -1142,13 +1148,17 @@ function positionFixedContent(el){
         iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
       }
 
+      // Append each item as a list
       $.each( item, function( key, product ) {
         // console.log(product);
         el.append('<ul>' +
-          '<li>' + '<img src="' + product.images[0].src + '">' + '</li>' +
+          '<li>' + '<img class="lazy" data-original="' + product.images[0].src + '" width="150" height="200">' + '</li>' +
           '<li>' + product.title + '</li>' +
           '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '"></iframe>' +
           '</ul>');
+      });
+      $('img.lazy').lazyload({
+        threshold : 400
       });
     });
   }
@@ -1171,7 +1181,7 @@ function positionFixedContent(el){
     });
   }
 
-  $(window, window.parent.document).load(function(){
+  $(window, window.top.document).load(function(){
     variantIdInit();
   });
 
@@ -1180,7 +1190,7 @@ function positionFixedContent(el){
       var variant = $('#buy-button-frame-' + key, top.document).data('variant');
       $('#buy-button-frame-' + key).contents().find('#add-to-cart input[name="id"]').val(variant);
       $('#buy-button-frame-' + key).contents().find('#cart-tester').html(variant);
-      console.log('variantIdInit() Ran');
+      // console.log('variantIdInit() Ran');
     });
   }
 
@@ -1188,15 +1198,18 @@ function positionFixedContent(el){
     var variant = el.data('variant');
     el.contents().find('#add-to-cart input[name="id"]').val(variant);
     el.contents().find('#cart-tester').html(variant);
-    console.log('variantIdUpdate() Ran');
+    // console.log('variantIdUpdate() Ran');
   }
 
   updateCartQuantity($('#cart-item-count'));
   function updateCartQuantity(el){
     $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
       count = x.item_count;
-
-      el.html(count);
+      if(count === 0){
+        el.html('');
+      } else {
+        el.html(count);
+      }
     });
   }
 
@@ -1205,9 +1218,12 @@ function positionFixedContent(el){
     updateCartQuantity($('#cart-item-count'));
   });
 
-  $('#clear').on('click', function(event){
+  $('#clear-cart').on('click', function(event){
     event.preventDefault();
     loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/clear.js');
+    $('#test-iframe').load(function(){
+      updateCartQuantity($('#cart-item-count'));
+    });
   });
 
   $('#update').on('click', function(event){
@@ -1230,12 +1246,8 @@ function positionFixedContent(el){
       variantIdUpdate($(this));
       constructCartPermalink();
       updateCartQuantity($('#cart-item-count'));
-      $('body').css('background', '#F1F1F1');
-      setTimeout(function(){
-        $('body').css('background', '#fff');
-      }, 400);
-      console.log($(this));
-      console.log('frame has (re)loaded');
+      // console.log($(this));
+      // console.log('frame has (re)loaded');
     });
   });
 })();

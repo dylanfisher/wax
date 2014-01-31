@@ -56,6 +56,7 @@ Template Name: Page - Application
         <h3 id="nav-issues"><a href="#">Issues</a></h3>
         <h3 id="nav-home"><a href="#">Home</a></h3>
         <h3 id="nav-store"><a href="#">Store</a></h3>
+        <h3 id="nav-cart" class="nav-cart"><a id="cart-permalink" href="http://store.readwax.com/" target="_blank"><span id="cart-item-count"></span></a></h3>
         <br>
         <h3 id="nav-about" class="nav-about show-overlay"><a href="#">About</a></h3>
         <h3 id="nav-finds" class="nav-finds show-overlay"><a href="#">Finds</a></h3>
@@ -120,49 +121,49 @@ Template Name: Page - Application
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?1">
+                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?5">
                     <div class="container">
                         <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?2">
+                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?6">
                     <div class="container">
                         <h2>Lorem Ipsum Dolor Sit Amet (dark image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?3">
+                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?7">
                     <div class="container">
                         <h2>Catching Big Waves at the Beach in 'Jersey (light image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?4">
+                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?8">
                     <div class="container">
                         <h2>An Interview with this Really Amazing Dude (dark image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?1">
+                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?9">
                     <div class="container">
                         <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?2">
+                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?10">
                     <div class="container">
                         <h2>Lorem Ipsum Dolor Sit Amet (dark image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?3">
+                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?11">
                     <div class="container">
                         <h2>Catching Big Waves at the Beach in 'Jersey (light image)</h2>
                         <div class="button style-1">View Story</div>
                     </div>
                 </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?4">
+                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?12">
                     <div class="container">
                         <h2>An Interview with this Really Amazing Dude (dark image)</h2>
                         <div class="button style-1">View Story</div>
@@ -173,8 +174,16 @@ Template Name: Page - Application
     <?php // FRAME THREE ?>
         <div id="frame-three" class="frame-three frame fixed">
             <div id="frame-three-content" class="content">
-                <div>FRAME THREE</div>
-                <div>THIS IS THE STORE!</div>
+                <a id="cart-count" href="#"><b>Get Cart Item Count</b></a>
+                <br>
+                <a id="cart-permalink" href="http://store.readwax.com/cart" target="_blank">Check out by going to CART first</a>
+                <br>
+                <a id="clear-cart" href="#">Clear Cart with hidden iframe</a>
+                <br>
+                <a id="update" href="#">Update "WAX Magazine, Issue #2, #3, #4 Promo" to 10 items (must have 1 in your cart already)</a>
+                <br>
+                <iframe id="test-iframe" src="" width="400" height="150"></iframe>
+                <div id="product-container" class="product-container"></div>
             </div>
         </div>
     </div>
