@@ -5,6 +5,8 @@ $(document).ready(function(){
       winX                = $(window).width(),
       docHeight           = docY - winY,
       docWidth            = docX - winX,
+      frameFeatured       = $('#frame-featured'),
+      frameContainer      = $('#frame-container'),
       frameOne            = $('#frame-one'),
       frameTwo            = $('#frame-two'),
       frameThree          = $('#frame-three'),
@@ -32,8 +34,35 @@ $(document).ready(function(){
 
   // Scroll to top of page when WAX logo is clicked
   $('#nav-site-title').on('click', function(e){
-    $('html, body').animate({scrollTop: winY - navOffset});
+    $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset});
     e.preventDefault();
+  });
+
+  // Move the featured frame and frame containers while scrolling down,
+  // then fix the featured frame after scrolling past a certain point
+  var fixedPoint = frameFeatured.height() - navOffset,
+      featureOpen = true;
+  $(window).scroll(function() {
+    if(featureOpen === true){
+      if( $(window).scrollTop() >= fixedPoint){
+        featureOpen = false;
+        frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
+        frameContainer.css({y: navOffset});
+        $('html, body').scrollTop(0);
+        redraw();
+      }
+    }
+  });
+
+  // Clicking on the featured frame when it is fixed opens it back up
+  // and  pushes the container frame back down
+  $('body').on('click','.featured-fix', function(){
+    featureOpen = true;
+    frameFeatured.transition({y: 0}, function(){
+      frameFeatured.removeClass('featured-fix');
+      redraw();
+    });
+    frameContainer.transition({y: winY});
   });
 
   // Responsive WAX logo

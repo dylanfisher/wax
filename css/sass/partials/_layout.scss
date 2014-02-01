@@ -11,6 +11,11 @@ html {
 	width: 100%;
 	height: 100%;
 	z-index: 20;
+	background-color: #E9E9E9;
+	border-bottom: 2px solid $gray_light;
+	&.featured-fix {
+		cursor: pointer;
+	}
 	.overlay {
 		position: fixed;
 	}
@@ -25,11 +30,15 @@ html {
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		background-image: url(../../../images/ASHES_HD.gif);
-		background-color: rgba(169, 236, 255, 0.31);
+		// background-image: url(../../../images/ASHES_HD.gif);
+		background-image: url(http://31.media.tumblr.com/tumblr_mafefb7wo71qb2cp4o1_500.gif);
+		background-repeat: no-repeat;
+		background-position: center;
+		// background-color: rgba(169, 236, 255, 0.71);
 		iframe {
 			width: 100%;
 			height: 100%;
+			border: 0;
 		}
 	}
 }

@@ -912,7 +912,7 @@ $(document).ready(function(){
     });
 
     function scrollToTop(){
-        $('html, body').animate({scrollTop: winY - navOffset}, 'fast', easing);
+        $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset}, 'fast', easing);
         // This allows user input to cancel the scroll to top
         $viewport = $('html, body');
         $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
@@ -921,16 +921,16 @@ $(document).ready(function(){
             }
         });
     }
-
-    function redraw(){
-        // This forces DOM redraw and calculates correct Document height/shows scrollbars
-        // avoids some strange behavior with translate and fixed posiioned elements
-        $('body').append('<div class="force-redraw"></div>');
-        setTimeout(function(){
-            $('.force-redraw').remove();
-        }, 10);
-    }
 });
+
+function redraw(){
+    // This forces DOM redraw, which calculates correct document height and shows proper scrollbars.
+    // Also avoids some strange behavior with translate and fixed posiioned elements
+    $('body').append('<div class="force-redraw"></div>');
+    setTimeout(function(){
+        $('.force-redraw').remove();
+    }, 10);
+}
 //
 // Slides.js configurations
 //
@@ -952,6 +952,8 @@ $(document).ready(function(){
       winX                = $(window).width(),
       docHeight           = docY - winY,
       docWidth            = docX - winX,
+      frameFeatured       = $('#frame-featured'),
+      frameContainer      = $('#frame-container'),
       frameOne            = $('#frame-one'),
       frameTwo            = $('#frame-two'),
       frameThree          = $('#frame-three'),
@@ -979,8 +981,35 @@ $(document).ready(function(){
 
   // Scroll to top of page when WAX logo is clicked
   $('#nav-site-title').on('click', function(e){
-    $('html, body').animate({scrollTop: winY - navOffset});
+    $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset});
     e.preventDefault();
+  });
+
+  // Move the featured frame and frame containers while scrolling down,
+  // then fix the featured frame after scrolling past a certain point
+  var fixedPoint = frameFeatured.height() - navOffset,
+      featureOpen = true;
+  $(window).scroll(function() {
+    if(featureOpen === true){
+      if( $(window).scrollTop() >= fixedPoint){
+        featureOpen = false;
+        frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
+        frameContainer.css({y: navOffset});
+        $('html, body').scrollTop(0);
+        redraw();
+      }
+    }
+  });
+
+  // Clicking on the featured frame when it is fixed opens it back up
+  // and  pushes the container frame back down
+  $('body').on('click','.featured-fix', function(){
+    featureOpen = true;
+    frameFeatured.transition({y: 0}, function(){
+      frameFeatured.removeClass('featured-fix');
+      redraw();
+    });
+    frameContainer.transition({y: winY});
   });
 
   // Responsive WAX logo

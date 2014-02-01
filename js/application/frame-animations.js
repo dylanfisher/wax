@@ -96,7 +96,7 @@ $(document).ready(function(){
     });
 
     function scrollToTop(){
-        $('html, body').animate({scrollTop: winY - navOffset}, 'fast', easing);
+        $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset}, 'fast', easing);
         // This allows user input to cancel the scroll to top
         $viewport = $('html, body');
         $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
@@ -105,13 +105,13 @@ $(document).ready(function(){
             }
         });
     }
-
-    function redraw(){
-        // This forces DOM redraw and calculates correct Document height/shows scrollbars
-        // avoids some strange behavior with translate and fixed posiioned elements
-        $('body').append('<div class="force-redraw"></div>');
-        setTimeout(function(){
-            $('.force-redraw').remove();
-        }, 10);
-    }
 });
+
+function redraw(){
+    // This forces DOM redraw, which calculates correct document height and shows proper scrollbars.
+    // Also avoids some strange behavior with translate and fixed posiioned elements
+    $('body').append('<div class="force-redraw"></div>');
+    setTimeout(function(){
+        $('.force-redraw').remove();
+    }, 10);
+}
