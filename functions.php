@@ -299,7 +299,7 @@ remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
 // Disable Admin Bar
-// add_filter('show_admin_bar', '__return_false');
+add_filter('show_admin_bar', '__return_false');
 
 // Adds custom menu support
 add_theme_support( 'menus' );
@@ -375,54 +375,54 @@ add_action('wp_dashboard_setup', 'sandbox_remove_dashboard_widgets' );
 // AJAX Functions
 //
 
-add_action('wp_ajax_nopriv_do_ajax', 'sandbox_our_ajax_function');
-add_action('wp_ajax_do_ajax', 'sandbox_our_ajax_function');
-function sandbox_our_ajax_function(){
+// add_action('wp_ajax_nopriv_do_ajax', 'sandbox_our_ajax_function');
+// add_action('wp_ajax_do_ajax', 'sandbox_our_ajax_function');
+// function sandbox_our_ajax_function(){
  
-   // the first part is a SWTICHBOARD that fires specific functions
-   // according to the value of Query Var 'fn'
+//    // the first part is a SWTICHBOARD that fires specific functions
+//    // according to the value of Query Var 'fn'
  
-     switch($_REQUEST['fn']){
-          case 'get_latest_posts':
-               $output = ajax_get_latest_posts($_REQUEST['category']);
-          break;
-          case 'get_single_post':
-               $output = ajax_get_single_post($_REQUEST['id']);
-          break;
-          default:
-              $output = 'No function specified, check your jQuery.ajax() call';
-          break;
+//      switch($_REQUEST['fn']){
+//           case 'get_latest_posts':
+//                $output = ajax_get_latest_posts($_REQUEST['category']);
+//           break;
+//           case 'get_single_post':
+//                $output = ajax_get_single_post($_REQUEST['id']);
+//           break;
+//           default:
+//               $output = 'No function specified, check your jQuery.ajax() call';
+//           break;
  
-     }
+//      }
  
-   // at this point, $output contains some sort of valuable data!
-   // Now, convert $output to JSON and echo it to the browser 
-   // That way, we can recapture it with jQuery and run our success function
+//    // at this point, $output contains some sort of valuable data!
+//    // Now, convert $output to JSON and echo it to the browser 
+//    // That way, we can recapture it with jQuery and run our success function
  
-          $output=json_encode($output);
-         if(is_array($output)){
-        print_r($output);   
-         }
-         else{
-        echo $output;
-         }
-         die;
+//           $output=json_encode($output);
+//          if(is_array($output)){
+//         print_r($output);   
+//          }
+//          else{
+//         echo $output;
+//          }
+//          die;
  
-}
+// }
 
-function sandbox_ajax_get_latest_posts($category){
-     $posts = get_posts(
-     	'category='.$category,
-     	'posts_per_page'.'1'
-     	);
-     return $posts;
-}
+// function sandbox_ajax_get_latest_posts($category){
+//      $posts = get_posts(
+//      	'category='.$category,
+//      	'posts_per_page'.'1'
+//      	);
+//      return $posts;
+// }
 
-function sandbox_ajax_get_single_post($id){
-     $posts = get_post(
-     	$id
-	);
-     return $posts;
-}
+// function sandbox_ajax_get_single_post($id){
+//      $posts = get_post(
+//      	$id
+// 	);
+//      return $posts;
+// }
 
 ?>

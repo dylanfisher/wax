@@ -21,10 +21,9 @@
 }
 
 .blur {
+	@extend %hardware_accel;
 	position: fixed !important;
 	filter: blur($blur) opacity(.8);
-	// Force hardware accelaration with translate3d
-	-webkit-transform: translate3d(0, 0, 0);
 	transition: filter $fade_speed / 2, opacity $fade_speed / 2;
 	-webkit-transition: -webkit-filter $fade_speed / 2, opacity $fade_speed / 2;
 }

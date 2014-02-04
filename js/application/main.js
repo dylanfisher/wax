@@ -17,18 +17,7 @@ $(document).ready(function(){
       animEasing          = 'snap',
       fadeSpeed           = 800,
       sidebar             = 50,
-      featuredProjectOpen = false,
-      aboutOpen           = false,
-      findsOpen           = false,
-      mainContentBlur     = $('#main-content, #nav-site-title'),
       navOffset           = 20;
-
-  // Scroll snap config
-  // $(document).scrollsnap({
-  //   snaps       : 'body',
-  //   proximity   : winY / 3,
-  //   offset      : -20
-  // });
 
   $('#frame-container').css({y: winY});
 
@@ -65,14 +54,25 @@ $(document).ready(function(){
     frameContainer.transition({y: winY});
   });
 
+  // If a frame is shorter than the window height, set it to equal the window height
+  $('#frame-container .frame').each(function(){
+    if($(this).height() < winY){
+      $(this).css({minHeight: winY});
+    }
+  });
+
   // Responsive WAX logo
   $(window).scroll(function(){
     var st     = $(this).scrollTop() - winY,
         sl     = $(this).scrollLeft() - winX,
-        ratioY = st / docHeight * 100,
-        ratioX = sl / docWidth * 100,
-        posY   = Math.max( 0, ratioY ),
-        posX   = Math.max( 0, parseInt(ratioX) );
+        ratioY,
+        ratioX,
+        posY,
+        posX;
+    // When the featured frame is active, scrolling begins at navOffset instead of winY
+    if(frameFeatured.hasClass('featured-fix')){
+      st = $(this).scrollTop() - navOffset;
+    }
     // Recalculate the store height to account for the ajaxed content
     $('#nav-store').one('click', function(){
       frameThreeHeight = frameThree.height() - winY;
@@ -84,7 +84,7 @@ $(document).ready(function(){
     } else {
       ratioY = st / frameThreeHeight * 100;
     }
-    posY   = Math.max( 0, ratioY );
+    posY     = Math.max( 0, ratioY );
     if(posY >= 100){
       posY = 100;
     }
@@ -93,29 +93,4 @@ $(document).ready(function(){
     $('#wax3').css({marginTop  : posY     + '%'});
     $('#wax3').css({marginLeft : posX / 2 + '%'});
   });
-
-  // If a frame is shorter than the window height, set it to equal the window height
-  $('#frame-container .frame').each(function(){
-    if($(this).height() < winY){
-      $(this).css({minHeight: winY});
-    }
-  });
 });
-
-// This sets the vertical position of content when toggling between absolute and fixed positioning
-function positionFixedContent(el){
-  var offset = el.offset();
-  var posY = offset.top - $(window).scrollTop();
-  var originalTop = parseInt(el.data('originalTop'));
-  if(el.hasClass('fixed')){
-    el.css({top: originalTop});
-    el.removeClass('fixed');
-    setTimeout(function(){
-      $('html, body').scrollTop(Math.abs(posY - originalTop));
-    }, 1);
-  } else {
-    el.css({top: posY});
-    el.addClass('fixed');
-    scrollToTop();
-  }
-}

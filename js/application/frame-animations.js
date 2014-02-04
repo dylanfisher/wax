@@ -26,10 +26,14 @@ $(document).ready(function(){
     // All frames
     //
 
-    nav.on('click', function(){
-        logo.addClass('transition');
+    nav.on('click', function(e){
+        logo.addClass('transition').removeClass('active');
+        $('html').css({'overflow-x': 'hidden'});
+        frames.data('active', false);
+        e.preventDefault();
     });
-    // Set current frame to active
+
+    // Set frame two active by default
     frameTwo.data('active', true);
 
     //
@@ -37,20 +41,13 @@ $(document).ready(function(){
     //
 
     $('#nav-issues').on('click', function(e){
-        $('html').css({'overflow-x': 'hidden'});
-        $('#nav-site-title .wax-logo').removeClass('active');
         $('#wax1').addClass('active');
         frames.transition({x: frameOnePos}, easing, function(){
-            redraw();
-            scrollToTop();
-            $('html').css({overflow: ''});
-            logo.removeClass('transition');
+            frameAnimationComplete();
         });
-        frames.data('active', false);
         frameOne.data('active', true);
         frameOne.removeClass('fixed');
         $('#frame-two, #frame-three').addClass('fixed');
-        e.preventDefault();
     });
 
     //
@@ -58,20 +55,13 @@ $(document).ready(function(){
     //
 
     $('#nav-home').on('click', function(e){
-        $('html').css({'overflow-x': 'hidden'});
-        $('#nav-site-title .wax-logo').removeClass('active');
         $('#wax2').addClass('active');
         frames.transition({x: frameTwoPos}, easing, function(){
-            redraw();
-            scrollToTop();
-            $('html').css({overflow: ''});
-            logo.removeClass('transition');
+            frameAnimationComplete();
         });
-        frames.data('active', false);
         frameTwo.data('active', true);
         frameTwo.removeClass('fixed');
         $('#frame-one, #frame-three').addClass('fixed');
-        e.preventDefault();
     });
 
     //
@@ -79,28 +69,28 @@ $(document).ready(function(){
     //
 
     $('#nav-store').on('click', function(e){
-        $('html').css({'overflow-x': 'hidden'});
-        $('#nav-site-title .wax-logo').removeClass('active');
         $('#wax3').addClass('active');
         frames.transition({x: frameThreePos}, easing, function(){
-            redraw();
-            scrollToTop();
-            $('html').css({overflow: ''});
-            logo.removeClass('transition');
+            frameAnimationComplete();
         });
-        frames.data('active', false);
         frameThree.data('active', true);
         frameThree.removeClass('fixed');
         $('#frame-one, #frame-two').addClass('fixed');
-        e.preventDefault();
     });
+
+    function frameAnimationComplete(){
+        redraw();
+        scrollToTop();
+        $('html').css({overflow: ''});
+        logo.removeClass('transition');
+    }
 
     function scrollToTop(){
         $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset}, 'fast', easing);
         // This allows user input to cancel the scroll to top
         $viewport = $('html, body');
         $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
-            if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
+            if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
                  $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
             }
         });
