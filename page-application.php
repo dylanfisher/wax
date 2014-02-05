@@ -53,9 +53,9 @@ Template Name: Page - Application
         </a>
     </h1>
     <div id="fixed-nav" class="fixed-nav">
-        <h3 id="nav-issues"><a href="#">Issues</a></h3>
-        <h3 id="nav-home"><a href="#">Home</a></h3>
-        <h3 id="nav-store"><a href="#">Store</a></h3>
+        <h3 id="nav-issues"><a href="http://localhost:3000/wax/issues/">Issues</a></h3>
+        <h3 id="nav-home"><a href="http://localhost:3000/wax/">Home</a></h3>
+        <h3 id="nav-store"><a href="http://localhost:3000/wax/store/">Store</a></h3>
         <h3 id="nav-cart" class="nav-cart"><a id="cart-permalink" href="http://store.readwax.com/" target="_blank"><span id="cart-item-count"></span></a></h3>
         <br>
         <h3 id="nav-about" class="nav-about show-overlay"><a href="#">About</a></h3>

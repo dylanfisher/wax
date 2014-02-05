@@ -3,7 +3,8 @@
 //
 
 $(document).ready(function(){
-    var frames        = $('#frame-one, #frame-two, #frame-three'),
+    var sitePath        = '/wax/',
+        frames        = $('#frame-one, #frame-two, #frame-three'),
         frameOne      = $('#frame-one'),
         frameTwo      = $('#frame-two'),
         frameThree    = $('#frame-three'),
@@ -26,63 +27,129 @@ $(document).ready(function(){
     // All frames
     //
 
+    // Check to see if issues or store is active based on the pathname
+    var url = window.location.pathname;
+    if(url.indexOf('issues') != -1){
+        $('html').css('overflow-x', 'hidden');
+        setFrameOneActive();
+    } else if(url.indexOf('store') != -1){
+        $('html').css('overflow-x', 'hidden');
+        setFrameThreeActive();
+    } else {
+        // Otherwise set frame two active by default
+        frameTwo.data('active', true);
+        container.data('activeFrame', 'two');
+    }
+
     nav.on('click', function(e){
-        logo.addClass('transition').removeClass('active');
-        $('html').css({'overflow-x': 'hidden'});
-        frames.data('active', false);
         e.preventDefault();
     });
 
-    // Set frame two active by default
-    frameTwo.data('active', true);
+    // pushState
+    window.addEventListener('popstate', function(event) {
+        if(History.getCurrentIndex() !== 0){ // skip the first popstate event
+          var path = window.location.pathname;
+          if(path.indexOf('issues') != -1){
+            setFrameOneActive(redraw);
+          }
+          if(path == sitePath){ // Home
+            setFrameTwoActive(redraw);
+          }
+          if(path.indexOf('store') != -1){
+            setFrameThreeActive(redraw);
+          }
+        }
+    }, false);
+
+    window.onstatechange = function(){
+
+    };
 
     //
     // Frame One
     //
 
     $('#nav-issues').on('click', function(e){
+        setFrameOneActive(redraw);
+    });
+
+    function setFrameOneActive(redraw){
+        activeFrameTransition();
         $('#wax1').addClass('active');
-        frames.transition({x: frameOnePos}, easing, function(){
-            frameAnimationComplete();
-        });
         frameOne.data('active', true);
+        container.data('activeFrame', 'one');
         frameOne.removeClass('fixed');
         $('#frame-two, #frame-three').addClass('fixed');
-    });
+        frames.transition({x: frameOnePos}, easing, function(){
+            frameAnimationComplete();
+            if(redraw){ // don't redraw if this is an initial page load
+                frameAnimationCompleteRedraw();
+            }
+        });
+    }
 
     //
     // Frame Two
     //
 
     $('#nav-home').on('click', function(e){
+        setFrameTwoActive(redraw);
+    });
+
+    function setFrameTwoActive(redraw){
+        activeFrameTransition();
         $('#wax2').addClass('active');
-        frames.transition({x: frameTwoPos}, easing, function(){
-            frameAnimationComplete();
-        });
         frameTwo.data('active', true);
+        container.data('activeFrame', 'two');
         frameTwo.removeClass('fixed');
         $('#frame-one, #frame-three').addClass('fixed');
-    });
+        frames.transition({x: frameTwoPos}, easing, function(){
+            frameAnimationComplete();
+            if(redraw){ // don't redraw if this is an initial page load
+                frameAnimationCompleteRedraw();
+            }
+        });
+    }
 
     //
     // Frame Three
     //
 
     $('#nav-store').on('click', function(e){
-        $('#wax3').addClass('active');
-        frames.transition({x: frameThreePos}, easing, function(){
-            frameAnimationComplete();
-        });
-        frameThree.data('active', true);
-        frameThree.removeClass('fixed');
-        $('#frame-one, #frame-two').addClass('fixed');
+        setFrameThreeActive(redraw);
     });
 
+    function setFrameThreeActive(redraw){
+        activeFrameTransition();
+        $('#wax3').addClass('active');
+        frameThree.data('active', true);
+        container.data('activeFrame', 'three');
+        frameThree.removeClass('fixed');
+        $('#frame-one, #frame-two').addClass('fixed');
+        frames.transition({x: frameThreePos}, easing, function(){
+            frameAnimationComplete();
+            if(redraw){ // don't redraw if this is an initial page load
+                frameAnimationCompleteRedraw();
+            }
+        });
+    }
+
+    //
+    // Helper functions
+    //
+
+    function activeFrameTransition(){
+        logo.addClass('transition').removeClass('active');
+        $('html').css({'overflow-x': 'hidden'});
+        frames.data('active', false);
+    }
     function frameAnimationComplete(){
-        redraw();
-        scrollToTop();
         $('html').css({overflow: ''});
         logo.removeClass('transition');
+    }
+    function frameAnimationCompleteRedraw(){
+        redraw();
+        scrollToTop();
     }
 
     function scrollToTop(){

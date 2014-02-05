@@ -6,6 +6,10 @@ html {
 	width: 100%;
 }
 
+html, body {
+	background-color: #fff;
+}
+
 .frame-featured {
 	position: absolute;
 	width: 100%;
@@ -152,15 +156,15 @@ html {
 
 .overlay-container {
 	display: none;
+	position: fixed;
+	overflow: auto;
+	top: 0;
+	width: 100%;
+	min-height: 100%;
+	z-index: 20;
+	background-color: #fff;
 	&.active {
 		display: block;
-		position: fixed;
-		overflow: auto;
-		top: 0;
-		width: 100%;
-		min-height: 100%;
-		z-index: 20;
-		background-color: #fff;
 	}
 	.overlay-close {
 		position: absolute;
