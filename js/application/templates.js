@@ -2,8 +2,6 @@
 // Mustache templates
 //
 
-// template('get_page/?id=2', 'template1', $('#mustache'));
-
 (function(){
   var siteUrl        = 'http://localhost:3000/wax/',
       container      = $('#overlay-container'),
@@ -66,23 +64,11 @@
     }
   }, false);
 
-
-  window.onstatechange = function(){
-
-  };
-
   // Close the overlay when the X is clicked
   $(document).on('click', '#overlay-close', function(){
     closeOverlay();
   });
-  // Close the overlay when outer content is clicked
-  // $(document).on('click', function(e) {
-  //   if(overlayLoaded === true) {
-  //     if($(e.target).parents().index(content) == -1) {
-  //       closeOverlay();
-  //     }
-  //   }
-  // });
+
   // Close the overlay when escape key is pressed
   $(document).keydown(function(e) {
     if(overlayLoaded === true) {
@@ -94,7 +80,12 @@
 
   function template(request, templateName, $destination){
     getData.api(request, function(x){
-      var templateData = x.page;
+      var templateData;
+      if(request.indexOf('get_page') != -1){
+        templateData = x.page;
+      } else {
+        templateData = x.post;
+      }
       // console.log(templateData);
       $('#templates').load('/wax/wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
         console.log('#templates loaded');
