@@ -3,19 +3,33 @@
 //
 
 .story {
-	display: table;
-	width: 80%;
-	height: 600px;
-	margin: 20px auto;
-	background-size: cover !important;
-	&.dark {
-		color: #fff;
-	}
-	.container {
-		display: table-cell;
-		vertical-align: middle;
-	}
-	h2 {
-		margin-bottom: 25px;
-	}
+    width: $content_width;
+    max-width: $content_max_width;
+    margin: 0 auto $large;
+    h2 {
+        margin-bottom: 0.6em;
+    }
+    h3 {
+        margin-bottom: 1.4em;
+    }
+}
+
+.frame-two .content {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.frame-two .grid-view {
+    width: 85%;
+    h2 {
+        font-size: $font_medium;
+    }
+    h3 {
+        font-size: $font_small;
+    }
+    .story {
+        width: 33%;
+        max-width: 350px;
+        margin: 0 0 $medium;
+    }
 }

@@ -3,9 +3,28 @@
 //
 
 .issue {
-	margin: 20px 0 50px;
+    width: $content_width;
+    max-width: $content_max_width;
+    margin: 20px auto $large;
+    position: relative;
+    .add-to-cart {
+        position: absolute;
+        right: 0;
+    }
+}
+.slide-outer-container {
+    background-color: $gray_light;
+    padding: 20px 0;
+    margin-bottom: 4em;
+    position: relative;
 }
 .issue-slides {
-	margin: 0 auto;
-	width: 400px;
+    width: 400px;
+    margin: 0 auto;
+    .slidesjs-pagination {
+        position: absolute;
+        right: 0;
+        bottom: -2em;
+        margin: 0;
+    }
 }

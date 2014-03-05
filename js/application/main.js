@@ -17,7 +17,8 @@ $(document).ready(function(){
       animEasing          = 'snap',
       fadeSpeed           = 800,
       sidebar             = 50,
-      navOffset           = 20;
+      navOffset           = 20,
+      transitEase         = 'easeInOutQuad';
 
   $('#frame-container').css({y: winY});
 
@@ -46,12 +47,14 @@ $(document).ready(function(){
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix', function(){
-    featureOpen = true;
-    frameFeatured.transition({y: 0}, function(){
-      frameFeatured.removeClass('featured-fix');
-      redraw();
+    $('html, body').animate({scrollTop: 0}, function(){
+      featureOpen = true;
+      frameFeatured.transition({y: 0}, function(){
+        frameFeatured.removeClass('featured-fix');
+        redraw();
+      });
+      frameContainer.transition({y: winY});
     });
-    frameContainer.transition({y: winY});
   });
 
   // If a frame is shorter than the window height, set it to equal the window height
@@ -61,36 +64,57 @@ $(document).ready(function(){
     }
   });
 
-  // Responsive WAX logo
-  $(window).scroll(function(){
-    var st     = $(this).scrollTop() - winY,
-        sl     = $(this).scrollLeft() - winX,
-        ratioY,
-        ratioX,
-        posY,
-        posX;
-    // When the featured frame is active, scrolling begins at navOffset instead of winY
-    if(frameFeatured.hasClass('featured-fix')){
-      st = $(this).scrollTop() - navOffset;
+  var lastScrollTop = 0;
+  var compactPoint = 40;
+  $(window).scroll(function(event){
+    if ( ! $('#frame-container.overlay-active').length ){
+      var st = $(this).scrollTop();
+      if (st > lastScrollTop){
+         // Down scroll
+         $('#frame-featured').removeClass('fixed');
+         if ($('#frame-featured.featured-fix').length){
+           $('#frame-featured').addClass('not-fixed');
+         }
+         if (st > compactPoint && $('#frame-featured.featured-fix').length){
+             $('#fixed-nav, #nav-site-title').addClass('compact');
+             if ($('#frame-container').data('activeFrame') == 'two'){
+               $('#tertiary').fadeOut();
+             }
+         }
+      } else {
+         // Up scroll
+         if (st <= compactPoint){
+            $('#fixed-nav, #nav-site-title').removeClass('compact');
+            if ($('#frame-container').data('activeFrame') == 'two'){
+              $('#tertiary').fadeIn();
+            }
+         }
+         if ($('#frame-featured.featured-fix').length){
+           $('#frame-featured').addClass('fixed').removeClass('not-fixed');
+         } else {
+           $('#frame-featured').removeClass('fixed');
+         }
+      }
+      lastScrollTop = st;
     }
-    // Recalculate the store height to account for the ajaxed content
-    $('#nav-store').one('click', function(){
-      frameThreeHeight = frameThree.height() - winY;
-    });
-    if(frameOne.data('active') === true){
-      ratioY = st / frameOneHeight * 100;
-    } else if (frameTwo.data('active') === true){
-      ratioY = st / frameTwoHeight * 100;
+  });
+
+  //
+  // UI interactions
+  //
+
+  // Accordion
+  $('.accordion-head').click(function(e){
+    e.preventDefault();
+    var container = $(this).parent().nextAll('.accordion-container').first();
+    var content = container.find($('.accordion-content'));
+    var contentHeight = content.outerHeight(true);
+    if($(this).data('accordionOpen') !== true){
+      $(this).data('accordionOpen', true);
+      container.transition({height: contentHeight, opacity: 1}, 600, 'easeOutQuart');
     } else {
-      ratioY = st / frameThreeHeight * 100;
+      $(this).data('accordionOpen', false);
+      container.transition({height: 0, opacity: 0}, 600, 'easeOutQuart');
     }
-    posY     = Math.max( 0, ratioY );
-    if(posY >= 100){
-      posY = 100;
-    }
-    $('#wax2').css({marginTop  : posY / 2 + '%'});
-    $('#wax2').css({marginLeft : posX / 2 + '%'});
-    $('#wax3').css({marginTop  : posY     + '%'});
-    $('#wax3').css({marginLeft : posX / 2 + '%'});
   });
 });

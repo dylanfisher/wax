@@ -2,8 +2,8 @@
 // Control the animations/transitions of the frame container
 //
 
-$(document).ready(function(){
-    var sitePath        = '/wax/',
+$(function(){
+    var sitePath      = '/wax/',
         frames        = $('#frame-one, #frame-two, #frame-three'),
         frameOne      = $('#frame-one'),
         frameTwo      = $('#frame-two'),
@@ -36,7 +36,6 @@ $(document).ready(function(){
         $('html').css('overflow-x', 'hidden');
         setFrameThreeActive();
     } else {
-        // Otherwise set frame two active by default
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');
     }
@@ -61,10 +60,6 @@ $(document).ready(function(){
         }
     }, false);
 
-    window.onstatechange = function(){
-
-    };
-
     //
     // Frame One
     //
@@ -80,6 +75,7 @@ $(document).ready(function(){
         container.data('activeFrame', 'one');
         frameOne.removeClass('fixed');
         $('#frame-two, #frame-three').addClass('fixed');
+        $('#tertiary').fadeOut();
         frames.transition({x: frameOnePos}, easing, function(){
             frameAnimationComplete();
             if(redraw){ // don't redraw if this is an initial page load
@@ -103,6 +99,7 @@ $(document).ready(function(){
         container.data('activeFrame', 'two');
         frameTwo.removeClass('fixed');
         $('#frame-one, #frame-three').addClass('fixed');
+        $('#tertiary').fadeIn();
         frames.transition({x: frameTwoPos}, easing, function(){
             frameAnimationComplete();
             if(redraw){ // don't redraw if this is an initial page load
@@ -126,6 +123,7 @@ $(document).ready(function(){
         container.data('activeFrame', 'three');
         frameThree.removeClass('fixed');
         $('#frame-one, #frame-two').addClass('fixed');
+        $('#tertiary').fadeOut();
         frames.transition({x: frameThreePos}, easing, function(){
             frameAnimationComplete();
             if(redraw){ // don't redraw if this is an initial page load

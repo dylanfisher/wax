@@ -3,9 +3,23 @@
 //
 
 body {
-	font-family: "lk_futura_1.0medium";
+    font-family: "lk_futura_1.0medium";
 }
-
-h1 {
-	font-size: 7em;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+h2, h3 {
+    font-size: 1.17em;
+}
+.story,
+.issue {
+    h2 {
+        font-size: $font_large;
+        line-height: normal;
+        margin-bottom: 0.6em;
+    }
+    h3 {
+        font-size: $font_medium;
+        margin-bottom: 1.4em;
+    }
 }

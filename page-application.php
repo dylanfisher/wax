@@ -5,185 +5,27 @@ Template Name: Page - Application
 ?>
 <?php get_header() ?>
     <div id="frame-featured" class="frame-featured">
-        <div id="frame-featured-show-overlay" class="show-overlay">(EYE)</div>
-        <div id="frame-featured-overlay" class="overlay hidden">
-            <ul>
-                <li>Current</li>
-                <li>Past</li>
-            </ul>
-            <div id="project-slides" class="project-slides">
-                <div class="project-current">
-                    <div class="project-info">Description about this space goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lobortis, lacus in commodo euismod, nibh mauris viverra libero, id tempus nulla magna a quam. Aenean et nibh fermentum, dignissim mauris ac, blandit est.</div>
-                    <div>Current Project</div>
-                    <h2>Into Time by Rafael Rozendaal</h2>
-                    <div>Share This Project</div>
-                </div>
-                <div class="project-past">
-                    <ul>
-                        <li>
-                            <ul>
-                                <li>Into Time</li>
-                                <li>by Rafael Rozendaal</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>All Watched Over By Machines</li>
-                                <li>by Pascual Sisto</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>Canopy</li>
-                                <li>by Rick Silva</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="featured-project" class="featured-project">
-        </div>
+<?php include 'frame-featured.php' ?>
     </div>
-    <h1 id="nav-site-title" class="nav-site-title">
-        <a href="#" class="wax-logo-container">
-            <div id="wax1" class="wax-logo">W</div>
-            <div id="wax2" class="wax-logo active">A</div>
-            <div id="wax3" class="wax-logo">X</div>
-        </a>
-    </h1>
-    <div id="fixed-nav" class="fixed-nav">
-        <h3 id="nav-issues"><a href="http://localhost:3000/wax/issues/">Issues</a></h3>
-        <h3 id="nav-home"><a href="http://localhost:3000/wax/">Home</a></h3>
-        <h3 id="nav-store"><a href="http://localhost:3000/wax/store/">Store</a></h3>
-        <h3 id="nav-cart" class="nav-cart"><a id="cart-permalink" href="http://store.readwax.com/" target="_blank"><span id="cart-item-count"></span></a></h3>
-        <br>
-        <h3 id="nav-about" class="nav-about show-overlay"><a href="#">About</a></h3>
-        <h3 id="nav-finds" class="nav-finds show-overlay"><a href="#">Finds</a></h3>
-    </div>
+<?php include 'nav.php'; ?>
 <?php // Begin frame-container ?>
     <div id="frame-container" class="frame-container">
-    <?php // FRAME ONE ?>
+    <?php // FRAME ONE - ISSUES ?>
         <div id="frame-one" class="frame-one frame fixed">
             <div id="frame-one-content" class="content">
-                <div class="issue">
-                    <h2>Issue 3: Territories</h2>
-                    <div id="issue-slides-1" class="issue-slides">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?1" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?2" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?3" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?4" width="400" height="450">
-                    </div>
-                    <p>Featuring some cool people.</p>
-                    <div class="button style-1">Buy or Subscribe</div>
-                </div>
-                <div class="issue">
-                    <h2>Issue 4: Places</h2>
-                    <div id="issue-slides-2" class="issue-slides">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?5" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?6" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?7" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?8" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?9" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?10" width="400" height="450">
-                        <img class="lazy" data-original="http://hhhhold.com/400x450?11" width="400" height="450">
-                    </div>
-                    <p>Featuring some other cool people.</p>
-                    <div class="button style-1">Buy or Subscribe</div>
-                </div>
+<?php include 'frame-one.php'; ?>
             </div>
         </div>
-    <?php // FRAME TWO ?>
+    <?php // FRAME TWO - FEATURES ?>
         <div id="frame-two" class="frame-two frame">
             <div id="frame-two-content" class="content">
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?1">
-                    <div class="container">
-                        <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
-                        <div class="button style-1"><a class="ajax" data-request="get_post/?id=1" data-template="template-story" href="http://localhost:3000/wax/sample-page/">View Story</a></div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?2">
-                    <div class="container">
-                        <h2>Lorem Ipsum Dolor Sit Amet (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?3">
-                    <div class="container">
-                        <h2>Catching Big Waves at the Beach in 'Jersey (light image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?4">
-                    <div class="container">
-                        <h2>An Interview with this Really Amazing Dude (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?5">
-                    <div class="container">
-                        <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?6">
-                    <div class="container">
-                        <h2>Lorem Ipsum Dolor Sit Amet (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?7">
-                    <div class="container">
-                        <h2>Catching Big Waves at the Beach in 'Jersey (light image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?8">
-                    <div class="container">
-                        <h2>An Interview with this Really Amazing Dude (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?9">
-                    <div class="container">
-                        <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?10">
-                    <div class="container">
-                        <h2>Lorem Ipsum Dolor Sit Amet (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?11">
-                    <div class="container">
-                        <h2>Catching Big Waves at the Beach in 'Jersey (light image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
-                <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?12">
-                    <div class="container">
-                        <h2>An Interview with this Really Amazing Dude (dark image)</h2>
-                        <div class="button style-1">View Story</div>
-                    </div>
-                </div>
+<?php include 'frame-two.php'; ?>
             </div>
         </div>
-    <?php // FRAME THREE ?>
+    <?php // FRAME THREE - STORE ?>
         <div id="frame-three" class="frame-three frame fixed">
             <div id="frame-three-content" class="content">
-                <a id="cart-count" href="#"><b>Get Cart Item Count</b></a>
-                <br>
-                <a id="cart-permalink" href="http://store.readwax.com/cart" target="_blank">Check out by going to CART first</a>
-                <br>
-                <a id="clear-cart" href="#">Clear Cart with hidden iframe</a>
-                <br>
-                <a id="update" href="#">Update "WAX Magazine, Issue #2, #3, #4 Promo" to 10 items (must have 1 in your cart already)</a>
-                <br>
-                <iframe id="test-iframe" src="" width="400" height="150"></iframe>
-                <div id="product-container" class="product-container"></div>
+<?php include 'frame-three.php'; ?>
             </div>
         </div>
     </div>

@@ -1,18 +1,18 @@
 .product-container {
-	ul, li {
-		display: inline-block;
-	}
-	& > ul {
-		width: 200px;
-		margin: 0 80px 50px;
-		vertical-align: top;
-	}
-	iframe {
-		width: 200px;
-		height: 90px;
-	}
-	img {
-		max-width: 150px;
-		margin-bottom: 20px;
-	}
+    ul, li {
+        display: inline-block;
+    }
+    & > ul {
+        width: 200px;
+        margin: 0 80px 50px;
+        vertical-align: top;
+    }
+    iframe {
+        width: 200px;
+        height: 90px;
+    }
+    img {
+        max-width: 150px;
+        margin-bottom: 20px;
+    }
 }

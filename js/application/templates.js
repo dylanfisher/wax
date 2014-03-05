@@ -2,7 +2,7 @@
 // Mustache templates
 //
 
-(function(){
+$(function(){
   var siteUrl        = 'http://localhost:3000/wax/',
       container      = $('#overlay-container'),
       content        = $('#overlay-content'),
@@ -20,7 +20,6 @@
       showLoader(container);
       // ajax call to our API and appropriate mustache template
       console.log($(this).data('template'));
-      console.log($('#overlay-content'));
 
       // pushState
       var historyCount = 0,
@@ -36,33 +35,32 @@
     History.pushState(null, null, url);
   });
 
-  window.addEventListener('popstate', function(event) {
-    var href = window.location.href;
+  // window.addEventListener('popstate', function(event) {
+  //   var href = window.location.href;
 
-    if(href == siteUrl){
-      if(!$('#frame-featured').length){
-        href = siteUrl;
-      }
-      if(History.getCurrentIndex() !== 0){
-        closeOverlay();
-      }
-    } else if ($('#frame-container a[href*="' + location.pathname + '"]').length){
-      link = $('a[href*="' + location.pathname + '"]');
-      console.log(link);
-      scrollPos = $(window).scrollTop();
-      container.addClass('active');
-      frameContainer.addClass('overlay-active');
-      showLoader(container);
-      // ajax call to our API and appropriate mustache template
-      console.log($(this).data('template'));
-      console.log($('#overlay-content'));
+  //   if(href == siteUrl){
+  //     if(!$('#frame-featured').length){
+  //       href = siteUrl;
+  //     }
+  //     if(History.getCurrentIndex() !== 0){
+  //       closeOverlay();
+  //     }
+  //   } else if ($('#frame-container a[href*="' + location.pathname + '"]').length && window.location.hash !== ''){
+  //     link = $('a[href*="' + location.pathname + '"]');
+  //     console.log(link);
+  //     scrollPos = $(window).scrollTop();
+  //     container.addClass('active');
+  //     frameContainer.addClass('overlay-active');
+  //     showLoader(container);
+  //     // ajax call to our API and appropriate mustache template
+  //     console.log($(this).data('template'));
 
-      // pushState
-      template(link.data('request'), link.data('template'), content);
-      var url = $(this).attr('href');
-      History.pushState(null, null, url);
-    }
-  }, false);
+  //     // pushState
+  //     template(link.data('request'), link.data('template'), content);
+  //     var url = $(this).attr('href');
+  //     History.pushState(null, null, url);
+  //   }
+  // }, false);
 
   // Close the overlay when the X is clicked
   $(document).on('click', '#overlay-close', function(){
@@ -86,7 +84,7 @@
       } else {
         templateData = x.post;
       }
-      // console.log(templateData);
+      console.log(templateData);
       $('#templates').load('/wax/wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
         console.log('#templates loaded');
         var template = document.getElementById(templateName).innerHTML,
@@ -105,7 +103,7 @@
     overlayLoaded = false;
     History.pushState(null, null, siteUrl);
   }
-})();
+});
 
 var getData = function(){
   var apiUrl = '/wax/api/',

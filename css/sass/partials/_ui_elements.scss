@@ -2,36 +2,68 @@
 // UI Elements
 //
 
+.center {
+    text-align: center;
+}
+.upper {
+    text-transform: uppercase;
+}
+
 .button {
-	display: inline-block;
-	&.style-1 {
-		border: 3px solid;
-		padding: 8px;
-		&:hover {
-			background: #000;
-			border-color: #000;
-			color: #fff;
-			.dark & {
-				background: #fff;
-				border-color: #fff;
-				color: #000;
-			}
-		}
-	}
+    display: inline-block;
+    &.style-1 {
+        border: 3px solid;
+        padding: 8px;
+        &:hover {
+            background: #000;
+            border-color: #000;
+            color: #fff;
+            .dark & {
+                background: #fff;
+                border-color: #fff;
+                color: #000;
+            }
+        }
+    }
 }
 
 .blur {
-	@extend %hardware_accel;
-	position: fixed !important;
-	filter: blur($blur) opacity(.8);
-	transition: filter $fade_speed / 2, opacity $fade_speed / 2;
-	-webkit-transition: -webkit-filter $fade_speed / 2, opacity $fade_speed / 2;
+    @extend %hardware_accel;
+    position: fixed !important;
+    filter: blur($blur) opacity(.8);
+    transition: filter $fade_speed / 2, opacity $fade_speed / 2;
+    -webkit-transition: -webkit-filter $fade_speed / 2, opacity $fade_speed / 2;
 }
 
 .lazy {
-	background: #c2c2c2 url('../../../images/grey.gif') repeat center center;
+    background: #c2c2c2 url('../../../images/grey.gif') repeat center center;
 }
 
 .drop-shadow {
-	drop-shadow: -5px 5px 10px $gray_light;
+    drop-shadow: -5px 5px 10px $gray_light;
+}
+
+.accordion-container {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    text-align: left;
+    h2 { font-size: $font_medium; }
+    h3 { font-size: $font_small; }
+    .title {
+        margin: $medium 0;
+    }
+    ul {
+        @extend %clearfix;
+        text-align: center;
+        list-style: none;
+    }
+    li {
+        float: left;
+        width: 33.33%;
+        padding: 0 20px;
+    }
+}
+.accordion-content {
+    margin: 1em 0;
 }

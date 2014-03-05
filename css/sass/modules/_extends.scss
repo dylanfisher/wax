@@ -17,3 +17,22 @@
     // Force hardware accelaration with translate3d
     transform: translate3d(0, 0, 0);
 }
+
+%clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+%image_outline {
+    outline: 1px solid #000;
+    padding: 10px;
+    margin: -10px;
+    box-sizing: content-box;
+}

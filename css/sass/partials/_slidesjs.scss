@@ -3,64 +3,68 @@
 //
 
 .project-slides {
-	.slidesjs-pagination {
-		position: fixed;
-		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-	}
+    .slidesjs-pagination {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
+.slidesjs-pagination {
+    text-align: right;
+    margin-top: 0.5em;
 }
 .slidesjs-pagination-item {
-	position: relative;
-	display: inline-block;
-	a {
-		display: block;
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		background: #000;
-		margin: 0 5px;
-		text-indent: 100%;
-		white-space: nowrap;
-		overflow: hidden;
-		&.active:before {
-			border: 2px solid #000;
-			content: '';
-			width: 13px;
-			height: 13px;
-			position: absolute;
-			border-radius: 50%;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-		}
-	}
+    position: relative;
+    display: inline-block;
+    a {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #000;
+        margin: 0 5px;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        &.active:before {
+            border: 2px solid #000;
+            content: '';
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
+    }
 }
 .slidesjs-navigation {
-	position: relative;
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	margin: 20px 10px 0;
-	text-indent: 100%;
-	white-space: nowrap;
-	color: #000;
-	&:before {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		font-size: 30px;
-		text-indent: 0;
-	}
-	&.slidesjs-previous {
-		&:before {
-			content: '\2190';
-		}
-	}
-	&.slidesjs-next {
-		&:before {
-			content: '\2192';
-		}
-	}
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 20px 10px 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    color: #000;
+    &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        font-size: 30px;
+        text-indent: 0;
+    }
+    &.slidesjs-previous {
+        &:before {
+            content: '\2190';
+        }
+    }
+    &.slidesjs-next {
+        &:before {
+            content: '\2192';
+        }
+    }
 }
