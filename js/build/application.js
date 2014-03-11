@@ -2321,19 +2321,23 @@ $(function(){
     });
 
     function setFrameOneActive(redraw){
-        activeFrameTransition();
-        $('#wax1').addClass('active');
-        frameOne.data('active', true);
-        container.data('activeFrame', 'one');
-        frameOne.removeClass('fixed');
-        $('#frame-two, #frame-three').addClass('fixed');
-        $('#tertiary').fadeOut();
-        frames.transition({x: frameOnePos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameOne.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax1').addClass('active');
+            frameOne.data('active', true);
+            container.data('activeFrame', 'one');
+            frameOne.removeClass('fixed');
+            $('#frame-two, #frame-three').addClass('fixed');
+            $('#tertiary').fadeOut();
+            frames.transition({x: frameOnePos}, easing, function(){
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -2345,19 +2349,23 @@ $(function(){
     });
 
     function setFrameTwoActive(redraw){
-        activeFrameTransition();
-        $('#wax2').addClass('active');
-        frameTwo.data('active', true);
-        container.data('activeFrame', 'two');
-        frameTwo.removeClass('fixed');
-        $('#frame-one, #frame-three').addClass('fixed');
-        $('#tertiary').fadeIn();
-        frames.transition({x: frameTwoPos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameTwo.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax2').addClass('active');
+            frameTwo.data('active', true);
+            container.data('activeFrame', 'two');
+            frameTwo.removeClass('fixed');
+            $('#frame-one, #frame-three').addClass('fixed');
+            frames.transition({x: frameTwoPos}, easing, function(){
+                $('#tertiary').fadeIn();
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -2369,19 +2377,23 @@ $(function(){
     });
 
     function setFrameThreeActive(redraw){
-        activeFrameTransition();
-        $('#wax3').addClass('active');
-        frameThree.data('active', true);
-        container.data('activeFrame', 'three');
-        frameThree.removeClass('fixed');
-        $('#frame-one, #frame-two').addClass('fixed');
-        $('#tertiary').fadeOut();
-        frames.transition({x: frameThreePos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameThree.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax3').addClass('active');
+            frameThree.data('active', true);
+            container.data('activeFrame', 'three');
+            frameThree.removeClass('fixed');
+            $('#frame-one, #frame-two').addClass('fixed');
+            $('#tertiary').fadeOut();
+            frames.transition({x: frameThreePos}, easing, function(){
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -2403,12 +2415,13 @@ $(function(){
     }
 
     function scrollToTop(){
-        $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset}, 'fast', easing);
+        $('html, body').animate({scrollTop: 0}, 'fast', easing);
         // This allows user input to cancel the scroll to top
         $viewport = $('html, body');
         $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
             if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
-                 $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+                // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+                 $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup');
             }
         });
     }
@@ -2427,31 +2440,42 @@ function redraw(){
 //
 
 $(function(){
-  var easing = 'easeInOutQuad',
-      speed = 400;
+  var easing = 'easeInOutSine',
+      speed = 200,
+      $container = $('#frame-two-content');
 
   // Grid and list view on Frame Two with Isotope
   $('#frame-two-content img').imagesLoaded(function(){
-    $('#frame-two-content').isotope({
-      itemSelector: '.story',
+    $container.isotope({
+      itemSelector: '.features-item',
       layoutMode: 'vertical',
       vertical: {
         horizontalAlignment: 0.5
       }
     });
-    $('#frame-two-content').isotope('on', 'layoutComplete', function(){
-      $('body').removeClass('overflow-x-hidden');
-    });
+    // add/remove classes to hide/revealing items
+    var itemReveal = Isotope.Item.prototype.reveal;
+    Isotope.Item.prototype.reveal = function() {
+      itemReveal.apply( this, arguments );
+      $( this.element ).removeClass('isotope-hidden');
+    };
+    var itemHide = Isotope.Item.prototype.hide;
+    Isotope.Item.prototype.hide = function() {
+      itemHide.apply( this, arguments );
+      $( this.element ).addClass('isotope-hidden');
+    };
   });
   $('#list-view').click(function(){
-    $('#frame-two-content')
+    $('#list-view, #grid-view').removeClass('active');
+    $(this).addClass('active');
+    $container
     .fadeTo(speed, 0, easing, function(){
-      $('body').addClass('overflow-x-hidden');
-      $('#frame-two-content')
+      $('#frame-two-content').css({width: 'auto'});
+      $container
       .fadeTo(speed, 1, easing)
       .removeClass('grid-view')
       .isotope({
-        itemSelector: '.story',
+        itemSelector: '.features-item',
         layoutMode: 'vertical',
         vertical: {
           horizontalAlignment: 0.5
@@ -2460,20 +2484,36 @@ $(function(){
     });
   });
   $('#grid-view').click(function(){
-    $('#frame-two-content')
+    $('#list-view, #grid-view').removeClass('active');
+    $(this).addClass('active');
+    $container
     .fadeTo(speed, 0, easing, function(){
-      $('body').addClass('overflow-x-hidden');
-      $('#frame-two-content')
+      $container
       .fadeTo(speed, 1, easing)
       .addClass('grid-view')
       .isotope({
-        itemSelector: '.story',
+        itemSelector: '.features-item',
         layoutMode: 'masonry',
         masonry: {
           isFitWidth: true,
           gutter: 40
         }
       });
+    });
+  });
+
+  $('.filter-button').click(function(e){
+    $('.filter-button').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+    var filterValue = $(this).attr('data-filterby');
+    $container
+    .fadeTo(speed, 0, easing, function(){
+      if(filterValue == '*'){
+        $container.fadeTo(speed, 1, easing).isotope({ filter: '*' });
+      } else {
+        $container.fadeTo(speed, 1, easing).isotope({ filter: '[data-filter="' + filterValue + '"]' });
+      }
     });
   });
 });
@@ -2540,14 +2580,21 @@ $(document).ready(function(){
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix', function(){
-    $('html, body').animate({scrollTop: 0}, function(){
-      featureOpen = true;
-      frameFeatured.transition({y: 0}, function(){
-        frameFeatured.removeClass('featured-fix');
-        redraw();
-      });
-      frameContainer.transition({y: winY});
+    featureOpen = true;
+    frameFeatured.transition({y: 0}, function(){
+      frameFeatured.removeClass('featured-fix');
+      redraw();
     });
+    frameContainer.transition({y: winY});
+    $('html, body').scrollTop(0);
+    // $('html, body').animate({scrollTop: 0}, function(){
+    //   featureOpen = true;
+    //   frameFeatured.transition({y: 0}, function(){
+    //     frameFeatured.removeClass('featured-fix');
+    //     redraw();
+    //   });
+    //   frameContainer.transition({y: winY});
+    // });
   });
 
   // If a frame is shorter than the window height, set it to equal the window height

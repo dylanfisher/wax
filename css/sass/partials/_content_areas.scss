@@ -2,10 +2,11 @@
 // Main Content and sub content areas
 //
 
-.story {
+.features-item {
     width: $content_width;
     max-width: $content_max_width;
     margin: 0 auto $large;
+    transition: transform 0s !important; // override isotope transition time
     h2 {
         margin-bottom: 0.6em;
     }
@@ -27,9 +28,8 @@
     h3 {
         font-size: $font_small;
     }
-    .story {
-        width: 33%;
-        max-width: 350px;
+    .features-item {
+        width: 350px;
         margin: 0 0 $medium;
     }
 }

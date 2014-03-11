@@ -69,19 +69,23 @@ $(function(){
     });
 
     function setFrameOneActive(redraw){
-        activeFrameTransition();
-        $('#wax1').addClass('active');
-        frameOne.data('active', true);
-        container.data('activeFrame', 'one');
-        frameOne.removeClass('fixed');
-        $('#frame-two, #frame-three').addClass('fixed');
-        $('#tertiary').fadeOut();
-        frames.transition({x: frameOnePos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameOne.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax1').addClass('active');
+            frameOne.data('active', true);
+            container.data('activeFrame', 'one');
+            frameOne.removeClass('fixed');
+            $('#frame-two, #frame-three').addClass('fixed');
+            $('#tertiary').fadeOut();
+            frames.transition({x: frameOnePos}, easing, function(){
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -93,19 +97,23 @@ $(function(){
     });
 
     function setFrameTwoActive(redraw){
-        activeFrameTransition();
-        $('#wax2').addClass('active');
-        frameTwo.data('active', true);
-        container.data('activeFrame', 'two');
-        frameTwo.removeClass('fixed');
-        $('#frame-one, #frame-three').addClass('fixed');
-        $('#tertiary').fadeIn();
-        frames.transition({x: frameTwoPos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameTwo.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax2').addClass('active');
+            frameTwo.data('active', true);
+            container.data('activeFrame', 'two');
+            frameTwo.removeClass('fixed');
+            $('#frame-one, #frame-three').addClass('fixed');
+            frames.transition({x: frameTwoPos}, easing, function(){
+                $('#tertiary').fadeIn();
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -117,19 +125,23 @@ $(function(){
     });
 
     function setFrameThreeActive(redraw){
-        activeFrameTransition();
-        $('#wax3').addClass('active');
-        frameThree.data('active', true);
-        container.data('activeFrame', 'three');
-        frameThree.removeClass('fixed');
-        $('#frame-one, #frame-two').addClass('fixed');
-        $('#tertiary').fadeOut();
-        frames.transition({x: frameThreePos}, easing, function(){
-            frameAnimationComplete();
-            if(redraw){ // don't redraw if this is an initial page load
-                frameAnimationCompleteRedraw();
-            }
-        });
+        if(frameThree.data('active') === true){
+            $('html, body').animate({scrollTop: 0}, 'fast', easing);
+        } else {
+            activeFrameTransition();
+            $('#wax3').addClass('active');
+            frameThree.data('active', true);
+            container.data('activeFrame', 'three');
+            frameThree.removeClass('fixed');
+            $('#frame-one, #frame-two').addClass('fixed');
+            $('#tertiary').fadeOut();
+            frames.transition({x: frameThreePos}, easing, function(){
+                frameAnimationComplete();
+                if(redraw){ // don't redraw if this is an initial page load
+                    frameAnimationCompleteRedraw();
+                }
+            });
+        }
     }
 
     //
@@ -151,12 +163,13 @@ $(function(){
     }
 
     function scrollToTop(){
-        $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset}, 'fast', easing);
+        $('html, body').animate({scrollTop: 0}, 'fast', easing);
         // This allows user input to cancel the scroll to top
         $viewport = $('html, body');
         $viewport.bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
             if( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
-                 $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+                // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+                 $viewport.stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup');
             }
         });
     }

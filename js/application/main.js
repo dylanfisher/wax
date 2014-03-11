@@ -47,14 +47,21 @@ $(document).ready(function(){
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix', function(){
-    $('html, body').animate({scrollTop: 0}, function(){
-      featureOpen = true;
-      frameFeatured.transition({y: 0}, function(){
-        frameFeatured.removeClass('featured-fix');
-        redraw();
-      });
-      frameContainer.transition({y: winY});
+    featureOpen = true;
+    frameFeatured.transition({y: 0}, function(){
+      frameFeatured.removeClass('featured-fix');
+      redraw();
     });
+    frameContainer.transition({y: winY});
+    $('html, body').scrollTop(0);
+    // $('html, body').animate({scrollTop: 0}, function(){
+    //   featureOpen = true;
+    //   frameFeatured.transition({y: 0}, function(){
+    //     frameFeatured.removeClass('featured-fix');
+    //     redraw();
+    //   });
+    //   frameContainer.transition({y: winY});
+    // });
   });
 
   // If a frame is shorter than the window height, set it to equal the window height

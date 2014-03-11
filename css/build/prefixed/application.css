@@ -662,14 +662,14 @@ h3 {
   font-size: 1.17em;
 }
 
-.story h2,
+.features-item h2,
 .issue h2 {
   font-size: 3.4em;
   line-height: normal;
   margin-bottom: 0.6em;
 }
 
-.story h3,
+.features-item h3,
 .issue h3 {
   font-size: 1.6em;
   margin-bottom: 1.4em;
@@ -752,6 +752,10 @@ h3 {
 
 .accordion-content {
   margin: 1em 0;
+}
+
+.isotope-hidden {
+  display: none;
 }
 
 html {
@@ -860,93 +864,6 @@ body {
   }
 }
 
-.nav-site-title,
-.fixed-nav {
-  position: fixed;
-  top: 20px;
-}
-
-.nav-site-title {
-  left: 20px;
-  z-index: 19;
-}
-
-.fixed-nav {
-  width: 100%;
-  text-align: center;
-  z-index: 18;
-}
-
-.fixed-nav .secondary {
-  right: 20px;
-  position: absolute;
-  top: 6px;
-}
-
-.fixed-nav .tertiary {
-  margin-top: 2em;
-}
-
-.fixed-nav h2,
-.fixed-nav h3 {
-  display: inline-block;
-}
-
-.fixed-nav h2 {
-  margin: 0 15px;
-  text-transform: uppercase;
-}
-
-.fixed-nav h3 {
-  margin: 0 10px;
-}
-
-.fixed-nav a {
-  text-decoration: none;
-  color: #000;
-}
-
-.nav-site-title {
-  position: fixed;
-  white-space: nowrap;
-  font-size: 24px;
-}
-
-.nav-site-title a {
-  display: block;
-  text-decoration: none;
-  color: #000;
-}
-
-.nav-site-title .wax-logo {
-  position: relative;
-  display: inline-block;
-  -webkit-transition: margin-top .2s;
-  transition: margin-top .2s;
-}
-
-.nav-site-title .wax-logo:nth-child(2),
-.nav-site-title .wax-logo:nth-child(3) {
-  margin-left: 12px;
-}
-
-.nav-site-title .wax-logo:nth-child(2) {
-  margin-top: 1.2em;
-}
-
-.nav-site-title .wax-logo:nth-child(3) {
-  margin-top: 2.4em;
-}
-
-.nav-site-title .wax-logo.transition {
-  -webkit-transition: margin .2s;
-  transition: margin .2s;
-}
-
-.nav-site-title.compact .wax-logo {
-  margin-top: 0;
-}
-
 .frame-container {
   position: absolute;
   width: 100%;
@@ -1045,6 +962,97 @@ body {
   display: none;
 }
 
+.nav-site-title,
+.fixed-nav {
+  position: fixed;
+  top: 20px;
+}
+
+.nav-site-title {
+  left: 20px;
+  z-index: 19;
+}
+
+.fixed-nav {
+  width: 100%;
+  text-align: center;
+  z-index: 18;
+}
+
+.fixed-nav .secondary {
+  right: 20px;
+  position: absolute;
+  top: 6px;
+}
+
+.fixed-nav .tertiary {
+  margin-top: 2em;
+}
+
+.fixed-nav .tertiary .active {
+  border-bottom: 1px solid;
+}
+
+.fixed-nav h2,
+.fixed-nav h3 {
+  display: inline-block;
+}
+
+.fixed-nav h2 {
+  margin: 0 15px;
+  text-transform: uppercase;
+}
+
+.fixed-nav h3 {
+  margin: 0 10px;
+}
+
+.fixed-nav a {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-site-title {
+  position: fixed;
+  white-space: nowrap;
+  font-size: 24px;
+}
+
+.nav-site-title a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-site-title .wax-logo {
+  position: relative;
+  display: inline-block;
+  -webkit-transition: margin-top .2s;
+  transition: margin-top .2s;
+}
+
+.nav-site-title .wax-logo:nth-child(2),
+.nav-site-title .wax-logo:nth-child(3) {
+  margin-left: 12px;
+}
+
+.nav-site-title .wax-logo:nth-child(2) {
+  margin-top: 1.2em;
+}
+
+.nav-site-title .wax-logo:nth-child(3) {
+  margin-top: 2.4em;
+}
+
+.nav-site-title .wax-logo.transition {
+  -webkit-transition: margin .2s;
+  transition: margin .2s;
+}
+
+.nav-site-title.compact .wax-logo {
+  margin-top: 0;
+}
+
 .issue {
   width: 60%;
   max-width: 800px;
@@ -1097,17 +1105,19 @@ body {
   margin-bottom: 20px;
 }
 
-.story {
+.features-item {
   width: 60%;
   max-width: 800px;
   margin: 0 auto 7em;
+  -webkit-transition: -webkit-transform 0s !important;
+  transition: transform 0s !important;
 }
 
-.story h2 {
+.features-item h2 {
   margin-bottom: 0.6em;
 }
 
-.story h3 {
+.features-item h3 {
   margin-bottom: 1.4em;
 }
 
@@ -1128,9 +1138,8 @@ body {
   font-size: 1em;
 }
 
-.frame-two .grid-view .story {
-  width: 33%;
-  max-width: 350px;
+.frame-two .grid-view .features-item {
+  width: 350px;
   margin: 0 0 4em;
 }
 

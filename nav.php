@@ -19,10 +19,10 @@
         <h3 id="nav-email" class="nav-email"><a href="#">&#9993;</a></h3>
     </div>
     <div id="tertiary" class="tertiary">
-        <h3><a id="list-view" href="#">List</a> &#47; <a id="grid-view" href="#">Grid</a> : </h3>
-        <h3><a href="#">All</a></h3>
-        <h3><a href="#">Events</a></h3>
-        <h3><a href="#">News</a></h3>
-        <h3><a href="#">Stories</a></h3>
+        <h3><a id="list-view" class="active" href="#">List</a> &#47; <a id="grid-view" href="#">Grid</a> : </h3>
+        <h3><a class="filter-button active" data-filterby="*" href="#">All</a></h3>
+        <h3><a class="filter-button" data-filterby="events" href="#">Events</a></h3>
+        <h3><a class="filter-button" data-filterby="news" href="#">News</a></h3>
+        <h3><a class="filter-button" data-filterby="stories" href="#">Stories</a></h3>
     </div>
 </div>
