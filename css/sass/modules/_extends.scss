@@ -18,6 +18,11 @@
     transform: translate3d(0, 0, 0);
 }
 
+%translate_fix {
+    backface-visibility: hidden;
+    transform: translateZ(0) scale(1.0, 1.0);
+}
+
 %clearfix {
     *zoom: 1;
     &:before,

@@ -15,6 +15,13 @@
   transform: translate3d(0, 0, 0);
 }
 
+.accordion-container {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
+  transform: translateZ(0) scale(1, 1);
+}
+
 .accordion-container ul {
   *zoom: 1;
 }
@@ -1022,6 +1029,10 @@ body {
   display: block;
   text-decoration: none;
   color: #000;
+}
+
+.nav-site-title a:hover {
+  border: none;
 }
 
 .nav-site-title .wax-logo {

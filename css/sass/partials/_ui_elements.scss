@@ -44,6 +44,7 @@
 }
 
 .accordion-container {
+    @extend %translate_fix;
     height: 0;
     opacity: 0;
     overflow: hidden;

@@ -2557,7 +2557,7 @@ $(document).ready(function(){
 
   // Scroll to top of page when WAX logo is clicked
   $('#nav-site-title').on('click', function(e){
-    $('html, body').animate({scrollTop: $('#frame-featured').height() - Math.abs( $('#frame-featured').offset().top ) - navOffset});
+    $('html, body').animate({scrollTop: 0});
     e.preventDefault();
   });
 
@@ -2609,7 +2609,7 @@ $(document).ready(function(){
   $(window).scroll(function(event){
     if ( ! $('#frame-container.overlay-active').length ){
       var st = $(this).scrollTop();
-      if (st > lastScrollTop){
+      if (st > lastScrollTop && st > 0){
          // Down scroll
          $('#frame-featured').removeClass('fixed');
          if ($('#frame-featured.featured-fix').length){

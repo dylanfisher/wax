@@ -47,6 +47,9 @@
         display: block;
         text-decoration: none;
         color: #000;
+        &:hover {
+            border: none;
+        }
     }
     .wax-logo {
         position: relative;
