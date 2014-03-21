@@ -20,7 +20,7 @@ $(function(){
         oneOffset     = containerTop - frameOne.offset().top,
         twoOffset     = containerTop - frameTwo.offset().top,
         threeOffset   = containerTop - frameThree.offset().top,
-        navOffset     = 20,
+        navOffset     = 10,
         easing        = 'easeInOutQuad';
 
     //
@@ -32,9 +32,11 @@ $(function(){
     if(url.indexOf('issues') != -1){
         $('html').css('overflow-x', 'hidden');
         setFrameOneActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else if(url.indexOf('store') != -1){
         $('html').css('overflow-x', 'hidden');
         setFrameThreeActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else {
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');

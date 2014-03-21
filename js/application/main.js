@@ -17,7 +17,7 @@ $(document).ready(function(){
       animEasing          = 'snap',
       fadeSpeed           = 800,
       sidebar             = 50,
-      navOffset           = 20,
+      navOffset           = 10,
       transitEase         = 'easeInOutQuad';
 
   $('#frame-container').css({y: winY});

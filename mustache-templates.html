@@ -1,13 +1,74 @@
-<div id="template-story" >
-    <p>{{title}}</p>
-    <p>{{date}}</p>
-    <p>{{{content}}}</p>
+<!-- Stories -->
+
+<div id="template-story">
+  <p>{{title}}</p>
+  <p>{{date}}</p>
+  <p>{{{content}}}</p>
 </div>
 
-<div id="template2" >
-    <p>Mustache template2 <b>date</b> = {{date}}</p>
+<!-- Store Product Viewer -->
+
+<div id="template-store-product">
+  <div class="overlay-close">X</div>
+  <div class="product-viewer-inner-content">
+    <div class="slide-outer-container">
+      <div id="issue-slides-1" class="issue-slides">
+        <img src="http://placehold.it/400x450" width="400" height="450">
+      </div>
+    </div>
+    <div class="heading">
+      <div class="learn-more">
+        <a href="#">Learn More</a>
+      </div>
+      <h3>Issue 4: Flux</h3>
+      <div class="price-cart">
+        <span class="price">$18.95</span>
+        <a class="add-to-cart" href="#">Add to Cart</a>
+      </div>
+    </div>
+    <div class="product-description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.</p>
+    </div>
+  </div>
 </div>
 
-<div id="template3" >
-    <p>Mustache template3 <b>content</b> = {{{content}}}</p>
+<!-- Cart -->
+
+<div id="template-cart" >
+  <h2 class="cart-title">Cart</h2>
+  <div class="cart-table">
+    <div class="cart-header">
+      <h3>Item</h3>
+      <h3>Description</h3>
+      <h3>QTY</h3>
+      <h3>Price</h3>
+      <h3>Remove</h3>
+      <h3>Update</h3>
+    </div>
+    <div class="cart-body">
+      <ul>
+        {{#.}}
+        <li id="cart-item-{{index}}" class="cart-item" data-variant="{{variant_id}}">
+          <div class="cart-image"><img src="{{image}}"></div>
+          <div class="cart-description">{{title}}</div>
+          <div class="cart-qty"><form><input type="text" name="cart-qty" value="{{quantity}}"></form></div>
+          <div class="cart-price">{{price}}</div>
+          <div><a class="cart-remove" href="#">Remove</a></div>
+          <div><a class="cart-update" href="#">Update</a></div>
+        </li>
+        {{/.}}
+      </ul>
+    </div>
+    <div class="cart-footer">
+      <h3></h3>
+      <h3></h3>
+      <h3>Total</h3>
+      <h3 id="cart-total"></h3>
+      <h3></h3>
+      <h3><a id="cart-permalink" class="cart-permalink" href="http://store.readwax.com/">Checkout</a></h3>
+    </div>
+  </div>
 </div>

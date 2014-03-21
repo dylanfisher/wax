@@ -3,11 +3,11 @@
     <h2>Issue 3: Territories</h2>
     <div class="slide-outer-container">
         <div id="issue-slides-1" class="issue-slides">
-            <img class="lazy" data-original="http://hhhhold.com/400x450" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?1" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?2" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?3" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?4" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
         </div>
     </div>
     <h3>
@@ -48,13 +48,13 @@
     <h2>Issue 4: Places</h2>
     <div class="slide-outer-container">
         <div id="issue-slides-2" class="issue-slides">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?5" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?6" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?7" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?8" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?9" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?10" width="400" height="450">
-            <img class="lazy" data-original="http://hhhhold.com/400x450?11" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
+            <img class="lazy" data-original="http://placehold.it/400x450" width="400" height="450">
         </div>
     </div>
     <h3>

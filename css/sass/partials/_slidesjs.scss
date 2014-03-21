@@ -2,6 +2,13 @@
 // Slides.js
 //
 
+.slide-outer-container {
+    background-color: $gray_light;
+    padding: 20px 0;
+    margin-bottom: 4em;
+    position: relative;
+}
+
 .project-slides {
     .slidesjs-pagination {
         position: fixed;

@@ -48,25 +48,25 @@ $(function(){
         hideOverlays($('#finds-overlay'), mainContentBlur);
       }
     });
-
-    function showOverlays(overlayEl, blurEl){
-      $(overlayEl).removeClass('hidden');
-      $(blurEl).addClass('blur');
-    }
-
-    function hideOverlays(overlayEl, blurEl){
-      $(overlayEl).addClass('hidden');
-      $(blurEl).removeClass('blur');
-    }
-
-    function hideAllOverlays(){
-      hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
-      aboutOpen = false;
-      findsOpen = false;
-    }
-
-    // Get the original values of elements before we change them
-    function assignDataValues(el, key, value){
-      el.data(key, value);
-    }
 });
+
+function showOverlays(overlayEl, blurEl){
+  $(overlayEl).removeClass('hidden');
+  $(blurEl).addClass('blur');
+}
+
+function hideOverlays(overlayEl, blurEl){
+  $(overlayEl).addClass('hidden');
+  $(blurEl).removeClass('blur');
+}
+
+function hideAllOverlays(){
+  hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
+  aboutOpen = false;
+  findsOpen = false;
+}
+
+// Get the original values of elements before we change them
+function assignDataValues(el, key, value){
+  el.data(key, value);
+}

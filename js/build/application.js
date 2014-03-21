@@ -2272,7 +2272,7 @@ $(function(){
         oneOffset     = containerTop - frameOne.offset().top,
         twoOffset     = containerTop - frameTwo.offset().top,
         threeOffset   = containerTop - frameThree.offset().top,
-        navOffset     = 20,
+        navOffset     = 10,
         easing        = 'easeInOutQuad';
 
     //
@@ -2284,9 +2284,11 @@ $(function(){
     if(url.indexOf('issues') != -1){
         $('html').css('overflow-x', 'hidden');
         setFrameOneActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else if(url.indexOf('store') != -1){
         $('html').css('overflow-x', 'hidden');
         setFrameThreeActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else {
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');
@@ -2550,7 +2552,7 @@ $(document).ready(function(){
       animEasing          = 'snap',
       fadeSpeed           = 800,
       sidebar             = 50,
-      navOffset           = 20,
+      navOffset           = 10,
       transitEase         = 'easeInOutQuad';
 
   $('#frame-container').css({y: winY});
@@ -2708,27 +2710,45 @@ $(function(){
         hideOverlays($('#finds-overlay'), mainContentBlur);
       }
     });
+});
 
-    function showOverlays(overlayEl, blurEl){
-      $(overlayEl).removeClass('hidden');
-      $(blurEl).addClass('blur');
-    }
+function showOverlays(overlayEl, blurEl){
+  $(overlayEl).removeClass('hidden');
+  $(blurEl).addClass('blur');
+}
 
-    function hideOverlays(overlayEl, blurEl){
-      $(overlayEl).addClass('hidden');
-      $(blurEl).removeClass('blur');
-    }
+function hideOverlays(overlayEl, blurEl){
+  $(overlayEl).addClass('hidden');
+  $(blurEl).removeClass('blur');
+}
 
-    function hideAllOverlays(){
-      hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
-      aboutOpen = false;
-      findsOpen = false;
-    }
+function hideAllOverlays(){
+  hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
+  aboutOpen = false;
+  findsOpen = false;
+}
 
-    // Get the original values of elements before we change them
-    function assignDataValues(el, key, value){
-      el.data(key, value);
-    }
+// Get the original values of elements before we change them
+function assignDataValues(el, key, value){
+  el.data(key, value);
+}
+//
+// Pushstate handling
+//
+
+$(function(){
+  $(document).on('click', '#nav-issues a, #nav-home a, #nav-store a', function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    History.pushState(null, null, url);
+  });
+
+  $(document).on('click', 'a.ajax', function(e){
+    e.preventDefault();
+    var historyCount = 0,
+        url = $(this).attr('href');
+    History.pushState(null, null, url);
+  });
 });
 //
 // Slides.js configurations
@@ -2753,12 +2773,91 @@ $(function(){
 })();
 //
 // Store
-// 
+//
 
-(function(){
+var StoreData,
+    CartData;
+
+$(function(){
+  // Group products into rows of three
+  var products = $('#product-container .product');
+  for(var i = 0; i < products.length; i+=3) {
+    products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
+  }
+
+  // Open cart when clicking product count
+  $(document).on('click', '#nav-cart-permalink', function(e){
+    e.preventDefault();
+    scrollPos = $(window).scrollTop();
+    var container = $('#overlay-content');
+    $('#frame-container').addClass('overlay-active');
+    $('#overlay-container').addClass('active');
+    showLoader(container);
+    // ajax call to our API and appropriate mustache template
+    console.log($(this).data('template'));
+    template($(this).data('request'), $(this).data('template'), container, cartInit);
+  });
+
+  $(document).on('click', '.cart-update', function(e){
+    e.preventDefault();
+    var $cartItem = $(this).closest('.cart-item');
+    loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + $cartItem.find('.cart-qty input').val());
+  });
+
+  $(document).on('click', '.cart-remove', function(e){
+    e.preventDefault();
+    var $cartItem = $(this).closest('.cart-item');
+    loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + 0);
+  });
+
+  $(document).on('click', '.cart-remove, .cart-update', function(e){
+    e.preventDefault();
+    constructCartPermalink();
+  });
+
+  function cartInit(){
+    var costAllItems = 0;
+    $('#overlay-content .cart-price').each(function(){
+      var cost = parseInt( $(this).text() );
+      var qty = $(this).prevAll('.cart-qty').find('input').val();
+      var totalCost = cost * qty;
+      var dollars = totalCost / 100;
+      var finalCost = '$' + dollars.toFixed(2);
+      $(this).html(finalCost);
+
+      costAllItems += totalCost;
+      costAllDollars = costAllItems / 100;
+      costAllFinal = '$' + costAllDollars.toFixed(2);
+    });
+    $('#cart-total').html(costAllFinal);
+
+    constructCartPermalink();
+  }
+
+  // Cart update
+  // window.open('http://store.readwax.com/cart/change/' + variantId + '?quantity=' + quantity)
+
+  // Cart checkout
+  $(document).on('click', '#cart-checkout', function(){
+    window.open('http://store.readwax.com/cart/change/' + variantId + '?quantity=' + quantity);
+  });
+
+  // Open up the product viewer
+  products.on('click', function(e){
+    $('.product-viewer').remove();
+    $(this).parent('.product-row').append('<div class="product-viewer"><div class="product-viewer-content"></div></div>');
+    e.preventDefault();
+  });
+
+  // Close the product viewer
+  $('#frame-three-content').on('click', '.product-viewer .overlay-close', function(){
+    $(this).closest('.product-viewer').remove();
+  });
+
   getProducts($('#product-container'));
   function getProducts(el){
     $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
+      StoreData = x.products;
       var item = x.products;
 
       if (document.location.hostname == 'localhost'){
@@ -2769,12 +2868,20 @@ $(function(){
 
       // Append each item as a list
       $.each( item, function( key, product ) {
-        // console.log(product);
-        el.append('<ul>' +
-          '<li>' + '<img class="lazy" data-original="' + product.images[0].src + '" width="150" height="200">' + '</li>' +
-          '<li>' + product.title + '</li>' +
-          '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '"></iframe>' +
-          '</ul>');
+        console.log(product);
+        el.append(
+          '<ul>' +
+            '<li>' + '<img class="lazy" data-original="' + product.images[0].src + '" width="150" height="200">' + '</li>' +
+            '<li>' + product.title + '</li>' +
+            '<li><a class="buy-button" id="buy-button-' + key + '" href="#">Add to Cart</a>' +
+          '</ul>' +
+          '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '"></iframe>');
+        $('#buy-button-' + key).click(function(e) {
+          $('#buy-button-frame-' + key).contents().find('#add-to-cart').submit();
+          console.log(key);
+          console.log($('#buy-button-frame-' + key).contents().find('#add-to-cart'));
+          e.preventDefault();
+        });
       });
       $('img.lazy').lazyload({
         threshold : 400
@@ -2783,9 +2890,15 @@ $(function(){
   }
 
   constructCartPermalink();
-  function constructCartPermalink(){
+  function constructCartPermalink(callback){
+    console.log('constructCartPermalink ran');
     $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
+      CartData = x.items;
       var data = x.items;
+
+      // Add a counter/index for each item to be used in mustache template
+      for (var i in x.items)
+         x.items[i].index = i;
 
       $.each( data, function( key, value ) {
         var item = value.variant_id + ':' + value.quantity;
@@ -2796,7 +2909,11 @@ $(function(){
         return this.variant_id + ':' + this.quantity;
       }).get().join();
       // console.log(allItems);
-      $('#cart-permalink').attr('href', 'http://store.readwax.com/cart/' + allItems);
+      $('.cart-permalink').attr('href', 'http://store.readwax.com/cart/' + allItems);
+
+      if (typeof(callback) === 'function') {
+        callback();
+      }
     });
   }
 
@@ -2869,18 +2986,19 @@ $(function(){
       // console.log('frame has (re)loaded');
     });
   });
-})();
+});
 //
 // Mustache templates
 //
 
+var overlayLoaded  = false,
+    scrollPos      = 0,
+    siteUrl        = 'http://localhost:3000/wax/';
+
 $(function(){
-  var siteUrl        = 'http://localhost:3000/wax/',
-      container      = $('#overlay-container'),
+  var container      = $('#overlay-container'),
       content        = $('#overlay-content'),
-      frameContainer = $('#frame-container'),
-      scrollPos      = 0,
-      overlayLoaded  = false;
+      frameContainer = $('#frame-container');
 
   $(document).on('click', 'a.ajax', function(e){
     // Check for pushState support, otherwise follow the link like normal
@@ -2890,21 +3008,22 @@ $(function(){
       container.addClass('active');
       frameContainer.addClass('overlay-active');
       showLoader(container);
+
       // ajax call to our API and appropriate mustache template
       console.log($(this).data('template'));
-
-      // pushState
-      var historyCount = 0,
-          url = $(this).attr('href');
       template($(this).data('request'), $(this).data('template'), content);
-      History.pushState(null, null, url);
     }
   });
 
-  $(document).on('click', '#nav-issues a, #nav-home a, #nav-store a', function(e){
+  $(document).on('click', 'a.ajax-store', function(e){
+    var container = $('.product-viewer-content');
     e.preventDefault();
-    var url = $(this).attr('href');
-    History.pushState(null, null, url);
+    scrollPos = $(window).scrollTop();
+    showLoader(container);
+
+    // ajax call to our API and appropriate mustache template
+    console.log($(this).data('template'));
+    template($(this).data('request'), $(this).data('template'), container);
   });
 
   // window.addEventListener('popstate', function(event) {
@@ -2933,49 +3052,61 @@ $(function(){
   //     History.pushState(null, null, url);
   //   }
   // }, false);
+});
 
-  // Close the overlay when the X is clicked
-  $(document).on('click', '#overlay-close', function(){
-    closeOverlay();
-  });
+// Close the overlay when the X is clicked
+$(document).on('click', '#overlay-close', function(){
+  closeOverlay();
+});
 
-  // Close the overlay when escape key is pressed
-  $(document).keydown(function(e) {
-    if(overlayLoaded === true) {
-      if (e.keyCode == 27) {
-        closeOverlay();
-      }
+// Close the overlay when escape key is pressed
+$(document).keydown(function(e) {
+  if(overlayLoaded === true) {
+    if (e.keyCode == 27) {
+      closeOverlay();
     }
-  });
-
-  function template(request, templateName, $destination){
-    getData.api(request, function(x){
-      var templateData;
-      if(request.indexOf('get_page') != -1){
-        templateData = x.page;
-      } else {
-        templateData = x.post;
-      }
-      console.log(templateData);
-      $('#templates').load('/wax/wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
-        console.log('#templates loaded');
-        var template = document.getElementById(templateName).innerHTML,
-            output   = Mustache.render(template, templateData);
-        $destination.html(output);
-      });
-      overlayLoaded = true;
-    });
-  }
-
-  function closeOverlay(){
-    container.removeClass('active');
-    frameContainer.removeClass('overlay-active');
-    content.html('');
-    $(window).scrollTop(scrollPos);
-    overlayLoaded = false;
-    History.pushState(null, null, siteUrl);
   }
 });
+
+function template(request, templateName, $destination, callback){
+  getData.api(request, function(x){
+    var templateData;
+    if(request.indexOf('get_page') != -1){
+      templateData = x.page;
+    } else if (request.indexOf('get_post') != -1) {
+      templateData = x.post;
+    } else if (request.indexOf('store_products') != -1) {
+      // product data from shopify
+      templateData = StoreData;
+    } else if (request.indexOf('store_cart') != -1) {
+      // cart data from shopify
+      templateData = CartData;
+    } else {
+      console.log('template function request type failed');
+    }
+    console.log(templateData);
+    $('#templates').load('/wax/wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
+      console.log('#templates loaded');
+      var template = document.getElementById(templateName).innerHTML,
+          output   = Mustache.render(template, templateData);
+      $destination.html(output);
+      if (typeof(callback) === 'function') {
+          callback();
+      }
+    });
+    overlayLoaded = true;
+  });
+}
+
+function closeOverlay(){
+  $('#overlay-container').removeClass('active');
+  $('#frame-container').removeClass('overlay-active');
+  $('#overlay-content').html('');
+  $(window).scrollTop(scrollPos);
+  console.log(scrollPos);
+  overlayLoaded = false;
+  History.pushState(null, null, siteUrl);
+}
 
 var getData = function(){
   var apiUrl = '/wax/api/',
