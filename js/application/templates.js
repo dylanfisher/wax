@@ -22,7 +22,17 @@ $(function(){
 
       // ajax call to our API and appropriate mustache template
       console.log($(this).data('template'));
-      template($(this).data('request'), $(this).data('template'), content);
+      template($(this).data('request'), $(this).data('template'), content, function(){
+        if($('#overlay-content .slide-outer-container').length){
+          $('#overlay-content .slideshow').slidesjs({
+              width: 940,
+              height: 528,
+              navigation: {
+                  active: false
+              }
+          });
+        }
+      });
     }
   });
 

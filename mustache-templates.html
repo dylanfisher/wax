@@ -1,9 +1,31 @@
 <!-- Stories -->
 
 <div id="template-story">
-  <p>{{title}}</p>
-  <p>{{date}}</p>
-  <p>{{{content}}}</p>
+  <h2>{{title}}</h2>
+{{#acf.sub_title}}
+  <h3>{{acf.sub_title}}</h3>
+{{/acf.sub_title}}
+  <div class="slide-outer-container">
+      <div class="slideshow feature-slideshow">
+        {{#acf.slideshow}}
+          <img src="{{image.url}}" data-caption="{{caption}}">
+        {{/acf.slideshow}}
+      </div>
+      <div class="caption-container"></div>
+  </div>
+  <div class="feature-content">{{{acf.content}}}</div>
+  <div class="related-issues">
+    <h3>Related Issues</h3>
+    {{#acf.related_issues}}
+    <div class="related-issue" data-variantID="{{variant_id}}">
+      {{#shopify_item}}
+      <div class="item-price"></div>
+      <div class="add-to-cart">Add to Cart</div>
+      {{/shopify_item}}
+      <img src="{{image.url}}">
+    </div>
+    {{/acf.related_issues}}
+  </div>
 </div>
 
 <!-- Store Product Viewer -->
