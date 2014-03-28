@@ -1,11 +1,11 @@
 <?php // FRAME TWO - FEATURES ?>
 <?php
 // Query the Features category
-$args = array(
+$features_args = array(
     'category_name' => 'features',
     'posts_per_page' => -1
     );
-$the_query = new WP_Query( $args );
+$the_query = new WP_Query( $features_args );
 if ( $the_query->have_posts() ):
     while ( $the_query->have_posts() ):
         $the_query->the_post();
