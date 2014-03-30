@@ -1,6 +1,8 @@
 <?php // Navigation ?>
 <?php
 $about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
+$about_id = $about_post[0]->ID;
+$about_permalink = get_permalink($about_id);
 ?>
 <h1 id="nav-site-title" class="nav-site-title">
     <a href="#" class="wax-logo-container">
@@ -18,8 +20,15 @@ $about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
     <div id="secondary" class="secondary">
         <h3 id="nav-cart" class="nav-cart"><a id="nav-cart-permalink" class="cart-permalink" data-request="store_cart" data-template="template-cart" href="http://store.readwax.com/"><span id="cart-item-count"></span></a></h3>
         <h3 id="nav-finds" class="nav-finds"><a href="#">Finds</a></h3>
-        <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" href="<?php echo $about_post[0]->guid; ?>">About</a></h3>
+        <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" href="<?php echo $about_permalink; ?>">About</a></h3>
         <h3 id="nav-email" class="nav-email"><a href="#">&#9993;</a></h3>
+        <div id="mailing-list-form" class="mailing-list-form">
+            <p>Subscribe to our mailing list</p>
+            <form id="email" action="" method="post">
+                <input type="text" name="email" id="input-email" value="">
+                <input type="submit" name="submit" id="submit" onmouseover="this.style.color='#5c7ce6'" onmouseout="this.style.color='#000'" style="color: rgb(0, 0, 0);">
+            </form>
+        </div>
     </div>
     <div id="tertiary" class="tertiary">
         <h3><a id="list-view" class="active" href="#">List</a> &#47; <a id="grid-view" href="#">Grid</a> : </h3>

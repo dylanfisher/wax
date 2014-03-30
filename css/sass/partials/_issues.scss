@@ -7,7 +7,8 @@
     max-width: $content_max_width;
     margin: 20px auto $large;
     position: relative;
-    .add-to-cart {
+    .add-to-cart,
+    .unavailable {
         position: absolute;
         right: 0;
     }

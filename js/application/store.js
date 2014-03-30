@@ -1,5 +1,5 @@
 //
-// Store
+// Store / Products
 //
 
 var StoreData,
@@ -125,15 +125,23 @@ $(function(){
 
       // console.log(item);
 
+      // Global product init
+      $.each($('.product'), function(){
+        var obj = getObjects(item, 'id', $(this).data('id'));
+        obj = obj[0];
+
+        if(obj.variants[0].available === false){
+          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+        }
+      });
+
+      // Store products
       $.each($('#product-container .product'), function(){
         var obj = getObjects(item, 'id', $(this).data('id'));
         obj = obj[0];
         // console.log(obj);
         $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
         $(this).find('img.lazy').lazyload();
-        if(obj.variants[0].available === false){
-          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
-        }
       });
 
       // Append each item as a list
@@ -150,13 +158,13 @@ $(function(){
       });
 
       // Add item to cart when add to cart button is clicked within a product
-      $('#product-container').on('click', '.product .add-to-cart', function(e){
+      $(document).on('click', '.product .add-to-cart', function(e){
         e.preventDefault();
         $('.buy-button-frame[data-id="' + $(this).closest('.product').data('id') + '"]').contents().find('#add-to-cart').submit();
       });
 
       // Add item to cart when add to cart button is clicked within product viewer
-      $('#product-container').on('click', '.product-viewer .add-to-cart', function(e){
+      $(document).on('click', '.product-viewer .add-to-cart', function(e){
         e.preventDefault();
         $('.buy-button-frame[data-id="' + $(this).closest('.product-viewer').data('id') + '"]').contents().find('#add-to-cart').submit();
       });

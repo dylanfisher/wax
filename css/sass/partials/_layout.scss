@@ -10,52 +10,6 @@ html, body {
     background-color: #fff;
 }
 
-.frame-featured {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-    background-color: #E9E9E9;
-    border-bottom: 2px solid $gray_light;
-    &.featured-fix {
-        position: fixed;
-        cursor: pointer;
-        margin-top: -10px;
-    }
-    &.fixed {
-        animation-duration: 0.4s;
-        animation-name: slideDown;
-        margin-top: 0;
-    }
-    &.not-fixed {
-        animation-duration: 0.4s;
-        animation-name: slideUp;
-    }
-    .featured-project {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        // background-image: url(../../../images/ASHES_HD.gif);
-        // background-image: url(http://31.media.tumblr.com/tumblr_mafefb7wo71qb2cp4o1_500.gif);
-        // background-repeat: no-repeat;
-        // background-position: center;
-        // background-color: rgba(169, 236, 255, 0.71);
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    }
-    .featured-project-overlay {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-}
-
 @keyframes slideDown {
   from { margin-top: -$nav_offset; }
   to { margin-top: 0; }

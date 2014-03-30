@@ -1,0 +1,18 @@
+.about-wrapper {
+  .masonry-item {
+    width: 25%;
+    padding: 0 $xsmall;
+    margin-bottom: $medium;
+    & > li:first-child {
+      margin-bottom: $xsmall;
+    }
+    & > li > ul > li {
+      text-indent: -1.5em;
+      padding-left: 1.5em;
+    }
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+}

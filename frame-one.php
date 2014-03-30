@@ -10,7 +10,7 @@ if ( $the_query->have_posts() ):
     while ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
-<div class="issue" data-variantID="<?php the_field('product_id'); ?>">
+<div class="issue product" data-id="<?php the_field('product_id'); ?>">
     <h2><?php the_title(); ?></h2>
         <?php if( get_field('sub_title') ) { ?>
     <h3><?php echo the_field('sub_title'); ?></h3>

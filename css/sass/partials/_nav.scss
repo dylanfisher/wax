@@ -38,6 +38,7 @@
         color: #000;
     }
 }
+
 // WAX logo
 .nav-site-title {
     position: fixed;
@@ -73,5 +74,20 @@
         .wax-logo {
             margin-top: 0;
         }
+    }
+}
+
+// Mailing list form
+.mailing-list-form {
+    display: none;
+    position: absolute;
+    background: #000;
+    color: #FFF;
+    width: 300px;
+    right: 0;
+    top: 40px;
+    padding: 10px;
+    p {
+        margin: 0;
     }
 }

@@ -33,6 +33,11 @@ $(function(){
       $('#featured-project iframe').attr('src', newProjUrl);
       closeOverlay();
     });
+
+    // Add class to featured frame
+    $('#frame-featured-show-overlay a').click(function(){
+      $('#frame-featured').addClass('overlay-active');
+    });
 });
 
 // Get the original values of elements before we change them
@@ -47,7 +52,7 @@ function showOverlay(){
 
 function closeOverlay(){
   $('#overlay-container').removeClass('active');
-  $('#frame-container').removeClass('overlay-active');
+  $('#frame-container, #frame-featured').removeClass('overlay-active');
   $('#overlay-content').html('');
   $(window).scrollTop(scrollPos);
   console.log(scrollPos);

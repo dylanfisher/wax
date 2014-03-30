@@ -65,8 +65,9 @@ $(function(){
     // Frame One
     //
 
-    $('#nav-issues').on('click', function(e){
+    $(document).on('click', '#nav-issues, a[href="issues"]', function(e){
         setFrameOneActive(redraw);
+        e.preventDefault();
     });
 
     function setFrameOneActive(redraw){
@@ -121,8 +122,9 @@ $(function(){
     // Frame Three
     //
 
-    $('#nav-store').on('click', function(e){
+    $(document).on('click', '#nav-store, a[href="store"]', function(e){
         setFrameThreeActive(redraw);
+        e.preventDefault();
     });
 
     function setFrameThreeActive(redraw){

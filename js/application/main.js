@@ -117,6 +117,11 @@ $(document).ready(function(){
     }
   });
 
+  $('#nav-email a').click(function(e){
+    e.preventDefault();
+    $('#mailing-list-form').stop().slideToggle();
+  });
+
   //
   // UI interactions
   //

@@ -2,6 +2,13 @@
 
 <div id="template-featured">
   <div class="featured-info-wrapper">
+    <div class="content-wrapper">
+      <div class="about-this-space">
+        <h3>About This Space</h3>
+        <p>[This content is hard coded right now]</p>
+        <p>WAX is a bi-annual print publication exploring the intersection of art, culture and surfing in and around New York City. We believe that beauty and meaning can be found on sidewalks, boardwalks, skyscrapers and beaches alike. We’re interested in exploring the rich history of New York surfing, its beaches and residents and in finding a pathway of cultural creativity on and off the break. WAX shares the stories of area surfers who are also artists, designers, authors and auteurs. Each issue is organized around a unique theme, debuting with Issue #1: Dialogues in Spring 2012.</p>
+      </div>
+    </div>
     <ul class="featured-projects-wrapper">
       {{#.}}
         <li data-source="{{acf.iframe_url}}">
@@ -23,40 +30,48 @@
 
 <div id="template-about">
   <div class="about-wrapper">
-    <h3>About</h3>
-    {{{acf.about}}}
-    <h3>Mailing List</h3>
-    {{{acf.mailing_list}}}
-    <h3>Submissions</h3>
-    {{{acf.submissions}}}
+    <div class="content-wrapper">
+      <h3>About</h3>
+      {{{acf.about}}}
+      <h3>Mailing List</h3>
+      {{{acf.mailing_list}}}
+      <h3>Submissions</h3>
+      {{{acf.submissions}}}
+    </div>
     <h3>Stockist</h3>
-    {{#acf.stockists}}
-    <ul>
-      <li>{{city}}</li>
-      {{#stockist}}
-        <li>
-          <ul>
-            <li>{{stockist}}</li>
-          </ul>
-        </li>
-      {{/stockist}}
-    </ul>
-    {{/acf.stockists}}
+    <div class="masonry">
+      {{#acf.stockists}}
+      <ul class="masonry-item">
+        <li>{{city}}</li>
+        {{#stockist}}
+          <li>
+            <ul>
+              <li>{{stockist}}</li>
+            </ul>
+          </li>
+        {{/stockist}}
+      </ul>
+      {{/acf.stockists}}
+    </div>
     <h3>Distribution</h3>
-    {{#acf.distribution}}
-    <ul>
-      <li>{{city}}</li>
-      {{#distributor}}
-        <li>
-          <ul>
-            <li>{{distributor}}</li>
-          </ul>
-        </li>
-      {{/distributor}}
-    </ul>
-    {{/acf.distribution}}
-    <h3>Contact</h3>
-    {{{acf.contact}}}
+    <div class="masonry">
+      {{#acf.distribution}}
+      <ul class="masonry-item">
+        <li>{{city}}</li>
+        {{#distributor}}
+          <li>
+            <ul>
+              <li>{{distributor}}</li>
+            </ul>
+          </li>
+        {{/distributor}}
+      </ul>
+      {{/acf.distribution}}
+    </div>
+    <div class="content-wrapper">
+      <h3>Contact</h3>
+      {{{acf.contact}}}
+    </div>
   </div>
 </div>
 
