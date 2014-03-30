@@ -11,9 +11,9 @@ $about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
 </h1>
 <div id="fixed-nav" class="fixed-nav">
     <div id="primary" class="primary">
-        <h2 id="nav-issues"><a href="http://localhost:3000/wax/issues/">Issues</a></h2>
-        <h2 id="nav-home"><a href="http://localhost:3000/wax/">Features</a></h2>
-        <h2 id="nav-store"><a href="http://localhost:3000/wax/store/">Store</a></h2>
+        <h2 id="nav-issues"><a href="/<?php echo $stagingURL; ?>/issues/">Issues</a></h2>
+        <h2 id="nav-home"><a href="/<?php echo $stagingURL; ?>">Features</a></h2>
+        <h2 id="nav-store"><a href="/<?php echo $stagingURL; ?>/store/">Store</a></h2>
     </div>
     <div id="secondary" class="secondary">
         <h3 id="nav-cart" class="nav-cart"><a id="nav-cart-permalink" class="cart-permalink" data-request="store_cart" data-template="template-cart" href="http://store.readwax.com/"><span id="cart-item-count"></span></a></h3>

@@ -3,8 +3,7 @@
 //
 
 $(function(){
-    var sitePath      = '/wax/',
-        frames        = $('#frame-one, #frame-two, #frame-three'),
+    var frames        = $('#frame-one, #frame-two, #frame-three'),
         frameOne      = $('#frame-one'),
         frameTwo      = $('#frame-two'),
         frameThree    = $('#frame-three'),

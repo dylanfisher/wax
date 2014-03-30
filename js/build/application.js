@@ -2855,8 +2855,7 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
 //
 
 $(function(){
-    var sitePath      = '/wax/',
-        frames        = $('#frame-one, #frame-two, #frame-three'),
+    var frames        = $('#frame-one, #frame-two, #frame-three'),
         frameOne      = $('#frame-one'),
         frameTwo      = $('#frame-two'),
         frameThree    = $('#frame-three'),
@@ -3134,6 +3133,13 @@ $(function(){
     failure_limit: Math.max($imgs.length - 1, 0)
   });
 });
+var sitePath      = '/wax/';
+if (document.location.hostname == 'localhost'){
+  sitePath = '/wax/';
+} else {
+  sitePath = '/dev/';
+}
+
 $(document).ready(function(){
   var docY                = $(document).height(),
       docX                = $(document).width(),
@@ -3653,6 +3659,12 @@ var overlayLoaded  = false,
     scrollPos      = 0,
     siteUrl        = 'http://localhost:3000/wax/';
 
+if (document.location.hostname == 'localhost'){
+  siteUrl = 'http://localhost:3000/wax/';
+} else {
+  siteUrl = 'http://readwax.com/dev/';
+}
+
 $(function(){
   var container      = $('#overlay-container'),
       content        = $('#overlay-content'),
@@ -3708,7 +3720,8 @@ function template(request, templateName, $destination, callback){
       console.log('template function request type failed');
     }
     console.log(templateData);
-    $('#templates').load('/wax/wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
+
+    $('#templates').load(sitePath + 'wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
       console.log('#templates loaded');
       var template = document.getElementById(templateName).innerHTML,
           output   = Mustache.render(template, templateData);
@@ -3722,7 +3735,7 @@ function template(request, templateName, $destination, callback){
 }
 
 var getData = function(){
-  var apiUrl = '/wax/api/',
+  var apiUrl = sitePath + 'api/',
       api    = function(method, callback){
     $.getJSON(apiUrl + method, function(data) {
       callback(data);

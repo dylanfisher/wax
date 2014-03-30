@@ -1,3 +1,10 @@
+var sitePath      = '/wax/';
+if (document.location.hostname == 'localhost'){
+  sitePath = '/wax/';
+} else {
+  sitePath = '/dev/';
+}
+
 $(document).ready(function(){
   var docY                = $(document).height(),
       docX                = $(document).width(),

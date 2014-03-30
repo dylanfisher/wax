@@ -123,7 +123,7 @@ wp_reset_postdata();
                 <div class="story lazy" data-original="https://hhhhold.com/xl/w/b?1">
                     <div class="container">
                         <h2>Derek Hynd in conversation with Tyler Breuer (light image)</h2>
-                        <div class="button style-1"><a class="ajax" data-request="get_page/?id=2" data-template="template1" href="http://localhost:3000/wax/sample-page/">View Story</a></div>
+                        <div class="button style-1">View Story</div>
                     </div>
                 </div>
                 <div class="story dark lazy" data-original="https://hhhhold.com/xl/w/d?2">
