@@ -1,6 +1,6 @@
 <?php // FRAME ONE - ISSUES ?>
 <?php
-// Query the Features category
+// Query the Issues category
 $issue_args = array(
     'category_name' => 'issues',
     'posts_per_page' => -1
@@ -10,7 +10,7 @@ if ( $the_query->have_posts() ):
     while ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
-<div class="issue" data-variantID="<?php the_field('variant_id'); ?>">
+<div class="issue" data-variantID="<?php the_field('product_id'); ?>">
     <h2><?php the_title(); ?></h2>
         <?php if( get_field('sub_title') ) { ?>
     <h3><?php echo the_field('sub_title'); ?></h3>
@@ -23,7 +23,7 @@ if ( $the_query->have_posts() ):
                 // vars
                 $image = get_sub_field('image');
             ?>
-            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+            <img class="lazy" data-original="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
             <?php endwhile; ?>
         </div>
     </div>
@@ -45,7 +45,7 @@ if ( $the_query->have_posts() ):
                 <li>
                     <h2><?php the_sub_field('title'); ?></h2>
                     <h3>[Add Subtitle Here]</h3>
-                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+                    <img class="lazy" data-original="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
                 </li>
             <?php endwhile; ?>
             </ul>

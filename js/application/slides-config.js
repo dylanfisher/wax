@@ -8,6 +8,9 @@
         height: 528,
         navigation: {
             active: false
+        },
+        start: function(number) {
+            $(window).trigger('scroll'); // Dirty fix to force lazy loaded images
         }
     });
 
@@ -16,6 +19,11 @@
         height: 450,
         navigation: {
             active: false
+        },
+        callback: {
+            start: function(number) {
+                $(window).trigger('scroll');
+            }
         }
     });
 })();

@@ -1,4 +1,10 @@
-<?php if($singlePage === true){echo '$singlePage is true';} ?>
+<?php
+//
+// NOT BEING USED
+//
+
+if($singlePage === true){echo '$singlePage is true';}
+?>
 <div id="frame-featured" class="frame-featured">
         <div id="frame-featured-show-overlay" class="show-overlay">(EYE)</div>
         <div id="frame-featured-overlay" class="overlay hidden">

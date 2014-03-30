@@ -21,7 +21,7 @@ $(function(){
       showLoader(container);
 
       // ajax call to our API and appropriate mustache template
-      console.log($(this).data('template'));
+      // console.log($(this).data('template'));
       template($(this).data('request'), $(this).data('template'), content, function(){
         if($('#overlay-content .slide-outer-container').length){
           $('#overlay-content .slideshow').slidesjs({
@@ -36,64 +36,19 @@ $(function(){
     }
   });
 
-  $(document).on('click', 'a.ajax-store', function(e){
-    var container = $('.product-viewer-content');
-    e.preventDefault();
-    scrollPos = $(window).scrollTop();
-    showLoader(container);
-
-    // ajax call to our API and appropriate mustache template
-    console.log($(this).data('template'));
-    template($(this).data('request'), $(this).data('template'), container);
-  });
-
-  // window.addEventListener('popstate', function(event) {
-  //   var href = window.location.href;
-
-  //   if(href == siteUrl){
-  //     if(!$('#frame-featured').length){
-  //       href = siteUrl;
-  //     }
-  //     if(History.getCurrentIndex() !== 0){
-  //       closeOverlay();
-  //     }
-  //   } else if ($('#frame-container a[href*="' + location.pathname + '"]').length && window.location.hash !== ''){
-  //     link = $('a[href*="' + location.pathname + '"]');
-  //     console.log(link);
-  //     scrollPos = $(window).scrollTop();
-  //     container.addClass('active');
-  //     frameContainer.addClass('overlay-active');
-  //     showLoader(container);
-  //     // ajax call to our API and appropriate mustache template
-  //     console.log($(this).data('template'));
-
-  //     // pushState
-  //     template(link.data('request'), link.data('template'), content);
-  //     var url = $(this).attr('href');
-  //     History.pushState(null, null, url);
-  //   }
-  // }, false);
-});
-
-// Close the overlay when the X is clicked
-$(document).on('click', '#overlay-close', function(){
-  closeOverlay();
-});
-
-// Close the overlay when escape key is pressed
-$(document).keydown(function(e) {
-  if(overlayLoaded === true) {
-    if (e.keyCode == 27) {
-      closeOverlay();
-    }
-  }
 });
 
 function template(request, templateName, $destination, callback){
   getData.api(request, function(x){
     var templateData;
+    var singleCatData;
     if(request.indexOf('get_page') != -1){
       templateData = x.page;
+    } else if (request.indexOf('get_posts') != -1) {
+      templateData = x.posts;
+      // templateData.most_recent = x.posts[0];
+      // templateData.other_posts = x.posts;
+      // templateData.other_posts.splice(0,1);
     } else if (request.indexOf('get_post') != -1) {
       templateData = x.post;
     } else if (request.indexOf('store_products') != -1) {
@@ -117,16 +72,6 @@ function template(request, templateName, $destination, callback){
     });
     overlayLoaded = true;
   });
-}
-
-function closeOverlay(){
-  $('#overlay-container').removeClass('active');
-  $('#frame-container').removeClass('overlay-active');
-  $('#overlay-content').html('');
-  $(window).scrollTop(scrollPos);
-  console.log(scrollPos);
-  overlayLoaded = false;
-  History.pushState(null, null, siteUrl);
 }
 
 var getData = function(){

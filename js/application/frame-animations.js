@@ -162,6 +162,7 @@ $(function(){
     function frameAnimationCompleteRedraw(){
         redraw();
         scrollToTop();
+        $(window).trigger('scroll');
     }
 
     function scrollToTop(){

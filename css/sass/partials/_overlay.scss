@@ -1,0 +1,66 @@
+//
+// Overlays
+//
+
+.frame-featured {
+  .overlay {
+      position: fixed;
+  }
+  .show-overlay {
+      position: absolute;
+      z-index: 11;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+  }
+}
+
+.overlay {
+    @extend %hardware_accel;
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    background-color: #fff;
+    transition: visibility $fade_speed, opacity $fade_speed;
+    width: 100%;
+    min-height: 100%;
+    z-index: 20;
+    text-align: center;
+    &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+.overlay-container {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: 20;
+    background-color: #fff;
+    &.active {
+        display: block;
+    }
+    .overlay-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 21;
+        font-size: 30px;
+        color: red;
+    }
+    .overlay-content {
+        position: absolute;
+        padding: 20px 10%;
+        width: 100%;
+        min-height: 100%;
+    }
+}
+.overlay-close {
+    cursor: pointer;
+}

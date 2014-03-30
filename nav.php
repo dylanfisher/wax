@@ -1,4 +1,7 @@
 <?php // Navigation ?>
+<?php
+$about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
+?>
 <h1 id="nav-site-title" class="nav-site-title">
     <a href="#" class="wax-logo-container">
         <div id="wax1" class="wax-logo">W</div>
@@ -15,7 +18,7 @@
     <div id="secondary" class="secondary">
         <h3 id="nav-cart" class="nav-cart"><a id="nav-cart-permalink" class="cart-permalink" data-request="store_cart" data-template="template-cart" href="http://store.readwax.com/"><span id="cart-item-count"></span></a></h3>
         <h3 id="nav-finds" class="nav-finds"><a href="#">Finds</a></h3>
-        <h3 id="nav-about" class="nav-about"><a href="#">About</a></h3>
+        <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" href="<?php echo $about_post[0]->guid; ?>">About</a></h3>
         <h3 id="nav-email" class="nav-email"><a href="#">&#9993;</a></h3>
     </div>
     <div id="tertiary" class="tertiary">

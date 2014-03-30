@@ -37,6 +37,8 @@ $(document).ready(function(){
       if( $(window).scrollTop() >= fixedPoint){
         featureOpen = false;
         frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
+        $('.featured-project-overlay').show();
+        $('#featured-project > iframe').fadeOut(animSpeed);
         frameContainer.css({y: navOffset});
         $('html, body').scrollTop(0);
         redraw();
@@ -46,7 +48,7 @@ $(document).ready(function(){
 
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
-  $('body').on('click','.featured-fix', function(){
+  $('body').on('click','.featured-fix, .featured-project-overlay', function(){
     featureOpen = true;
     frameFeatured.transition({y: 0}, function(){
       frameFeatured.removeClass('featured-fix');
@@ -54,6 +56,8 @@ $(document).ready(function(){
     });
     frameContainer.transition({y: winY});
     $('html, body').scrollTop(0);
+    $('.featured-project-overlay').hide();
+    $('#featured-project > iframe').fadeIn(animSpeed);
     // $('html, body').animate({scrollTop: 0}, function(){
     //   featureOpen = true;
     //   frameFeatured.transition({y: 0}, function(){

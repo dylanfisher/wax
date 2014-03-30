@@ -49,7 +49,8 @@
     margin: 0 $large $medium;
 }
 .buy-button-frame,
-.cart-updater {
+.cart-updater,
+.add-to-cart-button {
     @extend %visually_hidden;
 }
 .product-viewer-inner-content {

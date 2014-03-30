@@ -11,62 +11,46 @@ $(function(){
     // Save the original top value when closing the overlays
     assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
 
-    $('#frame-featured-show-overlay').on('click', function(){
-      if(featuredProjectOpen === false){
-        featuredProjectOpen = true;
-        showOverlays($('#frame-featured-overlay'), $('#featured-project'));
-      } else {
-        featuredProjectOpen = false;
-        hideOverlays($('#frame-featured-overlay'), $('#featured-project'));
+    // Close the overlay when the X is clicked
+    $(document).on('click', '#overlay-close', function(){
+      closeOverlay();
+    });
+
+    // Close the overlay when escape key is pressed
+    $(document).keydown(function(e) {
+      if(overlayLoaded === true) {
+        if (e.keyCode == 27) {
+          closeOverlay();
+        }
       }
     });
 
-    $('#nav-about').on('click', function(){
-      if(findsOpen === true){
-        hideOverlays($('#finds-overlay'), mainContentBlur);
-        findsOpen = false;
-      }
-      if(aboutOpen === false){
-        aboutOpen = true;
-        showOverlays($('#about-overlay'), mainContentBlur);
-      } else {
-        aboutOpen = false;
-        hideOverlays($('#about-overlay'), mainContentBlur);
-      }
-    });
-
-    $('#nav-finds').on('click', function(){
-      if(aboutOpen === true){
-        hideOverlays($('#about-overlay'), mainContentBlur);
-        aboutOpen = false;
-      }
-      if(findsOpen === false){
-        findsOpen = true;
-        showOverlays($('#finds-overlay'), mainContentBlur);
-      } else {
-        findsOpen = false;
-        hideOverlays($('#finds-overlay'), mainContentBlur);
-      }
+    // Featured project archive toggle active projects
+    $(document).on('click', '.project-toggle', function(e){
+      e.preventDefault();
+      var newProjUrl = $(this).closest('li').data('source');
+      console.log(newProjUrl);
+      $('#featured-project iframe').attr('src', newProjUrl);
+      closeOverlay();
     });
 });
-
-function showOverlays(overlayEl, blurEl){
-  $(overlayEl).removeClass('hidden');
-  $(blurEl).addClass('blur');
-}
-
-function hideOverlays(overlayEl, blurEl){
-  $(overlayEl).addClass('hidden');
-  $(blurEl).removeClass('blur');
-}
-
-function hideAllOverlays(){
-  hideOverlays($('#finds-overlay, #about-overlay'), mainContentBlur);
-  aboutOpen = false;
-  findsOpen = false;
-}
 
 // Get the original values of elements before we change them
 function assignDataValues(el, key, value){
   el.data(key, value);
+}
+
+function showOverlay(){
+  $('#overlay-container').addClass('active');
+  $('#frame-container').addClass('overlay-active');
+}
+
+function closeOverlay(){
+  $('#overlay-container').removeClass('active');
+  $('#frame-container').removeClass('overlay-active');
+  $('#overlay-content').html('');
+  $(window).scrollTop(scrollPos);
+  console.log(scrollPos);
+  overlayLoaded = false;
+  History.pushState(null, null, siteUrl);
 }

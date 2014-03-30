@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title><?php wp_title( '-', true, 'right' ); echo esc_html( get_bloginfo('name'), 1 ) ?></title>
-        <meta name="description" content="<?php echo get_bloginfo('description') ?>">
-        <meta name="keywords" content="">
+        <meta name="description" content="WAX is a bi-annual publication exploring the intersection of art, culture and surfing in and around New York City.">
+        <meta name="keywords" content="surf, art, design, designers, culture, new york city, new york, nyc, magazine, mag">
         <meta name="viewport" content="width=device-width">
         <link rel="icon" type="image/png" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.ico">
         <link rel="stylesheet" type="text/css" href="<?php echo bloginfo('stylesheet_url'); ?>" />

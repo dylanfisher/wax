@@ -69,16 +69,46 @@ $(function(){
     window.open('http://store.readwax.com/cart/change/' + variantId + '?quantity=' + quantity);
   });
 
+  $(document).on('click', 'a.ajax-store', function(e){
+    var container = $('.product-viewer-content');
+    e.preventDefault();
+    scrollPos = $(window).scrollTop();
+    showLoader(container);
+
+    // ajax call to our API and appropriate mustache template
+    // console.log($(this).data('template'));
+    template($(this).data('request'), $(this).data('template'), container, function(){
+      $('.product-viewer-content .slideshow').slidesjs({
+          width: 940,
+          height: 528,
+          navigation: {
+              active: false
+          }
+      });
+
+      var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));
+      obj = obj[0];
+      if(obj.variants[0].available === false){
+        $('#product-viewer').find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+      }
+    });
+  });
+
   // Open up the product viewer
-  products.on('click', function(e){
-    $('.product-viewer').remove();
-    $(this).parent('.product-row').append('<div class="product-viewer"><div class="product-viewer-content"></div></div>');
+  $('#product-container').on('click', '.product .image-container', function(e){
+    if( ! $(this).closest('.product.active').length){
+      $('.product-viewer').remove();
+      $('#product-container .product').removeClass('active');
+      $(this).closest('.product').addClass('active');
+      $(this).closest('.product-row').append('<div id="product-viewer" class="product-viewer" data-id="' + $(this).closest('.product').data('id') + '"><div class="product-viewer-content"></div></div>');
+    }
     e.preventDefault();
   });
 
   // Close the product viewer
   $('#frame-three-content').on('click', '.product-viewer .overlay-close', function(){
     $(this).closest('.product-viewer').remove();
+    $('#product-container .product').removeClass('active');
   });
 
   getProducts($('#product-container'));
@@ -93,25 +123,42 @@ $(function(){
         iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
       }
 
+      // console.log(item);
+
+      $.each($('#product-container .product'), function(){
+        var obj = getObjects(item, 'id', $(this).data('id'));
+        obj = obj[0];
+        // console.log(obj);
+        $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
+        $(this).find('img.lazy').lazyload();
+        if(obj.variants[0].available === false){
+          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+        }
+      });
+
       // Append each item as a list
       $.each( item, function( key, product ) {
-        console.log(product);
+        // console.log(product);
         el.append(
-          '<ul>' +
-            '<li>' + '<img class="lazy" data-original="' + product.images[0].src + '" width="150" height="200">' + '</li>' +
-            '<li>' + product.title + '</li>' +
-            '<li><a class="buy-button" id="buy-button-' + key + '" href="#">Add to Cart</a>' +
-          '</ul>' +
-          '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '"></iframe>');
+          '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '" data-id="' + product.id + '"></iframe>');
         $('#buy-button-' + key).click(function(e) {
           $('#buy-button-frame-' + key).contents().find('#add-to-cart').submit();
-          console.log(key);
-          console.log($('#buy-button-frame-' + key).contents().find('#add-to-cart'));
+          // console.log(key);
+          // console.log($('#buy-button-frame-' + key).contents().find('#add-to-cart'));
           e.preventDefault();
         });
       });
-      $('img.lazy').lazyload({
-        threshold : 400
+
+      // Add item to cart when add to cart button is clicked within a product
+      $('#product-container').on('click', '.product .add-to-cart', function(e){
+        e.preventDefault();
+        $('.buy-button-frame[data-id="' + $(this).closest('.product').data('id') + '"]').contents().find('#add-to-cart').submit();
+      });
+
+      // Add item to cart when add to cart button is clicked within product viewer
+      $('#product-container').on('click', '.product-viewer .add-to-cart', function(e){
+        e.preventDefault();
+        $('.buy-button-frame[data-id="' + $(this).closest('.product-viewer').data('id') + '"]').contents().find('#add-to-cart').submit();
       });
     });
   }
@@ -214,3 +261,17 @@ $(function(){
     });
   });
 });
+
+// Find and return objects within json data
+function getObjects(obj, key, val) {
+  var objects = [];
+  for (var i in obj) {
+    if (!obj.hasOwnProperty(i)) continue;
+    if (typeof obj[i] == 'object') {
+      objects = objects.concat(getObjects(obj[i], key, val));
+    } else if (i == key && obj[key] == val) {
+      objects.push(obj);
+    }
+  }
+  return objects;
+}

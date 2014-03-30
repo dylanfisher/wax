@@ -1,3 +1,65 @@
+<!-- Featured project info -->
+
+<div id="template-featured">
+  <div class="featured-info-wrapper">
+    <ul class="featured-projects-wrapper">
+      {{#.}}
+        <li data-source="{{acf.iframe_url}}">
+          <h2><a class="project-toggle" href="{{acf.iframe_url}}">{{title}}<br>
+          by {{acf.author}}</a></h2>
+          <div class="featured-project-description">
+            {{{acf.description}}}
+          </div>
+          <a class="project-toggle" href="{{acf.iframe_url}}">
+            <img src="{{{acf.featured_image.url}}}">
+          </a>
+        </li>
+      {{/.}}
+    </ul>
+  </div>
+</div>
+
+<!-- About -->
+
+<div id="template-about">
+  <div class="about-wrapper">
+    <h3>About</h3>
+    {{{acf.about}}}
+    <h3>Mailing List</h3>
+    {{{acf.mailing_list}}}
+    <h3>Submissions</h3>
+    {{{acf.submissions}}}
+    <h3>Stockist</h3>
+    {{#acf.stockists}}
+    <ul>
+      <li>{{city}}</li>
+      {{#stockist}}
+        <li>
+          <ul>
+            <li>{{stockist}}</li>
+          </ul>
+        </li>
+      {{/stockist}}
+    </ul>
+    {{/acf.stockists}}
+    <h3>Distribution</h3>
+    {{#acf.distribution}}
+    <ul>
+      <li>{{city}}</li>
+      {{#distributor}}
+        <li>
+          <ul>
+            <li>{{distributor}}</li>
+          </ul>
+        </li>
+      {{/distributor}}
+    </ul>
+    {{/acf.distribution}}
+    <h3>Contact</h3>
+    {{{acf.contact}}}
+  </div>
+</div>
+
 <!-- Stories -->
 
 <div id="template-story">
@@ -34,25 +96,24 @@
   <div class="overlay-close">X</div>
   <div class="product-viewer-inner-content">
     <div class="slide-outer-container">
-      <div id="issue-slides-1" class="issue-slides">
-        <img src="http://placehold.it/400x450" width="400" height="450">
+      <div class="slideshow product-slideshow">
+        {{#acf.slideshow}}
+          <img src="{{image.url}}">
+        {{/acf.slideshow}}
       </div>
     </div>
     <div class="heading">
       <div class="learn-more">
-        <a href="#">Learn More</a>
+        <a href="issues">Learn More</a>
       </div>
-      <h3>Issue 4: Flux</h3>
+      <h3>{{title}}</h3>
       <div class="price-cart">
-        <span class="price">$18.95</span>
+        <span class="price"></span>
         <a class="add-to-cart" href="#">Add to Cart</a>
       </div>
     </div>
     <div class="product-description">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat.</p>
+      <p>{{{acf.description}}}</p>
     </div>
   </div>
 </div>
