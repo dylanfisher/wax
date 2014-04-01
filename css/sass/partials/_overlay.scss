@@ -37,9 +37,9 @@
 .overlay-container {
     display: none;
     position: fixed;
+    top: 100%;
     overflow: auto;
     padding: $xsmall 4%;
-    top: 0;
     width: 100%;
     min-height: 100%;
     z-index: 20;

@@ -3326,17 +3326,30 @@ function assignDataValues(el, key, value){
 }
 
 function showOverlay(){
-  $('#overlay-container').addClass('active');
-  $('#frame-container').addClass('overlay-active');
+  var container      = $('#overlay-container');
+  var content        = $('#overlay-content');
+  var frameContainer = $('#frame-container');
+  scrollPos = $(window).scrollTop();
+  frameContainer.css({top: $(window).scrollTop() * -1});
+  container.addClass('active');
+  frameContainer.addClass('overlay-active');
+  container.transition({top: '0%'}, 400, 'easeInOutQuad');
+  // container.scrollTop(0);
+  showLoader(container);
 }
 
 function closeOverlay(){
-  $('#overlay-container').removeClass('active');
+  var container      = $('#overlay-container');
+  var content        = $('#overlay-content');
+  var frameContainer = $('#frame-container');
   $('#frame-container, #frame-featured').removeClass('overlay-active');
-  $('#overlay-content').html('');
+  container.transition({top: '100%'}, 400, 'easeInOutQuad', function(){
+    content.html('');
+    container.removeClass('active');
+    overlayLoaded = false;
+  });
+  frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
-  console.log(scrollPos);
-  overlayLoaded = false;
   History.pushState(null, null, siteUrl);
 }
 //
@@ -3394,23 +3407,37 @@ var StoreData,
     CartData;
 
 $(function(){
-  // Group products into rows of three
-  var products = $('#product-container .product');
-  for(var i = 0; i < products.length; i+=3) {
-    products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
-  }
+  // Initialize the store product grid via shopify json
+  template('store_products', 'template-store-product-init', $('#product-grid'), function(){
+    $.each($('.product'), function(){
+      var obj = getObjects(StoreData, 'id', $(this).data('id'));
+      obj = obj[0];
+
+      try {
+        if(obj.variants[0].available === false){
+          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+        }
+      } catch (err){
+        // prevent undefined error
+        // console.log(err);
+      }
+    });
+
+    // Group products into rows of three
+    var products = $('#product-container .product');
+    for(var i = 0; i < products.length; i+=3) {
+      console.log(products);
+      products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
+    }
+  });
 
   // Open cart when clicking product count
   $(document).on('click', '#nav-cart-permalink', function(e){
     e.preventDefault();
-    scrollPos = $(window).scrollTop();
-    var container = $('#overlay-content');
-    $('#frame-container').addClass('overlay-active');
-    $('#overlay-container').addClass('active');
-    showLoader(container);
+    showOverlay();
     // ajax call to our API and appropriate mustache template
     console.log($(this).data('template'));
-    template($(this).data('request'), $(this).data('template'), container, cartInit);
+    template($(this).data('request'), $(this).data('template'), $('#overlay-content'), cartInit);
   });
 
   $(document).on('click', '.cart-update', function(e){
@@ -3458,14 +3485,27 @@ $(function(){
   });
 
   $(document).on('click', 'a.ajax-store', function(e){
-    var container = $('.product-viewer-content');
     e.preventDefault();
-    scrollPos = $(window).scrollTop();
-    showLoader(container);
+    showLoader($('.product-viewer-content'));
+  });
+
+  // Open up the product viewer
+  $('#product-container').on('click', '.product .image-container', function(e){
+    var productId = $(this).closest('.product').data('id');
+    var current_product = {};
+    current_product = getObjects(StoreData, 'id', productId);
+    StoreData.current_product = current_product;
+
+    if( ! $(this).closest('.product.active').length){
+      $('.product-viewer').remove();
+      $('#product-container .product').removeClass('active');
+      $(this).closest('.product').addClass('active');
+      $(this).closest('.product-row').append('<div id="product-viewer" class="product-viewer" data-id="' + $(this).closest('.product').data('id') + '"><div class="product-viewer-content"></div></div>');
+    }
 
     // ajax call to our API and appropriate mustache template
     // console.log($(this).data('template'));
-    template($(this).data('request'), $(this).data('template'), container, function(){
+    template('store_products', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
           width: 940,
           height: 528,
@@ -3479,17 +3519,9 @@ $(function(){
       if(obj.variants[0].available === false){
         $('#product-viewer').find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
       }
-    });
-  });
 
-  // Open up the product viewer
-  $('#product-container').on('click', '.product .image-container', function(e){
-    if( ! $(this).closest('.product.active').length){
-      $('.product-viewer').remove();
-      $('#product-container .product').removeClass('active');
-      $(this).closest('.product').addClass('active');
-      $(this).closest('.product-row').append('<div id="product-viewer" class="product-viewer" data-id="' + $(this).closest('.product').data('id') + '"><div class="product-viewer-content"></div></div>');
-    }
+    });
+
     e.preventDefault();
   });
 
@@ -3513,24 +3545,14 @@ $(function(){
 
       // console.log(item);
 
-      // Global product init
-      $.each($('.product'), function(){
-        var obj = getObjects(item, 'id', $(this).data('id'));
-        obj = obj[0];
-
-        if(obj.variants[0].available === false){
-          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
-        }
-      });
-
       // Store products
-      $.each($('#product-container .product'), function(){
-        var obj = getObjects(item, 'id', $(this).data('id'));
-        obj = obj[0];
-        // console.log(obj);
-        $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
-        $(this).find('img.lazy').lazyload();
-      });
+      // $.each($('#product-container .product'), function(){
+      //   var obj = getObjects(item, 'id', $(this).data('id'));
+      //   obj = obj[0];
+      //   // console.log(obj);
+      //   $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
+      //   $(this).find('img.lazy').lazyload();
+      // });
 
       // Append each item as a list
       $.each( item, function( key, product ) {
@@ -3561,7 +3583,7 @@ $(function(){
 
   constructCartPermalink();
   function constructCartPermalink(callback){
-    console.log('constructCartPermalink ran');
+    // console.log('constructCartPermalink ran');
     $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
       CartData = x.items;
       var data = x.items;
@@ -3686,22 +3708,15 @@ if (document.location.hostname == 'localhost'){
 }
 
 $(function(){
-  var container      = $('#overlay-container'),
-      content        = $('#overlay-content'),
-      frameContainer = $('#frame-container');
-
   $(document).on('click', 'a.ajax', function(e){
     // Check for pushState support, otherwise follow the link like normal
     if (typeof History.pushState !== "undefined") {
       e.preventDefault();
-      scrollPos = $(window).scrollTop();
-      container.addClass('active');
-      frameContainer.addClass('overlay-active');
-      showLoader(container);
+      showOverlay();
 
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
-      template($(this).data('request'), $(this).data('template'), content, function(){
+      template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
         if($('#overlay-content .slide-outer-container').length){
           $('#overlay-content .slideshow').slidesjs({
               width: 940,
@@ -3745,6 +3760,7 @@ function template(request, templateName, $destination, callback){
       // cart data from shopify
       templateData = CartData;
     } else {
+      templateData = x;
       console.log('template function request type failed');
     }
     console.log(templateData);

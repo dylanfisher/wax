@@ -13,22 +13,15 @@ if (document.location.hostname == 'localhost'){
 }
 
 $(function(){
-  var container      = $('#overlay-container'),
-      content        = $('#overlay-content'),
-      frameContainer = $('#frame-container');
-
   $(document).on('click', 'a.ajax', function(e){
     // Check for pushState support, otherwise follow the link like normal
     if (typeof History.pushState !== "undefined") {
       e.preventDefault();
-      scrollPos = $(window).scrollTop();
-      container.addClass('active');
-      frameContainer.addClass('overlay-active');
-      showLoader(container);
+      showOverlay();
 
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
-      template($(this).data('request'), $(this).data('template'), content, function(){
+      template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
         if($('#overlay-content .slide-outer-container').length){
           $('#overlay-content .slideshow').slidesjs({
               width: 940,
@@ -72,6 +65,7 @@ function template(request, templateName, $destination, callback){
       // cart data from shopify
       templateData = CartData;
     } else {
+      templateData = x;
       console.log('template function request type failed');
     }
     console.log(templateData);

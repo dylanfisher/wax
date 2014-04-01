@@ -46,16 +46,29 @@ function assignDataValues(el, key, value){
 }
 
 function showOverlay(){
-  $('#overlay-container').addClass('active');
-  $('#frame-container').addClass('overlay-active');
+  var container      = $('#overlay-container');
+  var content        = $('#overlay-content');
+  var frameContainer = $('#frame-container');
+  scrollPos = $(window).scrollTop();
+  frameContainer.css({top: $(window).scrollTop() * -1});
+  container.addClass('active');
+  frameContainer.addClass('overlay-active');
+  container.transition({top: '0%'}, 400, 'easeInOutQuad');
+  // container.scrollTop(0);
+  showLoader(container);
 }
 
 function closeOverlay(){
-  $('#overlay-container').removeClass('active');
+  var container      = $('#overlay-container');
+  var content        = $('#overlay-content');
+  var frameContainer = $('#frame-container');
   $('#frame-container, #frame-featured').removeClass('overlay-active');
-  $('#overlay-content').html('');
+  container.transition({top: '100%'}, 400, 'easeInOutQuad', function(){
+    content.html('');
+    container.removeClass('active');
+    overlayLoaded = false;
+  });
+  frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
-  console.log(scrollPos);
-  overlayLoaded = false;
   History.pushState(null, null, siteUrl);
 }
