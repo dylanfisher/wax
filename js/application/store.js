@@ -16,6 +16,8 @@ $(function(){
       try {
         if(obj.variants[0].available === false){
           $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+        } else {
+          $(this).find('.add-to-cart').text('Add to Cart');
         }
       } catch (err){
         // prevent undefined error
@@ -40,22 +42,22 @@ $(function(){
     template($(this).data('request'), $(this).data('template'), $('#overlay-content'), cartInit);
   });
 
-  $(document).on('click', '.cart-update', function(e){
-    e.preventDefault();
-    var $cartItem = $(this).closest('.cart-item');
-    loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + $cartItem.find('.cart-qty input').val());
-  });
+  // $(document).on('click', '.cart-update', function(e){
+  //   e.preventDefault();
+  //   var $cartItem = $(this).closest('.cart-item');
+  //   loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + $cartItem.find('.cart-qty input').val());
+  // });
 
-  $(document).on('click', '.cart-remove', function(e){
-    e.preventDefault();
-    var $cartItem = $(this).closest('.cart-item');
-    loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + 0);
-  });
+  // $(document).on('click', '.cart-remove', function(e){
+  //   e.preventDefault();
+  //   var $cartItem = $(this).closest('.cart-item');
+  //   loadIframe($('#cart-updater'), 'http://store.readwax.com/cart/change/' + $cartItem.data('variant') + '?quantity=' + 0);
+  // });
 
-  $(document).on('click', '.cart-remove, .cart-update', function(e){
-    e.preventDefault();
-    constructCartPermalink();
-  });
+  // $(document).on('click', '.cart-remove, .cart-update', function(e){
+  //   e.preventDefault();
+  //   constructCartPermalink();
+  // });
 
   function cartInit(){
     var costAllItems = 0;
@@ -119,6 +121,8 @@ $(function(){
       obj = obj[0];
       if(obj.variants[0].available === false){
         $('#product-viewer').find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+      } else {
+        $('#product-viewer').find('.add-to-cart').text('Add to Cart');
       }
 
     });
@@ -242,23 +246,23 @@ $(function(){
     });
   }
 
-  $('#cart-count').on('click', function(event){
-    event.preventDefault();
-    updateCartQuantity($('#cart-item-count'));
-  });
+  // $('#cart-count').on('click', function(event){
+  //   event.preventDefault();
+  //   updateCartQuantity($('#cart-item-count'));
+  // });
 
-  $('#clear-cart').on('click', function(event){
-    event.preventDefault();
-    loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/clear.js');
-    $('#test-iframe').load(function(){
-      updateCartQuantity($('#cart-item-count'));
-    });
-  });
+  // $('#clear-cart').on('click', function(event){
+  //   event.preventDefault();
+  //   loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/clear.js');
+  //   $('#test-iframe').load(function(){
+  //     updateCartQuantity($('#cart-item-count'));
+  //   });
+  // });
 
-  $('#update').on('click', function(event){
-    event.preventDefault();
-    loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/change/448372341?quantity=10');
-  });
+  // $('#update').on('click', function(event){
+  //   event.preventDefault();
+  //   loadIframe($('#test-iframe'), 'http://store.readwax.com/cart/change/448372341?quantity=10');
+  // });
 
   function loadIframe(el, url) {
       var $iframe = el;

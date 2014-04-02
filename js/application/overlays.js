@@ -54,7 +54,8 @@ function showOverlay(){
   container.addClass('active');
   frameContainer.addClass('overlay-active');
   container.transition({top: '0%'}, 400, 'easeInOutQuad');
-  // container.scrollTop(0);
+  container.css({overflow: 'auto'});
+  container.scrollTop(0);
   showLoader(container);
 }
 
@@ -68,6 +69,7 @@ function closeOverlay(){
     container.removeClass('active');
     overlayLoaded = false;
   });
+  container.css({overflow: 'hidden'});
   frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);

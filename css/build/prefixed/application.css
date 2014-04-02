@@ -588,7 +588,6 @@ h6 {
 img {
   vertical-align: middle;
   max-width: 100%;
-  max-height: 100%;
   width: auto;
   height: auto;
 }
@@ -1022,6 +1021,10 @@ body {
   margin: 0;
 }
 
+.external-layout .fixed-nav {
+  display: none;
+}
+
 .frame-featured {
   position: absolute;
   width: 100%;
@@ -1153,6 +1156,11 @@ body {
 
 .overlay-container.active {
   display: block;
+}
+
+.overlay-container.external-layout {
+  display: block;
+  position: static;
 }
 
 .overlay-container .overlay-close {

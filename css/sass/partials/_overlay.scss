@@ -47,6 +47,10 @@
     &.active {
         display: block;
     }
+    &.external-layout {
+      display: block;
+      position: static;
+    }
     .overlay-close {
         position: absolute;
         top: 10px;

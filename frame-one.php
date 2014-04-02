@@ -30,7 +30,7 @@ if ( $the_query->have_posts() ):
         <?php endif; ?>
     <h3>
         <a class="accordion-head more-info" href="#">More Information</a>
-        <a class="add-to-cart" href="#">Add to Cart</a>
+        <a class="add-to-cart" href="#"></a>
     </h3>
     <div class="accordion-container">
         <div class="accordion-content">
@@ -45,7 +45,7 @@ if ( $the_query->have_posts() ):
                 <li>
                     <h2><?php the_sub_field('title'); ?></h2>
                     <h3>[Add Subtitle Here]</h3>
-                    <img class="lazy" data-original="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+                    <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
                 </li>
             <?php endwhile; ?>
             </ul>
