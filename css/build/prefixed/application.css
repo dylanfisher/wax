@@ -588,6 +588,8 @@ h6 {
 img {
   vertical-align: middle;
   max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
 }
 
@@ -716,14 +718,16 @@ h3 {
 }
 
 .features-item h2,
-.issue h2 {
+.issue h2,
+.overlay-content h2 {
   font-size: 3.4em;
   line-height: normal;
   margin-bottom: 0.6em;
 }
 
 .features-item h3,
-.issue h3 {
+.issue h3,
+.overlay-content h3 {
   font-size: 1.6em;
   margin-bottom: 1.4em;
 }
@@ -1207,6 +1211,11 @@ body {
   list-style: none;
 }
 
+.features-wrapper h2,
+.features-wrapper h3 {
+  text-align: center;
+}
+
 .issue {
   width: 60%;
   max-width: 1200px;
@@ -1242,6 +1251,7 @@ body {
   width: 33.33%;
   padding: 10px;
   margin-bottom: 64px;
+  text-align: center;
 }
 
 .product-container .product h3 {
@@ -1249,8 +1259,6 @@ body {
 }
 
 .product-container .image-container {
-  background: #e9e9e9;
-  padding: 20px;
   margin-top: 32px;
   display: block;
 }
@@ -1259,6 +1267,10 @@ body {
   outline: 1px solid #000;
   margin: 22px -10px -10px !important;
   border: 10px solid #FFF;
+}
+
+.product-container .image-container img {
+  max-height: 300px;
 }
 
 .product-container ul,
@@ -1272,8 +1284,13 @@ body {
   vertical-align: top;
 }
 
+.product-grid {
+  text-align: left;
+}
+
 .product-viewer {
   position: relative;
+  min-height: 400px;
 }
 
 .product-viewer .overlay-close {
@@ -1407,6 +1424,11 @@ body {
   margin-bottom: 1.4em;
 }
 
+.features-item img {
+  max-height: 600px;
+  width: auto;
+}
+
 .frame-two .content {
   margin-left: auto;
   margin-right: auto;
@@ -1429,9 +1451,11 @@ body {
   margin: 0 0 64px;
 }
 
+.slideshow {
+  text-align: right;
+}
+
 .slide-outer-container {
-  background-color: #e9e9e9;
-  padding: 20px 0;
   margin-bottom: 4em;
   position: relative;
 }
@@ -1504,6 +1528,16 @@ body {
 
 .slidesjs-navigation.slidesjs-next:before {
   content: '\2192';
+}
+
+.slidesjs-control > img {
+  top: 50% !important;
+  margin-left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: auto !important;
+  height: auto !important;
+  max-height: 100%;
 }
 
 .alignnone {

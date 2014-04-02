@@ -40,6 +40,9 @@ module.exports = function(grunt) {
     },
 
     jshint: {
+      options: {
+        ignores: ['js/application/templates.js']
+      },
       beforeconcat: ['js/application/*.js']
     },
 
@@ -89,6 +92,13 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['js/application/**/*.js'],
+        tasks: ['jshint', 'concat', 'uglify'],
+        options: {
+          spawn: false,
+        }
+      },
+      templates: {
+        files: ['js/templates/**/*.html'],
         tasks: ['jshint', 'concat', 'uglify'],
         options: {
           spawn: false,

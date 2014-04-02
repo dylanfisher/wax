@@ -5,6 +5,8 @@ if (document.location.hostname == 'localhost'){
   sitePath = '/dev/';
 }
 
+var PrimaryNavHeight = $('#primary').height() + ($('#fixed-nav').position().top * 2);
+
 $(document).ready(function(){
   var docY                = $(document).height(),
       docX                = $(document).width(),

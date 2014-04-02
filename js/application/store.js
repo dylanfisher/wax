@@ -6,6 +6,7 @@ var StoreData,
     CartData;
 
 $(function(){
+  showLoader($('#product-grid'));
   // Initialize the store product grid via shopify json
   template('store_products', 'template-store-product-init', $('#product-grid'), function(){
     $.each($('.product'), function(){
@@ -100,6 +101,7 @@ $(function(){
       $('#product-container .product').removeClass('active');
       $(this).closest('.product').addClass('active');
       $(this).closest('.product-row').append('<div id="product-viewer" class="product-viewer" data-id="' + $(this).closest('.product').data('id') + '"><div class="product-viewer-content"></div></div>');
+      $('html, body').animate({scrollTop: $('#product-viewer').offset().top - PrimaryNavHeight});
     }
 
     // ajax call to our API and appropriate mustache template

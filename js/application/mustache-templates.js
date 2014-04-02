@@ -24,7 +24,7 @@ $(function(){
       template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
         if($('#overlay-content .slide-outer-container').length){
           $('#overlay-content .slideshow').slidesjs({
-              width: 940,
+              width: 840,
               height: 528,
               navigation: {
                   active: false
@@ -71,7 +71,7 @@ function template(request, templateName, $destination, callback){
     console.log(templateData);
 
     $('#templates').load(sitePath + 'wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
-      console.log('#templates loaded');
+      // console.log('#templates loaded');
       var template = document.getElementById(templateName).innerHTML,
           output   = Mustache.render(template, templateData);
       $destination.html(output);

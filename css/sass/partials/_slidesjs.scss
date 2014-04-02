@@ -2,9 +2,11 @@
 // Slides.js
 //
 
+.slideshow {
+    text-align: right;
+}
+
 .slide-outer-container {
-    background-color: $gray_light;
-    padding: 20px 0;
     margin-bottom: 4em;
     position: relative;
 }
@@ -74,4 +76,13 @@
             content: '\2192';
         }
     }
+}
+
+.slidesjs-control > img {
+    top: 50% !important;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto !important;
+    height: auto !important;
+    max-height: 100%;
 }

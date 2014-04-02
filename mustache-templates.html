@@ -78,19 +78,23 @@
 <!-- Stories -->
 
 <div id="template-story">
-  <h2>{{title}}</h2>
-{{#acf.sub_title}}
-  <h3>{{acf.sub_title}}</h3>
-{{/acf.sub_title}}
-  <div class="slide-outer-container">
-      <div class="slideshow feature-slideshow">
-        {{#acf.slideshow}}
-          <img src="{{image.url}}" data-caption="{{caption}}">
-        {{/acf.slideshow}}
+  <div class="features-wrapper">
+    <div class="content-wrapper">
+      <h2>{{title}}</h2>
+      {{#acf.sub_title}}
+        <h3>{{acf.sub_title}}</h3>
+      {{/acf.sub_title}}
+      <div class="slide-outer-container">
+          <div class="slideshow feature-slideshow">
+            {{#acf.slideshow}}
+              <img src="{{image.url}}" data-caption="{{caption}}">
+            {{/acf.slideshow}}
+          </div>
+          <div class="caption-container"></div>
       </div>
-      <div class="caption-container"></div>
+      <div class="feature-content">{{{acf.content}}}</div>
+    </div>
   </div>
-  <div class="feature-content">{{{acf.content}}}</div>
   <div class="related-issues">
     <h3>Related Issues</h3>
     {{#acf.related_issues}}
@@ -132,9 +136,6 @@
       </div>
     </div>
     <div class="heading">
-      <div class="learn-more">
-        <a href="issues">Learn More</a>
-      </div>
       <h3>{{current_product.0.title}}</h3>
       <div class="price-cart">
         <span class="price"></span>

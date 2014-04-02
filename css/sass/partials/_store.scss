@@ -8,13 +8,12 @@
         width: 33.33%;
         padding: 10px;
         margin-bottom: $medium;
+        text-align: center;
         h3 {
             margin-top: $xsmall;
         }
     }
     .image-container {
-        background: $gray_light;
-        padding: 20px;
         margin-top: $small;
         display: block;
         &:hover {
@@ -22,8 +21,11 @@
             margin: 22px -10px -10px !important;
             border: 10px solid #FFF;
         }
-        img:hover {
-            @extend %image_outline_override;
+        img {
+            max-height: 300px;
+            &:hover {
+                @extend %image_outline_override;
+            }
         }
     }
     ul, li {
@@ -35,9 +37,13 @@
         vertical-align: top;
     }
 }
+.product-grid {
+    text-align: left;
+}
 .product-viewer {
     @extend %ib;
     position: relative;
+    min-height: 400px;
     .overlay-close {
         position: absolute;
         right: 10px;
