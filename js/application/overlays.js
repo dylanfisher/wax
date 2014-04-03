@@ -29,7 +29,7 @@ $(function(){
     $(document).on('click', '.project-toggle', function(e){
       e.preventDefault();
       var newProjUrl = $(this).closest('li').data('source');
-      console.log(newProjUrl);
+      $('#featured-project').attr('data-url', newProjUrl);
       $('#featured-project iframe').attr('src', newProjUrl);
       closeOverlay();
     });
@@ -37,6 +37,8 @@ $(function(){
     // Add class to featured frame
     $('#frame-featured-show-overlay a').click(function(){
       $('#frame-featured').addClass('overlay-active');
+      $('#featured-project').fadeOut();
+      $('#overlay-close').addClass('featured-overlay-close');
     });
 });
 
@@ -73,4 +75,10 @@ function closeOverlay(){
   frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
+  $('#featured-project').fadeIn();
+
+  if(ExternalLayout === true){
+    // TODO: update this to go to the post you landed on
+    window.location = sitePath;
+  }
 }

@@ -7,9 +7,6 @@ $(function(){
     $('#overlay-content .slideshow').slidesjs({
         width: 840,
         height: 528,
-        navigation: {
-            active: false
-        }
     });
   }
 

@@ -9,7 +9,7 @@ if ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
 <div id="frame-featured-show-overlay" class="show-overlay"><a class="ajax" data-request="get_posts/?cat=6&amp;count=-1" data-template="template-featured" href="<?php echo the_permalink(); ?>">Info</a></div>
-<div id="featured-project" class="featured-project">
+<div id="featured-project" class="featured-project" data-url="<?php the_field('iframe_url'); ?>">
     <div class="featured-project-overlay"></div>
     <iframe src="<?php the_field('iframe_url'); ?>"></iframe>
 </div>

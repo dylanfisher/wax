@@ -23,12 +23,13 @@ $(function(){
       // console.log($(this).data('template'));
       template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
         if($('#overlay-content .slide-outer-container').length){
-          $('#overlay-content .slideshow').slidesjs({
-              width: 840,
-              height: 528,
-              navigation: {
-                  active: false
-              }
+          showLoader($('#overlay-content .slide-outer-container'));
+          $('#overlay-content .slideshow').imagesLoaded(function(){
+            $('#overlay-content .slide-outer-container').find('.loading').remove();
+            $('#overlay-content .slideshow').slidesjs({
+                width: 840,
+                height: 528
+            });
           });
         }
 

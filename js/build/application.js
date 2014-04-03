@@ -1072,13 +1072,13 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
           "class": "slidesjs-previous slidesjs-navigation",
           href: "#",
           title: "Previous",
-          text: "Previous"
+          text: ""
         }).appendTo($element);
         nextButton = $("<a>", {
           "class": "slidesjs-next slidesjs-navigation",
           href: "#",
           title: "Next",
-          text: "Next"
+          text: ""
         }).appendTo($element);
       }
       $(".slidesjs-next", $element).click(function(e) {
@@ -2851,6 +2851,25 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
 }));
 
 //
+// External facing pages
+//
+
+$(function(){
+  if($('#overlay-content .slide-outer-container').length){
+    $('#overlay-content .slideshow').slidesjs({
+        width: 840,
+        height: 528,
+    });
+  }
+
+  if($('#overlay-content .masonry').length){
+    $('#overlay-content .masonry').isotope({
+      itemSelector: '.masonry-item',
+      layoutMode: 'masonry'
+    });
+  }
+});
+//
 // Control the animations/transitions of the frame container
 //
 
@@ -2873,6 +2892,25 @@ $(function(){
         threeOffset   = containerTop - frameThree.offset().top,
         navOffset     = 10,
         easing        = 'easeInOutQuad';
+
+    // Scroll to top of page when WAX logo is clicked
+    $('#nav-site-title').on('click', function(e){
+      if(ExternalLayout === false){
+        if($(this).hasClass('compact')){
+          $('html, body').animate({scrollTop: 0});
+        } else {
+          setFrameTwoActive();
+        }
+        e.preventDefault();
+      } else {
+        if($(this).hasClass('compact')){
+          $('html, body').animate({scrollTop: 0});
+          e.preventDefault();
+        } else {
+          // Go to home page
+        }
+      }
+    });
 
     //
     // All frames
@@ -3144,6 +3182,13 @@ if (document.location.hostname == 'localhost'){
 
 var PrimaryNavHeight = $('#primary').height() + ($('#fixed-nav').position().top * 2);
 
+var ExternalLayout;
+if($('.external-layout').length){
+  ExternalLayout = true;
+} else {
+  ExternalLayout = false;
+}
+
 $(document).ready(function(){
   var docY                = $(document).height(),
       docX                = $(document).width(),
@@ -3168,12 +3213,6 @@ $(document).ready(function(){
 
   $('#frame-container').css({y: winY});
 
-  // Scroll to top of page when WAX logo is clicked
-  $('#nav-site-title').on('click', function(e){
-    $('html, body').animate({scrollTop: 0});
-    e.preventDefault();
-  });
-
   // Move the featured frame and frame containers while scrolling down,
   // then fix the featured frame after scrolling past a certain point
   var fixedPoint = frameFeatured.height() - navOffset,
@@ -3184,7 +3223,9 @@ $(document).ready(function(){
         featureOpen = false;
         frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
         $('.featured-project-overlay').show();
-        $('#featured-project > iframe').fadeOut(animSpeed);
+        $('#featured-project > iframe').fadeOut(animSpeed, function(){
+          $('#featured-project iframe').attr('src', '');
+        });
         frameContainer.css({y: navOffset});
         $('html, body').scrollTop(0);
         redraw();
@@ -3203,6 +3244,7 @@ $(document).ready(function(){
     frameContainer.transition({y: winY});
     $('html, body').scrollTop(0);
     $('.featured-project-overlay').hide();
+    $('#featured-project iframe').attr('src', $('#featured-project').data('url'));
     $('#featured-project > iframe').fadeIn(animSpeed);
     // $('html, body').animate({scrollTop: 0}, function(){
     //   featureOpen = true;
@@ -3232,11 +3274,18 @@ $(document).ready(function(){
          if ($('#frame-featured.featured-fix').length){
            $('#frame-featured').addClass('not-fixed');
          }
-         if (st > compactPoint && $('#frame-featured.featured-fix').length){
-             $('#fixed-nav, #nav-site-title').addClass('compact');
-             if ($('#frame-container').data('activeFrame') == 'two'){
-               $('#tertiary').fadeOut();
-             }
+         // External layout pages
+         if(ExternalLayout === true){
+          if (st > compactPoint){
+              $('#fixed-nav, #nav-site-title').addClass('compact');
+          }
+         } else {
+          if (st > compactPoint && $('#frame-featured.featured-fix').length){
+              $('#fixed-nav, #nav-site-title').addClass('compact');
+              if ($('#frame-container').data('activeFrame') == 'two'){
+                $('#tertiary').fadeOut();
+              }
+          }
          }
       } else {
          // Up scroll
@@ -3305,12 +3354,13 @@ $(function(){
       // console.log($(this).data('template'));
       template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
         if($('#overlay-content .slide-outer-container').length){
-          $('#overlay-content .slideshow').slidesjs({
-              width: 840,
-              height: 528,
-              navigation: {
-                  active: false
-              }
+          showLoader($('#overlay-content .slide-outer-container'));
+          $('#overlay-content .slideshow').imagesLoaded(function(){
+            $('#overlay-content .slide-outer-container').find('.loading').remove();
+            $('#overlay-content .slideshow').slidesjs({
+                width: 840,
+                height: 528
+            });
           });
         }
 
@@ -3380,28 +3430,6 @@ var showLoader = function(el){
   el.prepend(animation);
 };
 //
-// External facing pages
-//
-
-$(function(){
-  if($('#overlay-content .slide-outer-container').length){
-    $('#overlay-content .slideshow').slidesjs({
-        width: 840,
-        height: 528,
-        navigation: {
-            active: false
-        }
-    });
-  }
-
-  if($('#overlay-content .masonry').length){
-    $('#overlay-content .masonry').isotope({
-      itemSelector: '.masonry-item',
-      layoutMode: 'masonry'
-    });
-  }
-});
-//
 // Toggle hiding and showing of overlays, and blurring of background
 //
 
@@ -3432,7 +3460,7 @@ $(function(){
     $(document).on('click', '.project-toggle', function(e){
       e.preventDefault();
       var newProjUrl = $(this).closest('li').data('source');
-      console.log(newProjUrl);
+      $('#featured-project').attr('data-url', newProjUrl);
       $('#featured-project iframe').attr('src', newProjUrl);
       closeOverlay();
     });
@@ -3440,6 +3468,8 @@ $(function(){
     // Add class to featured frame
     $('#frame-featured-show-overlay a').click(function(){
       $('#frame-featured').addClass('overlay-active');
+      $('#featured-project').fadeOut();
+      $('#overlay-close').addClass('featured-overlay-close');
     });
 });
 
@@ -3476,6 +3506,12 @@ function closeOverlay(){
   frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
+  $('#featured-project').fadeIn();
+
+  if(ExternalLayout === true){
+    // TODO: update this to go to the post you landed on
+    window.location = sitePath;
+  }
 }
 //
 // Pushstate handling
@@ -3501,11 +3537,8 @@ $(function(){
 
 (function(){
     $('#project-slides').slidesjs({
-        width: 940,
+        width: 840,
         height: 528,
-        navigation: {
-            active: false
-        },
         start: function(number) {
             $(window).trigger('scroll'); // Dirty fix to force lazy loaded images
         }
@@ -3514,9 +3547,6 @@ $(function(){
     $('.issue .issue-slides').slidesjs({
         width: 400,
         height: 450,
-        navigation: {
-            active: false
-        },
         callback: {
             start: function(number) {
                 $(window).trigger('scroll');
@@ -3636,11 +3666,8 @@ $(function(){
     // console.log($(this).data('template'));
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
-          width: 940,
-          height: 528,
-          navigation: {
-              active: false
-          }
+          width: 840,
+          height: 528
       });
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));
@@ -3673,17 +3700,6 @@ $(function(){
       } else {
         iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
       }
-
-      // console.log(item);
-
-      // Store products
-      // $.each($('#product-container .product'), function(){
-      //   var obj = getObjects(item, 'id', $(this).data('id'));
-      //   obj = obj[0];
-      //   // console.log(obj);
-      //   $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
-      //   $(this).find('img.lazy').lazyload();
-      // });
 
       // Append each item as a list
       $.each( item, function( key, product ) {

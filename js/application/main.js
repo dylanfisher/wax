@@ -7,6 +7,13 @@ if (document.location.hostname == 'localhost'){
 
 var PrimaryNavHeight = $('#primary').height() + ($('#fixed-nav').position().top * 2);
 
+var ExternalLayout;
+if($('.external-layout').length){
+  ExternalLayout = true;
+} else {
+  ExternalLayout = false;
+}
+
 $(document).ready(function(){
   var docY                = $(document).height(),
       docX                = $(document).width(),
@@ -31,12 +38,6 @@ $(document).ready(function(){
 
   $('#frame-container').css({y: winY});
 
-  // Scroll to top of page when WAX logo is clicked
-  $('#nav-site-title').on('click', function(e){
-    $('html, body').animate({scrollTop: 0});
-    e.preventDefault();
-  });
-
   // Move the featured frame and frame containers while scrolling down,
   // then fix the featured frame after scrolling past a certain point
   var fixedPoint = frameFeatured.height() - navOffset,
@@ -47,7 +48,9 @@ $(document).ready(function(){
         featureOpen = false;
         frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
         $('.featured-project-overlay').show();
-        $('#featured-project > iframe').fadeOut(animSpeed);
+        $('#featured-project > iframe').fadeOut(animSpeed, function(){
+          $('#featured-project iframe').attr('src', '');
+        });
         frameContainer.css({y: navOffset});
         $('html, body').scrollTop(0);
         redraw();
@@ -66,6 +69,7 @@ $(document).ready(function(){
     frameContainer.transition({y: winY});
     $('html, body').scrollTop(0);
     $('.featured-project-overlay').hide();
+    $('#featured-project iframe').attr('src', $('#featured-project').data('url'));
     $('#featured-project > iframe').fadeIn(animSpeed);
     // $('html, body').animate({scrollTop: 0}, function(){
     //   featureOpen = true;
@@ -95,11 +99,18 @@ $(document).ready(function(){
          if ($('#frame-featured.featured-fix').length){
            $('#frame-featured').addClass('not-fixed');
          }
-         if (st > compactPoint && $('#frame-featured.featured-fix').length){
-             $('#fixed-nav, #nav-site-title').addClass('compact');
-             if ($('#frame-container').data('activeFrame') == 'two'){
-               $('#tertiary').fadeOut();
-             }
+         // External layout pages
+         if(ExternalLayout === true){
+          if (st > compactPoint){
+              $('#fixed-nav, #nav-site-title').addClass('compact');
+          }
+         } else {
+          if (st > compactPoint && $('#frame-featured.featured-fix').length){
+              $('#fixed-nav, #nav-site-title').addClass('compact');
+              if ($('#frame-container').data('activeFrame') == 'two'){
+                $('#tertiary').fadeOut();
+              }
+          }
          }
       } else {
          // Up scroll

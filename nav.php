@@ -1,11 +1,21 @@
-<?php // Navigation ?>
-<?php
+<?php // Navigation
+
+// Check if we are running locally
+$localHost = array(
+    '127.0.0.1',
+    '::1'
+);
+$stagingURL = 'dev';
+if(in_array($_SERVER['REMOTE_ADDR'], $localHost)){
+    $stagingURL = 'wax';
+}
+
 $about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
 $about_id = $about_post[0]->ID;
 $about_permalink = get_permalink($about_id);
 ?>
 <h1 id="nav-site-title" class="nav-site-title">
-    <a href="#" class="wax-logo-container">
+    <a href="/<?php echo $stagingURL; ?>" class="wax-logo-container">
         <div id="wax1" class="wax-logo">W</div>
         <div id="wax2" class="wax-logo active">A</div>
         <div id="wax3" class="wax-logo">X</div>

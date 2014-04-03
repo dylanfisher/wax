@@ -110,11 +110,8 @@ $(function(){
     // console.log($(this).data('template'));
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
-          width: 940,
-          height: 528,
-          navigation: {
-              active: false
-          }
+          width: 840,
+          height: 528
       });
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));
@@ -147,17 +144,6 @@ $(function(){
       } else {
         iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
       }
-
-      // console.log(item);
-
-      // Store products
-      // $.each($('#product-container .product'), function(){
-      //   var obj = getObjects(item, 'id', $(this).data('id'));
-      //   obj = obj[0];
-      //   // console.log(obj);
-      //   $(this).find('.image-container').append('<img class="lazy" data-original="' + obj.images[0].src + '">');
-      //   $(this).find('img.lazy').lazyload();
-      // });
 
       // Append each item as a list
       $.each( item, function( key, product ) {

@@ -22,6 +22,25 @@ $(function(){
         navOffset     = 10,
         easing        = 'easeInOutQuad';
 
+    // Scroll to top of page when WAX logo is clicked
+    $('#nav-site-title').on('click', function(e){
+      if(ExternalLayout === false){
+        if($(this).hasClass('compact')){
+          $('html, body').animate({scrollTop: 0});
+        } else {
+          setFrameTwoActive();
+        }
+        e.preventDefault();
+      } else {
+        if($(this).hasClass('compact')){
+          $('html, body').animate({scrollTop: 0});
+          e.preventDefault();
+        } else {
+          // Go to home page
+        }
+      }
+    });
+
     //
     // All frames
     //

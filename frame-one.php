@@ -23,7 +23,7 @@ if ( $the_query->have_posts() ):
                 // vars
                 $image = get_sub_field('image');
             ?>
-            <img class="lazy" data-original="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
             <?php endwhile; ?>
         </div>
     </div>
