@@ -8,7 +8,7 @@ var StoreData,
 $(function(){
   showLoader($('#product-grid'));
   // Initialize the store product grid via shopify json
-  template('store_products', 'template-store-product-init', $('#product-grid'), function(){
+  template('store_products/', 'template-store-product-init', $('#product-grid'), function(){
     $.each($('.product'), function(){
       var obj = getObjects(StoreData, 'id', $(this).data('id'));
       obj = obj[0];
@@ -108,7 +108,7 @@ $(function(){
 
     // ajax call to our API and appropriate mustache template
     // console.log($(this).data('template'));
-    template('store_products', 'template-store-product', $('.product-viewer-content'), function(){
+    template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
           width: 940,
           height: 528,

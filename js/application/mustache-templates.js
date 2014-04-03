@@ -53,9 +53,6 @@ function template(request, templateName, $destination, callback){
       templateData = x.page;
     } else if (request.indexOf('get_posts') != -1) {
       templateData = x.posts;
-      // templateData.most_recent = x.posts[0];
-      // templateData.other_posts = x.posts;
-      // templateData.other_posts.splice(0,1);
     } else if (request.indexOf('get_post') != -1) {
       templateData = x.post;
     } else if (request.indexOf('store_products') != -1) {
@@ -70,22 +67,21 @@ function template(request, templateName, $destination, callback){
     }
     console.log(templateData);
 
-    $('#templates').load(sitePath + 'wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
-      // console.log('#templates loaded');
-      var template = document.getElementById(templateName).innerHTML,
-          output   = Mustache.render(template, templateData);
-      $destination.html(output);
-      if (typeof(callback) === 'function') {
-          callback();
-      }
-    });
+    var template = document.getElementById(templateName).innerHTML,
+        output   = Mustache.render(template, templateData);
+    $destination.html(output);
+
+    if (typeof(callback) === 'function') {
+        callback();
+    }
     overlayLoaded = true;
+
   });
 }
 
 var getData = function(){
-  var apiUrl = sitePath + 'api/',
-      api    = function(method, callback){
+  var apiUrl = sitePath + 'api/';
+  var api = function(method, callback){
     $.getJSON(apiUrl + method, function(data) {
       callback(data);
       $('.loading').remove();

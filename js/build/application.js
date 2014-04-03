@@ -3335,9 +3335,6 @@ function template(request, templateName, $destination, callback){
       templateData = x.page;
     } else if (request.indexOf('get_posts') != -1) {
       templateData = x.posts;
-      // templateData.most_recent = x.posts[0];
-      // templateData.other_posts = x.posts;
-      // templateData.other_posts.splice(0,1);
     } else if (request.indexOf('get_post') != -1) {
       templateData = x.post;
     } else if (request.indexOf('store_products') != -1) {
@@ -3352,22 +3349,21 @@ function template(request, templateName, $destination, callback){
     }
     console.log(templateData);
 
-    $('#templates').load(sitePath + 'wp-content/themes/wax/mustache-templates.html #' + templateName, function(){
-      // console.log('#templates loaded');
-      var template = document.getElementById(templateName).innerHTML,
-          output   = Mustache.render(template, templateData);
-      $destination.html(output);
-      if (typeof(callback) === 'function') {
-          callback();
-      }
-    });
+    var template = document.getElementById(templateName).innerHTML,
+        output   = Mustache.render(template, templateData);
+    $destination.html(output);
+
+    if (typeof(callback) === 'function') {
+        callback();
+    }
     overlayLoaded = true;
+
   });
 }
 
 var getData = function(){
-  var apiUrl = sitePath + 'api/',
-      api    = function(method, callback){
+  var apiUrl = sitePath + 'api/';
+  var api = function(method, callback){
     $.getJSON(apiUrl + method, function(data) {
       callback(data);
       $('.loading').remove();
@@ -3538,7 +3534,7 @@ var StoreData,
 $(function(){
   showLoader($('#product-grid'));
   // Initialize the store product grid via shopify json
-  template('store_products', 'template-store-product-init', $('#product-grid'), function(){
+  template('store_products/', 'template-store-product-init', $('#product-grid'), function(){
     $.each($('.product'), function(){
       var obj = getObjects(StoreData, 'id', $(this).data('id'));
       obj = obj[0];
@@ -3638,7 +3634,7 @@ $(function(){
 
     // ajax call to our API and appropriate mustache template
     // console.log($(this).data('template'));
-    template('store_products', 'template-store-product', $('.product-viewer-content'), function(){
+    template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
           width: 940,
           height: 528,

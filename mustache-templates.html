@@ -1,6 +1,5 @@
+<script id="template-featured" type="text/template">
 <!-- Featured project info -->
-
-<div id="template-featured">
   <div class="featured-info-wrapper">
     <div class="content-wrapper">
       <div class="about-this-space">
@@ -24,11 +23,10 @@
       {{/.}}
     </ul>
   </div>
-</div>
+</script>
 
+<script id="template-about" type="text/template">
 <!-- About -->
-
-<div id="template-about">
   <div class="about-wrapper">
     <div class="content-wrapper">
       <h3>About</h3>
@@ -73,11 +71,10 @@
       {{{acf.contact}}}
     </div>
   </div>
-</div>
+</script>
 
+<script id="template-story" type="text/template">
 <!-- Stories -->
-
-<div id="template-story">
   <div class="features-wrapper">
     <div class="content-wrapper">
       <h2>{{title}}</h2>
@@ -107,11 +104,10 @@
     </div>
     {{/acf.related_issues}}
   </div>
-</div>
+</script>
 
+<script id="template-store-product-init" type="text/template">
 <!-- Store Product Init Grid -->
-
-<div id="template-store-product-init">
   {{#.}}
     <div class="product" data-id="{{id}}">
       <h2>{{title}}</h2>
@@ -121,11 +117,10 @@
       </a>
     </div>
   {{/.}}
-</div>
+</script>
 
+<script id="template-store-product" type="text/template">
 <!-- Store Product Viewer -->
-
-<div id="template-store-product">
   <div class="overlay-close">X</div>
   <div class="product-viewer-inner-content">
     <div class="slide-outer-container">
@@ -146,11 +141,10 @@
       <p>{{{current_product.0.body_html}}}</p>
     </div>
   </div>
-</div>
+</script>
 
+<script id="template-cart" type="text/template">
 <!-- Cart -->
-
-<div id="template-cart" >
   <h2 class="cart-title">Cart</h2>
   <div class="cart-table">
     <div class="cart-header">
@@ -184,4 +178,4 @@
       <h3><a id="cart-permalink" class="cart-permalink" href="http://store.readwax.com/">Checkout</a></h3>
     </div>
   </div>
-</div>
+  </script>
