@@ -3237,6 +3237,7 @@ $(document).ready(function(){
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix, .featured-project-overlay', function(){
     featureOpen = true;
+    frameFeatured.removeClass('show-more').addClass('feature-open');
     frameFeatured.transition({y: 0}, function(){
       frameFeatured.removeClass('featured-fix');
       redraw();
@@ -3244,7 +3245,8 @@ $(document).ready(function(){
     frameContainer.transition({y: winY});
     $('html, body').scrollTop(0);
     $('.featured-project-overlay').hide();
-    $('#featured-project iframe').attr('src', $('#featured-project').data('url'));
+    $('#featured-project iframe').attr('src', $('#featured-project').attr('data-url'));
+    console.log($('#featured-project').attr('data-url'));
     $('#featured-project > iframe').fadeIn(animSpeed);
     // $('html, body').animate({scrollTop: 0}, function(){
     //   featureOpen = true;
@@ -3270,7 +3272,7 @@ $(document).ready(function(){
       var st = $(this).scrollTop();
       if (st > lastScrollTop && st > 0){
          // Down scroll
-         $('#frame-featured').removeClass('fixed');
+         $('#frame-featured').removeClass('fixed show-more');
          if ($('#frame-featured.featured-fix').length){
            $('#frame-featured').addClass('not-fixed');
          }
@@ -3291,6 +3293,8 @@ $(document).ready(function(){
          // Up scroll
          if (st <= compactPoint){
             $('#fixed-nav, #nav-site-title').removeClass('compact');
+            // Featured project frame gets a little bigger here
+            $('#frame-featured').addClass('show-more');
             if ($('#frame-container').data('activeFrame') == 'two'){
               $('#tertiary').fadeIn();
             }
@@ -3307,7 +3311,7 @@ $(document).ready(function(){
 
   $('#nav-email a').click(function(e){
     e.preventDefault();
-    $('#mailing-list-form').stop().slideToggle();
+    $('#mailing-list-form').stop().slideToggle(400, transitEase);
   });
 
   //

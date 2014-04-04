@@ -86,9 +86,24 @@
     width: 300px;
     right: 0;
     top: 40px;
-    padding: 10px;
-    p {
-        margin: 0;
+    padding: 0 15px;
+    .email-button {
+        border: 1px solid #FFF;
+        display: inline-block;
+        padding: 6px 30px;
+        cursor: pointer;
+        &:hover {
+            background: #fff;
+            color: #000;
+        }
+    }
+    input {
+        width: 100%;
+        padding: 6px 8px;
+    }
+    form {
+        text-align: right;
+        margin-top: 20px;
     }
 }
 

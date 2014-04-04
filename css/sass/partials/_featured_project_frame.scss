@@ -4,20 +4,17 @@
     height: 100%;
     z-index: 20;
     background-color: #E9E9E9;
-    border-bottom: 2px solid $gray_light;
+    transition: margin .4s;
     &.featured-fix {
         position: fixed;
         cursor: pointer;
         margin-top: -10px;
+        &.show-more {
+            margin-top: 10px;
+        }
     }
     &.fixed {
-        animation-duration: 0.4s;
-        animation-name: slideDown;
         margin-top: 0;
-    }
-    &.not-fixed {
-        animation-duration: 0.4s;
-        animation-name: slideUp;
     }
     &.overlay-active {
         position: fixed;

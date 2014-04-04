@@ -33,10 +33,11 @@ $about_permalink = get_permalink($about_id);
         <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" href="<?php echo $about_permalink; ?>">About</a></h3>
         <h3 id="nav-email" class="nav-email"><a href="#">&#9993;</a></h3>
         <div id="mailing-list-form" class="mailing-list-form">
-            <p>Subscribe to our mailing list</p>
-            <form id="email" action="" method="post">
-                <input type="text" name="email" id="input-email" value="">
-                <input type="submit" name="submit" id="submit" onmouseover="this.style.color='#5c7ce6'" onmouseout="this.style.color='#000'" style="color: rgb(0, 0, 0);">
+            <p>Subscribe to our mailing list:</p>
+            <form action="http://waxmag.createsend.com/t/j/s/nwtd/" method="post">
+                <input id="fieldEmail" name="cm-nwtd-nwtd" type="email" required />
+                <p><div class="email-button">Submit</div></p>
+                <button class="visuallyhidden" type="submit" id="email-submit"></button>
             </form>
         </div>
     </div>
