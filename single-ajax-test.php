@@ -34,5 +34,3 @@ echo $image["id"] . $image["title"] . $image["url"] . $image["description"]
             </div>
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>

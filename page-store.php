@@ -27,5 +27,3 @@ Template Name: Page - Store
             </section><!-- .post -->
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>

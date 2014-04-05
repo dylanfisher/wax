@@ -2,6 +2,10 @@
 .fixed-nav {
     position: fixed;
     top: 20px;
+    transition: top .4s;
+    &.show-more {
+        top: 30px;
+    }
 }
 .nav-site-title {
     left: 20px;

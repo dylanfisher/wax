@@ -3238,6 +3238,7 @@ $(document).ready(function(){
   $('body').on('click','.featured-fix, .featured-project-overlay', function(){
     featureOpen = true;
     frameFeatured.removeClass('show-more').addClass('feature-open');
+    $('#fixed-nav, #nav-site-title').removeClass('show-more');
     frameFeatured.transition({y: 0}, function(){
       frameFeatured.removeClass('featured-fix');
       redraw();
@@ -3273,6 +3274,7 @@ $(document).ready(function(){
       if (st > lastScrollTop && st > 0){
          // Down scroll
          $('#frame-featured').removeClass('fixed show-more');
+         $('#fixed-nav, #nav-site-title').removeClass('show-more');
          if ($('#frame-featured.featured-fix').length){
            $('#frame-featured').addClass('not-fixed');
          }
@@ -3293,8 +3295,9 @@ $(document).ready(function(){
          // Up scroll
          if (st <= compactPoint){
             $('#fixed-nav, #nav-site-title').removeClass('compact');
-            // Featured project frame gets a little bigger here
+            // Featured project frame gets a little bigger here and fixed nav moves down
             $('#frame-featured').addClass('show-more');
+            $('#fixed-nav, #nav-site-title').addClass('show-more');
             if ($('#frame-container').data('activeFrame') == 'two'){
               $('#tertiary').fadeIn();
             }

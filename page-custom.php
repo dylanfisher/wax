@@ -13,5 +13,3 @@ Template Name: Custom Page Name
             </section><!-- .post -->
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>

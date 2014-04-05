@@ -13,5 +13,3 @@ Template Name: Page - Issues
             </section><!-- .post -->
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>

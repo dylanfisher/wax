@@ -16,5 +16,3 @@ Template Name: Page - Features
             </div><!-- .post -->
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>

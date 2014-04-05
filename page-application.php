@@ -33,5 +33,3 @@ Template Name: Page - Application
     <div id="overlay-content" class="overlay-content"></div>
 </div>
 <?php get_footer() ?>
-</body>
-</html>

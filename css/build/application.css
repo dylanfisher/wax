@@ -794,6 +794,11 @@ html, body {
 .fixed-nav {
   position: fixed;
   top: 20px;
+  transition: top .4s;
+}
+.nav-site-title.show-more,
+.fixed-nav.show-more {
+  top: 30px;
 }
 
 .nav-site-title {

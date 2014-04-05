@@ -13,5 +13,3 @@ Template Name: Page - Finds
             </section><!-- .post -->
         </div><!-- .content -->
 <?php get_footer() ?>
-</body>
-</html>
