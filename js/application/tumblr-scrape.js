@@ -20,9 +20,11 @@ $(function(){
   var debounceLoadImages = _.debounce(loadPosts, 500, true);
 
   $('#overlay-container').scroll(function(){
-    st = $('#overlay-container').scrollTop() + $(window).height();
-    if(st > $('#overlay-content').outerHeight(true) - 100){
-      debounceLoadImages();
+    if($('.finds-wrapper').length){
+      st = $('#overlay-container').scrollTop() + $(window).height();
+      if(st > $('#overlay-content').outerHeight(true) - 100){
+        debounceLoadImages();
+      }
     }
   });
 });
