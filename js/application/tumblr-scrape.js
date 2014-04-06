@@ -9,7 +9,6 @@ $(function(){
   });
 
   var loadPosts = function(){
-    console.log('page is: ' + page);
     var url = sitePath + 'wp-content/themes/wax/libs/tumblr-scrape.php?pg=' + page; 
     $('#overlay-content').append($('<div class="finds-wrapper">').load(url, function(){
       $('#overlay-container .loading').remove();

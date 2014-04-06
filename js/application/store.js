@@ -7,30 +7,33 @@ var StoreData,
 
 $(function(){
   showLoader($('#product-grid'));
+  
   // Initialize the store product grid via shopify json
-  template('store_products/', 'template-store-product-init', $('#product-grid'), function(){
-    $.each($('.product'), function(){
-      var obj = getObjects(StoreData, 'id', $(this).data('id'));
-      obj = obj[0];
+  getProducts($('#product-container'), function(){
+    template('store_products/', 'template-store-product-init', $('#product-grid'), function(){
+      $.each($('.product'), function(){
+        var obj = getObjects(StoreData, 'id', $(this).data('id'));
+        obj = obj[0];
 
-      try {
-        if(obj.variants[0].available === false){
-          $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
-        } else {
-          $(this).find('.add-to-cart').text('Add to Cart');
+        try {
+          if(obj.variants[0].available === false){
+            $(this).find('.add-to-cart').replaceWith('<span class="unavailable">Sold out</span>');
+          } else {
+            $(this).find('.add-to-cart').text('Add to Cart');
+          }
+        } catch (err){
+          // prevent undefined error
         }
-      } catch (err){
-        // prevent undefined error
-        // console.log(err);
+      });
+
+      // Group products into rows of three
+      var products = $('#product-container .product');
+      console.log(products);
+      for(var i = 0; i < products.length; i+=3) {
+        console.log('product-row loop # = ' + i);
+        products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
       }
     });
-
-    // Group products into rows of three
-    var products = $('#product-container .product');
-    for(var i = 0; i < products.length; i+=3) {
-      console.log(products);
-      products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
-    }
   });
 
   // Open cart when clicking product count
@@ -107,7 +110,6 @@ $(function(){
     }
 
     // ajax call to our API and appropriate mustache template
-    // console.log($(this).data('template'));
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
           width: 840,
@@ -133,8 +135,7 @@ $(function(){
     $('#product-container .product').removeClass('active');
   });
 
-  getProducts($('#product-container'));
-  function getProducts(el){
+  function getProducts(el, callback){
     $.getJSON('http://store.readwax.com/products.json?callback=?').done(function(x){
       StoreData = x.products;
       var item = x.products;
@@ -147,13 +148,10 @@ $(function(){
 
       // Append each item as a list
       $.each( item, function( key, product ) {
-        // console.log(product);
         el.append(
           '<iframe class="buy-button-frame" id="buy-button-frame-' + key + '" name="store-iframe" src="' + iframeSrc + '" data-variant="' + product.variants[0].id + '" data-id="' + product.id + '"></iframe>');
         $('#buy-button-' + key).click(function(e) {
           $('#buy-button-frame-' + key).contents().find('#add-to-cart').submit();
-          // console.log(key);
-          // console.log($('#buy-button-frame-' + key).contents().find('#add-to-cart'));
           e.preventDefault();
         });
       });
@@ -169,12 +167,16 @@ $(function(){
         e.preventDefault();
         $('.buy-button-frame[data-id="' + $(this).closest('.product-viewer').data('id') + '"]').contents().find('#add-to-cart').submit();
       });
+
+      if (typeof(callback) === 'function') {
+        callback();
+      }
+
     });
   }
 
   constructCartPermalink();
   function constructCartPermalink(callback){
-    // console.log('constructCartPermalink ran');
     $.getJSON('http://store.readwax.com/cart.json?callback=?').done(function(x){
       CartData = x.items;
       var data = x.items;
@@ -185,13 +187,11 @@ $(function(){
 
       $.each( data, function( key, value ) {
         var item = value.variant_id + ':' + value.quantity;
-        // console.log('item = ' + item);
       });
 
       var allItems = $(data).map(function(val) {
         return this.variant_id + ':' + this.quantity;
       }).get().join();
-      // console.log(allItems);
       $('.cart-permalink').attr('href', 'http://store.readwax.com/cart/' + allItems);
 
       if (typeof(callback) === 'function') {
@@ -209,7 +209,6 @@ $(function(){
       var variant = $('#buy-button-frame-' + key, top.document).data('variant');
       $('#buy-button-frame-' + key).contents().find('#add-to-cart input[name="id"]').val(variant);
       $('#buy-button-frame-' + key).contents().find('#cart-tester').html(variant);
-      // console.log('variantIdInit() Ran');
     });
   }
 
@@ -217,7 +216,6 @@ $(function(){
     var variant = el.data('variant');
     el.contents().find('#add-to-cart input[name="id"]').val(variant);
     el.contents().find('#cart-tester').html(variant);
-    // console.log('variantIdUpdate() Ran');
   }
 
   updateCartQuantity($('#cart-item-count'));
@@ -265,8 +263,6 @@ $(function(){
       variantIdUpdate($(this));
       constructCartPermalink();
       updateCartQuantity($('#cart-item-count'));
-      // console.log($(this));
-      // console.log('frame has (re)loaded');
     });
   });
 });
