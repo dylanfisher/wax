@@ -4,7 +4,7 @@
 add_action( 'template_redirect', 'sandbox_pushState_route' );
 function sandbox_pushState_route(){
   // Make the following pages use the default application template
-  if( is_page( array('issues', 'store') ) ){
+  if( is_page( array('issues', 'store', 'features') ) ){
     include( get_template_directory() . '/page-application.php' );
     exit;
   }

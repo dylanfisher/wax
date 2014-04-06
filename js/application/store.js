@@ -28,9 +28,7 @@ $(function(){
 
       // Group products into rows of three
       var products = $('#product-container .product');
-      console.log(products);
       for(var i = 0; i < products.length; i+=3) {
-        console.log('product-row loop # = ' + i);
         products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
       }
     });
@@ -41,7 +39,6 @@ $(function(){
     e.preventDefault();
     showOverlay();
     // ajax call to our API and appropriate mustache template
-    console.log($(this).data('template'));
     template($(this).data('request'), $(this).data('template'), $('#overlay-content'), cartInit);
   });
 

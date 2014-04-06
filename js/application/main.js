@@ -115,7 +115,7 @@ $(document).ready(function(){
          } else {
           if (st > compactPoint && $('#frame-featured.featured-fix').length){
               $('#fixed-nav, #nav-site-title').addClass('compact');
-              if ($('#frame-container').data('activeFrame') == 'two'){
+              if ($('#frame-container').data('activeFrame') == 'two' && ExternalLayout === false){
                 $('#tertiary').fadeOut();
               }
           }
@@ -127,7 +127,7 @@ $(document).ready(function(){
             // Featured project frame gets a little bigger here and fixed nav moves down
             $('#frame-featured').addClass('show-more');
             $('#fixed-nav, #nav-site-title').addClass('show-more');
-            if ($('#frame-container').data('activeFrame') == 'two'){
+            if ($('#frame-container').data('activeFrame') == 'two' && ExternalLayout === false){
               $('#tertiary').fadeIn();
             }
          }

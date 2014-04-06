@@ -78,9 +78,4 @@ function closeOverlay(){
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
   $('#featured-project').fadeIn();
-
-  if(ExternalLayout === true){
-    // TODO: update this to go to the post you landed on
-    window.location = sitePath;
-  }
 }

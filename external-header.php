@@ -17,6 +17,4 @@
         <div id="frame-three-content" class="content"></div>
     </div>
 </div>
-<div id="overlay-container" class="overlay-container external-layout">
-  <div id="overlay-close" class="overlay-close"></div>
-  <div id="overlay-content" class="overlay-content">
+<div class="external-layout-wrapper">

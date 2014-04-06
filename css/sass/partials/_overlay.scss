@@ -38,6 +38,7 @@
   display: none;
   position: fixed;
   top: 100%;
+  left: 0;
   overflow: auto;
   padding: $xsmall 4%;
   width: 100%;
@@ -47,39 +48,42 @@
   &.active {
     display: block;
   }
-  &.external-layout {
-    display: block;
-    position: static;
-  }
-  .overlay-close {
-    @include set_background('close.png', '20px 20px', '0 0');
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 21;
-  }
-  .content-wrapper {
-    padding-left: 15%;
-    padding-right: 15%;
-  }
-  .overlay-content {
-    position: absolute;
-    width: 100%;
-    max-width: $content_max_width;
-    min-height: 100%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin-bottom: $large;
-    h3 {
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: $small;
-      margin-top: $medium;
-    }
+}
+
+.external-layout-wrapper {
+  @extend .overlay-container;
+  position: static;
+  top: 0;
+  display: block;
+  margin-top: 130px;
+}
+
+.overlay-close {
+  @include set_background('close.png', '20px 20px', '0 0');
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 21;
+  cursor: pointer;
+}
+.content-wrapper {
+  padding-left: 15%;
+  padding-right: 15%;
+  h3 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: $small;
+    margin-top: $medium;
   }
 }
-.overlay-close {
-  cursor: pointer;
+.overlay-content {
+  position: absolute;
+  width: 100%;
+  max-width: $content_max_width;
+  min-height: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-bottom: $large;
 }

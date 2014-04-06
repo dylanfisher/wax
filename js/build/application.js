@@ -4200,15 +4200,15 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
 //
 
 $(function(){
-  if($('#overlay-content .slide-outer-container').length){
-    $('#overlay-content .slideshow').slidesjs({
+  if($('.external-layout-wrapper .slide-outer-container').length){
+    $('.external-layout-wrapper .slideshow').slidesjs({
         width: 840,
         height: 528,
     });
   }
 
-  if($('#overlay-content .masonry').length){
-    $('#overlay-content .masonry').isotope({
+  if($('.external-layout-wrapper .masonry').length){
+    $('.external-layout-wrapper .masonry').isotope({
       itemSelector: '.masonry-item',
       layoutMode: 'masonry'
     });
@@ -4265,10 +4265,17 @@ $(function(){
     var url = window.location.pathname;
     if(url.indexOf('issues') != -1){
         $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
         setFrameOneActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
+    } else if(url.indexOf('features') != -1){
+        $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
+        setFrameTwoActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else if(url.indexOf('store') != -1){
         $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
         setFrameThreeActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else {
@@ -4277,7 +4284,7 @@ $(function(){
     }
 
     nav.on('click', function(e){
-        e.preventDefault();
+        nav.find('a').removeClass('active');
     });
 
     // pushState
@@ -4287,11 +4294,15 @@ $(function(){
           if(path.indexOf('issues') != -1){
             setFrameOneActive(redraw);
           }
-          if(path == sitePath){ // Home
+          if(path.indexOf('features') != -1){
             setFrameTwoActive(redraw);
           }
           if(path.indexOf('store') != -1){
             setFrameThreeActive(redraw);
+          }
+          if(path == sitePath){
+            // Home
+            setFrameTwoActive(redraw);
           }
         }
     }, false);
@@ -4301,16 +4312,21 @@ $(function(){
     //
 
     $(document).on('click', '#nav-issues, a[href="issues"]', function(e){
-        setFrameOneActive(redraw);
-        e.preventDefault();
+        if(ExternalLayout === false){
+            setFrameOneActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'issues';
+        }
     });
 
     function setFrameOneActive(redraw){
+        $('#nav-issues a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('left');
         if(frameOne.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax1').addClass('active');
             frameOne.data('active', true);
             container.data('activeFrame', 'one');
             frameOne.removeClass('fixed');
@@ -4330,15 +4346,21 @@ $(function(){
     //
 
     $('#nav-home').on('click', function(e){
-        setFrameTwoActive(redraw);
+        if(ExternalLayout === false){
+            setFrameTwoActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'features';
+        }
     });
 
     function setFrameTwoActive(redraw){
+        $('#nav-home a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('center');
         if(frameTwo.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax2').addClass('active');
             frameTwo.data('active', true);
             container.data('activeFrame', 'two');
             frameTwo.removeClass('fixed');
@@ -4358,16 +4380,21 @@ $(function(){
     //
 
     $(document).on('click', '#nav-store, a[href="store"]', function(e){
-        setFrameThreeActive(redraw);
-        e.preventDefault();
+        if(ExternalLayout === false){
+            setFrameThreeActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'store';
+        }
     });
 
     function setFrameThreeActive(redraw){
+        $('#nav-store a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('right');
         if(frameThree.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax3').addClass('active');
             frameThree.data('active', true);
             container.data('activeFrame', 'three');
             frameThree.removeClass('fixed');
@@ -4635,7 +4662,7 @@ $(document).ready(function(){
          } else {
           if (st > compactPoint && $('#frame-featured.featured-fix').length){
               $('#fixed-nav, #nav-site-title').addClass('compact');
-              if ($('#frame-container').data('activeFrame') == 'two'){
+              if ($('#frame-container').data('activeFrame') == 'two' && ExternalLayout === false){
                 $('#tertiary').fadeOut();
               }
           }
@@ -4647,7 +4674,7 @@ $(document).ready(function(){
             // Featured project frame gets a little bigger here and fixed nav moves down
             $('#frame-featured').addClass('show-more');
             $('#fixed-nav, #nav-site-title').addClass('show-more');
-            if ($('#frame-container').data('activeFrame') == 'two'){
+            if ($('#frame-container').data('activeFrame') == 'two' && ExternalLayout === false){
               $('#tertiary').fadeIn();
             }
          }
@@ -4865,11 +4892,6 @@ function closeOverlay(){
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
   $('#featured-project').fadeIn();
-
-  if(ExternalLayout === true){
-    // TODO: update this to go to the post you landed on
-    window.location = sitePath;
-  }
 }
 //
 // Pushstate handling
@@ -4942,9 +4964,7 @@ $(function(){
 
       // Group products into rows of three
       var products = $('#product-container .product');
-      console.log(products);
       for(var i = 0; i < products.length; i+=3) {
-        console.log('product-row loop # = ' + i);
         products.slice(i, i+3).wrapAll('<div class="product-row"></div>');
       }
     });
@@ -4955,7 +4975,6 @@ $(function(){
     e.preventDefault();
     showOverlay();
     // ajax call to our API and appropriate mustache template
-    console.log($(this).data('template'));
     template($(this).data('request'), $(this).data('template'), $('#overlay-content'), cartInit);
   });
 

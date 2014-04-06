@@ -49,10 +49,17 @@ $(function(){
     var url = window.location.pathname;
     if(url.indexOf('issues') != -1){
         $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
         setFrameOneActive();
+        $('html, body').animate({scrollTop: winY}, 100, 'linear');
+    } else if(url.indexOf('features') != -1){
+        $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
+        setFrameTwoActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else if(url.indexOf('store') != -1){
         $('html').css('overflow-x', 'hidden');
+        nav.find('a').removeClass('active');
         setFrameThreeActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else {
@@ -61,7 +68,7 @@ $(function(){
     }
 
     nav.on('click', function(e){
-        e.preventDefault();
+        nav.find('a').removeClass('active');
     });
 
     // pushState
@@ -71,11 +78,15 @@ $(function(){
           if(path.indexOf('issues') != -1){
             setFrameOneActive(redraw);
           }
-          if(path == sitePath){ // Home
+          if(path.indexOf('features') != -1){
             setFrameTwoActive(redraw);
           }
           if(path.indexOf('store') != -1){
             setFrameThreeActive(redraw);
+          }
+          if(path == sitePath){
+            // Home
+            setFrameTwoActive(redraw);
           }
         }
     }, false);
@@ -85,16 +96,21 @@ $(function(){
     //
 
     $(document).on('click', '#nav-issues, a[href="issues"]', function(e){
-        setFrameOneActive(redraw);
-        e.preventDefault();
+        if(ExternalLayout === false){
+            setFrameOneActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'issues';
+        }
     });
 
     function setFrameOneActive(redraw){
+        $('#nav-issues a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('left');
         if(frameOne.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax1').addClass('active');
             frameOne.data('active', true);
             container.data('activeFrame', 'one');
             frameOne.removeClass('fixed');
@@ -114,15 +130,21 @@ $(function(){
     //
 
     $('#nav-home').on('click', function(e){
-        setFrameTwoActive(redraw);
+        if(ExternalLayout === false){
+            setFrameTwoActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'features';
+        }
     });
 
     function setFrameTwoActive(redraw){
+        $('#nav-home a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('center');
         if(frameTwo.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax2').addClass('active');
             frameTwo.data('active', true);
             container.data('activeFrame', 'two');
             frameTwo.removeClass('fixed');
@@ -142,16 +164,21 @@ $(function(){
     //
 
     $(document).on('click', '#nav-store, a[href="store"]', function(e){
-        setFrameThreeActive(redraw);
-        e.preventDefault();
+        if(ExternalLayout === false){
+            setFrameThreeActive(redraw);
+            e.preventDefault();
+        } else {
+            window.location = sitePath + 'store';
+        }
     });
 
     function setFrameThreeActive(redraw){
+        $('#nav-store a').addClass('active');
+        $('#primary').removeClass('left center right').addClass('right');
         if(frameThree.data('active') === true){
             $('html, body').animate({scrollTop: 0}, 'fast', easing);
         } else {
             activeFrameTransition();
-            $('#wax3').addClass('active');
             frameThree.data('active', true);
             container.data('activeFrame', 'three');
             frameThree.removeClass('fixed');
