@@ -15,6 +15,9 @@
     }
     &.fixed {
         margin-top: 0;
+        &:hover {
+            margin-top: 10px;
+        }
     }
     &.overlay-active {
         position: fixed;

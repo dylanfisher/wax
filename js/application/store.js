@@ -225,7 +225,7 @@ $(function(){
       if(count === 0){
         el.html('');
       } else {
-        el.html(count);
+        el.html('Cart (' + count + ')');
       }
     });
   }

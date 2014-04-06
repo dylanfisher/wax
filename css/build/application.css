@@ -800,6 +800,10 @@ html, body {
 .fixed-nav.show-more {
   top: 30px;
 }
+.external-layout .nav-site-title.show-more, .external-layout
+.fixed-nav.show-more {
+  top: 20px;
+}
 
 .nav-site-title {
   left: 20px;
@@ -924,6 +928,9 @@ html, body {
 .frame-featured.fixed {
   margin-top: 0;
 }
+.frame-featured.fixed:hover {
+  margin-top: 10px;
+}
 .frame-featured.overlay-active {
   position: fixed;
 }
@@ -1020,12 +1027,20 @@ html, body {
   position: static;
 }
 .overlay-container .overlay-close {
+  background: url("../../../images/close.png") no-repeat 0 0;
+  width: 22px;
+  height: 22px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   z-index: 21;
-  font-size: 30px;
-  color: red;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 192dpi) {
+  .overlay-container .overlay-close {
+    background: url("../../../images/retina/close.png") no-repeat 0 0 !important;
+    -moz-background-size: 20px 20px;
+    background-size: 20px 20px !important;
+  }
 }
 .overlay-container .content-wrapper {
   padding-left: 15%;

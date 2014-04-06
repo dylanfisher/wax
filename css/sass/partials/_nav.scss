@@ -5,6 +5,9 @@
     transition: top .4s;
     &.show-more {
         top: 30px;
+        .external-layout & {
+            top: 20px;
+        }
     }
 }
 .nav-site-title {

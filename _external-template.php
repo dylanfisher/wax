@@ -26,7 +26,7 @@ if ( $the_query->have_posts() ):
     </div>
 </div>
 <div id="overlay-container" class="overlay-container external-layout">
-  <div id="overlay-close" class="overlay-close">X</div>
+  <div id="overlay-close" class="overlay-close"></div>
   <div id="overlay-content" class="overlay-content">
     <div id="template-about">
       <div class="about-wrapper">
