@@ -60,15 +60,67 @@
 %arrow-left {
     left: 0;
     margin-left: -5px;
-    border-bottom: 5px solid rgba(0, 0, 0, 0);
+    border-bottom: 5px inset rgba(0, 0, 0, 0);
     border-right: 7px solid #000;
-    border-top: 5px solid rgba(0, 0, 0, 0);
+    border-top: 5px inset rgba(0, 0, 0, 0);
 }
 
 %arrow-right {
     right: 0;
     margin-right: -5px;
-    border-bottom: 5px solid rgba(0, 0, 0, 0);
+    border-bottom: 5px inset rgba(0, 0, 0, 0);
     border-left: 7px solid #000;
-    border-top: 5px solid rgba(0, 0, 0, 0);
+    border-top: 5px inset rgba(0, 0, 0, 0);
+}
+
+%arrow-down {
+    &:before {
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: 1px;
+        height: 10px;
+        background-color: #000;
+    }
+    &:after {
+        right: -1px;
+        margin-right: -4px;
+        border-right: 6px inset rgba(0, 0, 0, 0);
+        border-left: 6px inset rgba(0, 0, 0, 0);
+        border-top: 8px solid #000;
+        content: " ";
+        height: 0;
+        margin-top: 10px;
+        position: absolute;
+        top: 100%;
+        width: 0;
+    }
+}
+
+%arrow-up {
+    &:before {
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 100%;
+        width: 1px;
+        height: 11px;
+        margin-top: -10px;
+        background-color: #000;
+    }
+    &:after {
+        right: -1px;
+        margin-right: -4px;
+        border-right: 6px inset rgba(0, 0, 0, 0);
+        border-left: 6px inset rgba(0, 0, 0, 0);
+        border-bottom: 8px solid #000;
+        border-top: 0;
+        content: " ";
+        height: 0;
+        margin-top: -18px;
+        position: absolute;
+        top: 100%;
+        width: 0;
+    }
 }

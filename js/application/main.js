@@ -157,11 +157,11 @@ $(document).ready(function(){
     var content = container.find($('.accordion-content'));
     var contentHeight = content.outerHeight(true);
     if($(this).data('accordionOpen') !== true){
-      $(this).data('accordionOpen', true);
-      container.transition({height: contentHeight, opacity: 1}, 600, 'easeOutQuart');
+      $(this).addClass('active').data('accordionOpen', true);
+      container.stop().transition({height: contentHeight, opacity: 1}, 600, 'easeOutQuart');
     } else {
-      $(this).data('accordionOpen', false);
-      container.transition({height: 0, opacity: 0}, 600, 'easeOutQuart');
+      $(this).removeClass('active').data('accordionOpen', false);
+      container.stop().transition({height: 0, opacity: 0}, 600, 'easeOutQuart');
     }
   });
 });
