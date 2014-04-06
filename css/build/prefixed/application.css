@@ -1479,6 +1479,19 @@ body {
   margin: 0 0 64px;
 }
 
+.finds-wrapper {
+  text-align: center;
+}
+
+.finds-wrapper img:hover {
+  outline: none;
+}
+
+.finds-wrapper .image {
+  display: inline-block;
+  margin: 10px;
+}
+
 .slideshow {
   text-align: right;
   display: none;

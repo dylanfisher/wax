@@ -37,3 +37,16 @@
         margin: 0 0 $medium;
     }
 }
+
+.finds-wrapper {
+    text-align: center;
+    img {
+        &:hover {
+            outline: none;
+        }
+    }
+    .image {
+        display: inline-block;
+        margin: 10px;
+    }
+}

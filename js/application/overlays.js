@@ -55,7 +55,9 @@ function showOverlay(){
   frameContainer.css({top: $(window).scrollTop() * -1});
   container.addClass('active');
   frameContainer.addClass('overlay-active');
-  container.transition({top: '0%'}, 400, 'easeInOutQuad');
+  container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+    overlayLoaded = true;
+  });
   container.css({overflow: 'auto'});
   container.scrollTop(0);
   showLoader(container);
