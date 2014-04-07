@@ -1,5 +1,6 @@
+<?php include 'application-variables.php'; ?>
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" data-temp="<?php echo $bgcolor ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

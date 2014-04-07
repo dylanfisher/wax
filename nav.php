@@ -13,6 +13,7 @@ if(in_array($_SERVER['REMOTE_ADDR'], $localHost)){
 $about_post = get_posts( array('posts_per_page' => 1, 'category' => 5 ) );
 $about_id = $about_post[0]->ID;
 $about_permalink = get_permalink($about_id);
+
 ?>
 <h1 id="nav-site-title" class="nav-site-title">
     <a href="/<?php echo $stagingURL; ?>" class="wax-logo-container">
@@ -29,8 +30,8 @@ $about_permalink = get_permalink($about_id);
     </div>
     <div id="secondary" class="secondary">
         <h3 id="nav-cart" class="nav-cart"><a id="nav-cart-permalink" class="cart-permalink" data-request="store_cart" data-template="template-cart" href="http://store.readwax.com/"><span id="cart-item-count"></span></a></h3>
-        <h3 id="nav-finds" class="nav-finds"><a href="#">Finds</a></h3>
-        <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" href="<?php echo $about_permalink; ?>">About</a></h3>
+        <h3 id="nav-finds" class="nav-finds"><a href="#" data-temp="true">Finds</a></h3>
+        <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" data-temp="true" href="<?php echo $about_permalink; ?>">About</a></h3>
         <h3 id="nav-email" class="nav-email"><a class="mailing-list-button" href="#"><img src="<?php echo get_bloginfo('template_url'); ?>/images/retina/mail.png"></a></h3>
         <div id="mailing-list-form" class="mailing-list-form">
             <p>Subscribe to our mailing list:</p>

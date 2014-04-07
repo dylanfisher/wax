@@ -58,6 +58,13 @@ $(document).ready(function(){
     }
   });
 
+  // Fade the iframe in on page load
+  showLoader($('#featured-project'));
+  $('#featured-project iframe').load(function(){
+    $('#featured-project iframe').fadeIn(800);
+    $('#featured-project .loading').remove();
+  });
+
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix, .featured-project-overlay', function(){

@@ -6,6 +6,7 @@ $(function(){
     showOverlay();
     loadPosts();
     e.preventDefault();
+    $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
   });
 
   var loadPosts = function(){

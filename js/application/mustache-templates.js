@@ -19,6 +19,10 @@ $(function(){
       e.preventDefault();
       showOverlay();
 
+      if($(this).attr('data-temp')){
+        $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
+      }
+
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
       template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){

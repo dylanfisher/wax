@@ -4605,6 +4605,13 @@ $(document).ready(function(){
     }
   });
 
+  // Fade the iframe in on page load
+  showLoader($('#featured-project'));
+  $('#featured-project iframe').load(function(){
+    $('#featured-project iframe').fadeIn(800);
+    $('#featured-project .loading').remove();
+  });
+
   // Clicking on the featured frame when it is fixed opens it back up
   // and  pushes the container frame back down
   $('body').on('click','.featured-fix, .featured-project-overlay', function(){
@@ -4732,6 +4739,10 @@ $(function(){
     if (typeof History.pushState !== "undefined") {
       e.preventDefault();
       showOverlay();
+
+      if($(this).attr('data-temp')){
+        $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
+      }
 
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
@@ -4923,6 +4934,7 @@ function closeOverlay(){
   container.transition({top: '100%'}, 400, 'easeInOutQuad', function(){
     content.html('');
     container.removeClass('active');
+    $('#overlay-container').css({backgroundColor: ''});
     overlayLoaded = false;
   });
   container.css({overflow: 'hidden'});
@@ -5259,6 +5271,7 @@ $(function(){
     showOverlay();
     loadPosts();
     e.preventDefault();
+    $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
   });
 
   var loadPosts = function(){

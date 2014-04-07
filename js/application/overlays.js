@@ -71,6 +71,7 @@ function closeOverlay(){
   container.transition({top: '100%'}, 400, 'easeInOutQuad', function(){
     content.html('');
     container.removeClass('active');
+    $('#overlay-container').css({backgroundColor: ''});
     overlayLoaded = false;
   });
   container.css({overflow: 'hidden'});
