@@ -781,7 +781,7 @@ h6 {
 
 h2,
 h3 {
-  font-size: 18px;
+  font-size: 21px;
 }
 
 .features-item h2,
@@ -1019,6 +1019,7 @@ body {
   width: 100%;
   text-align: center;
   z-index: 18;
+  letter-spacing: .5px;
 }
 
 .fixed-nav .primary a {
@@ -1773,6 +1774,7 @@ body {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .slidesjs-navigation {
@@ -1799,6 +1801,52 @@ body {
   width: auto !important;
   height: auto !important;
   max-height: 100%;
+}
+
+.page-template-page-temperature-php {
+  overflow-x: hidden;
+}
+
+.temp-header {
+  text-align: center;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.temp-header a {
+  position: absolute;
+  right: 20px;
+}
+
+.external-layout-wrapper.temperature-page {
+  margin: 0;
+  padding: 0;
+}
+
+.external-layout-wrapper.temperature-page .colorbox {
+  float: left;
+  width: 150px;
+  height: 150px;
+  display: table;
+  text-align: center;
+  cursor: pointer;
+}
+
+.external-layout-wrapper.temperature-page .colorbox:hover .date {
+  display: none;
+}
+
+.external-layout-wrapper.temperature-page .colorbox:hover .temp {
+  display: table-cell;
+}
+
+.external-layout-wrapper.temperature-page .colorbox > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.external-layout-wrapper.temperature-page .colorbox .temp {
+  display: none;
 }
 
 .alignnone {

@@ -1,0 +1,46 @@
+.page-template-page-temperature-php {
+  overflow-x: hidden;
+}
+
+.temp-header {
+  text-align: center;
+  margin: 10px 0;
+  text-transform: uppercase;
+  a {
+    position: absolute;
+    right: 20px;
+  }
+}
+
+.external-layout-wrapper {
+  &.temperature-page {
+    margin: 0;
+    padding: 0;
+    .colorbox {
+      float: left;
+      width: 150px;
+      height: 150px;
+      display: table;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        .date {
+          display: none;
+        }
+        .temp {
+          display: table-cell;
+        }
+      }
+      & > div {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .date {
+
+      }
+      .temp {
+        display: none;
+      }
+    }
+  }
+}

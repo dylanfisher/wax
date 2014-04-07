@@ -1,17 +1,24 @@
+<?php
+/*
+Template Name: Page - Temperature
+*/
+?>
 <?php get_header();
+// Temperature
+require_once getcwd() . '/wp-content/themes/wax/libs/temp/global_fns.php';
+$colorboxes = writeBoxes(getcwd() . '/wp-content/themes/wax/libs/temp/oceantemps.txt');
 $args = array(
-    'category_name' => '[CATEGORY]',
-    'posts_per_page' => 1
-    );
+  'page_id' => '103'
+);
 $the_query = new WP_Query( $args );
 if ( $the_query->have_posts() ):
     while ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
-<div class="external-layout">
+<div class="external-layout hide">
   <?php include 'nav.php'; ?>
 </div>
-<div id="frame-container" class="frame-container">
+<div id="frame-container" class="frame-container hide">
     <?php // FRAME ONE - ISSUES ?>
     <div id="frame-one" class="frame-one frame fixed">
         <div id="frame-one-content" class="content"></div>
@@ -26,10 +33,15 @@ if ( $the_query->have_posts() ):
     </div>
 </div>
 <?php // CONTENT GOES HERE ?>
-<div class="external-layout-wrapper">
+<div class="external-layout-wrapper temperature-page">
+  <div class="temp-header">
+    <span>W  A  X  Magazine - NYC Ocean Temp</span>
+    <a href="/<?php echo $stagingURL; ?>/features/">Return</a>
+  </div>
+<?php echo $colorboxes; ?>
 </div>
 <?php // CONTENT ENDS HERE ?>
-<div id="overlay-container" class="overlay-container external-layout">
+<div id="overlay-container" class="overlay-container external-layout hide">
   <div id="overlay-close" class="overlay-close"></div>
   <div id="overlay-content" class="overlay-content">
   </div>
