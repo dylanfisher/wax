@@ -27,7 +27,7 @@
           $image = get_sub_field('image');
           if( !empty($image) ): ?>
             <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-            <?php if( !empty(get_sub_field('caption')) ): ?>
+            <?php if( get_sub_field('caption') ): ?>
               <div class="caption"><?php the_sub_field('caption'); ?></div>
             <?php endif; ?>
           <?php endif; ?>
