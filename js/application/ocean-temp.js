@@ -33,6 +33,6 @@ $(function(){
     var wrapperwidth = (numboxes*pixels);
 
     $('.colorbox').css('width',pixels);
-    $('.external-layout-wrapper').css('width',wrapperwidth);
+    $('.external-layout-wrapper.temperature-page').css('width',wrapperwidth);
   }
 });

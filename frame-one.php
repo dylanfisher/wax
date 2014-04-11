@@ -11,11 +11,6 @@ if ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
 <div class="issue product" data-id="<?php the_field('product_id'); ?>">
-    <h2><?php the_title(); ?></h2>
-        <?php if( get_field('sub_title') ) { ?>
-    <h3><?php echo the_field('sub_title'); ?></h3>
-        <?php } ?>
-
         <?php if( have_rows('slideshow') ): ?>
     <div class="slide-outer-container">
         <div class="issue-slides">
@@ -28,10 +23,22 @@ if ( $the_query->have_posts() ):
         </div>
     </div>
         <?php endif; ?>
-    <h3>
-        <a class="accordion-head more-info" href="#">More Information</a>
-        <a class="add-to-cart" href="#"></a>
-    </h3>
+
+    <div class="issue-head">
+        <div>
+            <a class="accordion-head more-info" href="#">More Information</a>
+        </div>
+        <div>
+            <div class="issue-title">
+                <span><?php the_title(); ?></span><br>
+                <?php if( get_field('sub_title') ) { echo the_field('sub_title'); } ?>
+            </div>
+        </div>
+        <div>
+            <a class="add-to-cart" href="#"></a>
+        </div>
+    </div>
+
     <div class="accordion-container">
         <div class="accordion-content">
         <?php the_field('content'); ?>

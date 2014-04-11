@@ -74,24 +74,60 @@
 </script>
 
 <script id="template-story" type="text/template">
-<!-- Stories -->
+<!-- Features / Stories -->
   <div class="features-wrapper">
     <div class="content-wrapper">
       <h2>{{title}}</h2>
       {{#acf.sub_title}}
         <h3>{{acf.sub_title}}</h3>
       {{/acf.sub_title}}
-      <div class="slide-outer-container">
-          <div class="slideshow feature-slideshow">
-            {{#acf.slideshow}}
-              <img src="{{image.url}}" data-caption="{{caption}}">
-            {{/acf.slideshow}}
-          </div>
-          <div class="caption-container"></div>
-      </div>
-      <div class="feature-content">{{{acf.content}}}</div>
+
+      {{#acf.module}}
+
+        <div class="image-module">
+          {{#image_module}}
+            <div class="image-wrapper">
+              <img src="{{image.url}}">
+              <div class="caption">{{{caption}}}</div>
+            </div>
+          {{/image_module}}
+        </div>
+
+        <div class="text-module">
+          {{#text_module}}
+            <div class="text-wrapper">
+              {{{text}}}
+            </div>
+          {{/text_module}}
+        </div>
+
+        <div class="video-module">
+          {{#video_module}}
+            <div class="video-wrapper">
+            <iframe src="//player.vimeo.com/video/{{video}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+          {{/video_module}}
+        </div>
+
+      {{/acf.module}}
+
     </div>
   </div>
+
+  <div class="two-column-module">
+    <div class="column1 column">
+      {{{acf.content}}}
+    </div>
+    <div class="column2 column">
+      {{#acf.image_column}}
+        <div class="image-wrapper">
+          <img src="{{image.url}}"/ alt="{{image.alt}}">
+          <div class="caption">{{{caption}}}</div>
+        </div>
+       {{/acf.image_column}}
+    </div>
+  </div>
+
   <div class="related-issues">
     <h3>Related Issues</h3>
     {{#acf.related_issues}}
@@ -111,7 +147,7 @@
   {{#.}}
     <div class="product" data-id="{{id}}">
       <h2>{{title}}</h2>
-      <h3 class="price">{{variants.0.price}} <a class="add-to-cart" href="#">Add to Cart</a></h3>
+      <h3 class="price">&#36;{{variants.0.price}} <a class="add-to-cart" href="#">Add to Cart</a></h3>
       <a href="#" class="image-container ajax-store" data-template="template-store-product">
         <img src="{{images.0.src}}">
       </a>
@@ -133,7 +169,7 @@
     <div class="heading">
       <h3>{{current_product.0.title}}</h3>
       <div class="price-cart">
-        <span class="price"></span>
+        <span class="price">&#36;{{current_product.0.variants.0.price}}</span>
         <a class="add-to-cart" href="#">Add to Cart</a>
       </div>
     </div>

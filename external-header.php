@@ -3,7 +3,7 @@
 <div class="external-layout">
   <?php include 'nav.php'; ?>
 </div>
-<div id="frame-container" class="frame-container">
+<div id="frame-container" class="frame-container hide">
     <?php // FRAME ONE - ISSUES ?>
     <div id="frame-one" class="frame-one frame fixed">
         <div id="frame-one-content" class="content"></div>

@@ -36,11 +36,49 @@ $(document).ready(function(){
       navOffset           = 10,
       transitEase         = 'easeInOutQuad';
 
+  $(window).resize(function(){
+    docY                = $(document).height();
+    docX                = $(document).width();
+    winY                = $(window).height();
+    winX                = $(window).width();
+    docHeight           = docY - winY;
+    docWidth            = docX - winX;
+    frameFeatured       = $('#frame-featured');
+    frameContainer      = $('#frame-container');
+    frameOne            = $('#frame-one');
+    frameTwo            = $('#frame-two');
+    frameThree          = $('#frame-three');
+    frameOneHeight      = frameOne.height() - winY;
+    frameTwoHeight      = frameTwo.height() - winY;
+    frameThreeHeight    = frameThree.height() - winY;
+    animSpeed           = 800;
+    animEasing          = 'snap';
+    fadeSpeed           = 800;
+    sidebar             = 50;
+    navOffset           = 10;
+    transitEase         = 'easeInOutQuad';
+
+    $('#frame-container').css({y: winY});
+
+    fixedPoint = frameFeatured.height() - navOffset;
+
+    if(featureOpen === false){
+        frameFeatured.addClass('featured-fix').css({y: -winY + navOffset});
+        $('.featured-project-overlay').show();
+        $('#featured-project > iframe').fadeOut(animSpeed, function(){
+          $('#featured-project iframe').attr('src', '');
+        });
+        frameContainer.css({y: navOffset});
+        $('html, body').scrollTop(0);
+        redraw();
+    }
+  });
+
   $('#frame-container').css({y: winY});
 
   // Move the featured frame and frame containers while scrolling down,
   // then fix the featured frame after scrolling past a certain point
-  var fixedPoint = frameFeatured.height() - navOffset,
+  fixedPoint = frameFeatured.height() - navOffset;
       featureOpen = true;
   $(window).scroll(function() {
     if(featureOpen === true){
@@ -57,6 +95,9 @@ $(document).ready(function(){
       }
     }
   });
+
+  // Set featured frame to temperature background color
+  $('#frame-featured').css({background: $('html').attr('data-temp')});
 
   // Fade the iframe in on page load
   showLoader($('#featured-project'));
@@ -79,18 +120,15 @@ $(document).ready(function(){
     $('.featured-project-overlay').hide();
     $('#featured-project iframe').attr('src', $('#featured-project').attr('data-url'));
     $('#featured-project > iframe').fadeIn(animSpeed);
-    console.log('featureOpen = ' + featureOpen);
   });
 
   $('#frame-featured').hover(function(){
     if( ! $(this).hasClass('show-more') && featureOpen === false){
       $('#fixed-nav, #nav-site-title').addClass('show-more');
-      console.log('featureOpen = ' + featureOpen);
     }
   }, function(){
     if( ! $(this).hasClass('show-more') && featureOpen === false){
       $('#fixed-nav, #nav-site-title').removeClass('show-more');
-      console.log('featureOpen = ' + featureOpen);
     }
   });
 
@@ -116,9 +154,9 @@ $(document).ready(function(){
          }
          // External layout pages
          if(ExternalLayout === true){
-          if (st > compactPoint){
+           if (st > compactPoint){
               $('#fixed-nav, #nav-site-title').addClass('compact');
-          }
+           }
          } else {
           if (st > compactPoint && $('#frame-featured.featured-fix').length){
               $('#fixed-nav, #nav-site-title').addClass('compact');
@@ -160,7 +198,7 @@ $(document).ready(function(){
   // Accordion
   $('.accordion-head').click(function(e){
     e.preventDefault();
-    var container = $(this).parent().nextAll('.accordion-container').first();
+    var container = $(this).closest('.issue-head').nextAll('.accordion-container').first();
     var content = container.find($('.accordion-content'));
     var contentHeight = content.outerHeight(true);
     if($(this).data('accordionOpen') !== true){
@@ -171,4 +209,43 @@ $(document).ready(function(){
       container.stop().transition({height: 0, opacity: 0}, 600, 'easeOutQuart');
     }
   });
+
 });
+
+
+//
+// Featured content
+//
+
+SetCaptionWidths();
+SetVideoModuleHeights();
+
+$(window).resize(function(){
+  if($('.image-module .image-wrapper').length){
+    SetCaptionWidths();
+  }
+  if($('.video-module iframe').length){
+    SetVideoModuleHeights();
+  }
+});
+
+function SetCaptionWidths(){
+  $('.image-module .image-wrapper').each(function(){
+    var image = $(this).find('img');
+    var caption = $(this).find('.caption');
+    var width = image.width();
+    caption.css({width: width});
+  });
+}
+
+function SetVideoModuleHeights(){
+  // Set correct ratio for video module iframes
+  $('.video-module iframe').each(function(){
+    var width = $(this).attr('width');
+    var actualWidth = $(this).width();
+    var height = $(this).attr('height');
+    var ratio = width / height;
+    var newHeight = actualWidth / ratio;
+    $(this).css('height', newHeight);
+  });
+}

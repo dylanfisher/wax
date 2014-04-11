@@ -4,7 +4,7 @@ Template Name: Page - Application
 */
 ?>
 <?php get_header() ?>
-<div id="frame-featured" class="frame-featured" style="background-color: <?php echo $bgcolor; ?>">
+<div id="frame-featured" class="frame-featured" style="background: <?php echo $bgcolor ?>;">
     <?php include 'frame-featured.php' ?>
 </div>
 <?php include 'nav.php'; ?>

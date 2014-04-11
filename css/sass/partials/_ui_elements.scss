@@ -70,19 +70,40 @@
 }
 
 .accordion-head {
-    position: relative;
+    position: absolute;
+    bottom: 0;
     &:hover {
         @extend %arrow-down;
+        bottom: -1px;
         padding-right: 15px;
         margin-right: -15px;
     }
     &.active {
         &:hover {
             @extend %arrow-up;
+            bottom: -1px;
         }
     }
 }
 
 .isotope-hidden {
     display: none;
+}
+
+.loading {
+    @include set_background('loading.gif', '100px 18px', '0 0');
+    width: 100px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+.caption {
+  margin-top: $xsmall;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }

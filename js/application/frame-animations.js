@@ -105,6 +105,7 @@ $(function(){
     });
 
     function setFrameOneActive(redraw){
+        $('#primary a').removeClass('active');
         $('#nav-issues a').addClass('active');
         $('#primary').removeClass('left center right').addClass('left');
         if(frameOne.data('active') === true){

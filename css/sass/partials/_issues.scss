@@ -7,19 +7,38 @@
     max-width: $content_max_width;
     margin: 20px auto $large;
     position: relative;
-    .add-to-cart,
-    .unavailable {
-        position: absolute;
-        right: 0;
-    }
 }
 .issue-slides {
-    width: 400px;
     margin: 0 auto;
     .slidesjs-pagination {
         position: absolute;
         right: 0;
         bottom: -2em;
         margin: 0;
+    }
+}
+.issue-head {
+    @extend %ibfix;
+    position: relative;
+    & > div {
+        @extend %ib;
+        display: inline-block;
+        width: 33%;
+        vertical-align: bottom;
+        &:first-child {
+            text-align: left;
+        }
+        &:last-child {
+            text-align: right;
+        }
+    }
+    .issue-title {
+        span {
+            text-transform: uppercase;
+        }
+    }
+    h2,
+    h3 {
+        font-size: $font_medium;
     }
 }

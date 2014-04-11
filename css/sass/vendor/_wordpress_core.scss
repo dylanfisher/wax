@@ -44,11 +44,8 @@ a img.aligncenter {
 }
 
 .wp-caption {
-    background: #fff;
-    border: 1px solid #f0f0f0;
+    margin-top: $xsmall;
     max-width: 96%; /* Image does not overflow the content area */
-    padding: 5px 3px 10px;
-    text-align: center;
 }
 
 .wp-caption.alignnone {
@@ -73,8 +70,7 @@ a img.aligncenter {
 }
 
 .wp-caption p.wp-caption-text {
-    font-size: 11px;
+    font-size: $font_xsmall;
     line-height: 17px;
-    margin: 0;
-    padding: 0 4px 5px;
+    margin-top: $xsmall;
 }

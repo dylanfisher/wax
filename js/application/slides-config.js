@@ -12,8 +12,8 @@
     });
 
     $('.issue .issue-slides').slidesjs({
-        width: 400,
-        height: 450,
+        width: 840,
+        height: 500,
         callback: {
             start: function(number) {
                 $(window).trigger('scroll');

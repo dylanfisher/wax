@@ -44,14 +44,15 @@
     @extend %ib;
     position: relative;
     min-height: 400px;
+    background-color: #F1F0F1;
     .overlay-close {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 20px;
+        top: 20px;
     }
 }
 .product-viewer-content {
-    padding: 0 $large $small;
+    padding: $small $large $small;
     margin: 0 $large $medium;
 }
 .buy-button-frame,
@@ -61,11 +62,15 @@
 }
 .product-viewer-inner-content {
     position: relative;
+    h3 {
+        font-size: $font_small;
+    }
     .heading {
         min-height: 1.5em;
         margin-bottom: $small;
         div,
         h3 {
+            text-transform: uppercase;
             display: inline-block;
             position: absolute;
         }

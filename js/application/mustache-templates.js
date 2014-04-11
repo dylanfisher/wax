@@ -44,6 +44,10 @@ $(function(){
           });
         }
 
+        if($('.video-module iframe').length){
+          SetVideoModuleHeights();
+        }
+
       });
     }
   });
@@ -99,6 +103,6 @@ var getData = function(){
 
 // AJAX loader
 var showLoader = function(el){
-  var animation = '<div class="loading">loading...</div>';
+  var animation = '<div class="loading"></div>';
   el.prepend(animation);
 };

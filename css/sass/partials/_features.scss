@@ -8,3 +8,47 @@
     text-align: center;
   }
 }
+
+.image-module {
+  text-align: center;
+}
+
+.text-module {
+  a {
+    border-bottom: 1px solid;
+  }
+}
+
+.video-module {
+  iframe {
+    width: 100%;
+  }
+}
+
+.image-wrapper,
+.text-wrapper,
+.video-wrapper {
+  margin-bottom: $medium;
+}
+
+.two-column-module {
+  @extend %clearfix;
+  .column {
+    width: 50%;
+    float: left;
+  }
+  .column1 {
+    padding-right: $xsmall;
+  }
+  .column2 {
+    padding-left: $xsmall;
+  }
+  h2 {
+    font-size: $font_small;
+    text-transform: uppercase;
+    margin: 2em 0;
+  }
+  a {
+    border-bottom: 1px solid;
+  }
+}
