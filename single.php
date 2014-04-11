@@ -77,7 +77,7 @@
 
 <?php // TWO COLUMN MODULE ?>
 
-<?php if (!empty(get_field('content')) ): ?>
+<?php if (get_field('content') ): ?>
   <div class="two-column-module">
     <div class="column1 column">
       <?php the_field('content'); ?>
