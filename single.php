@@ -89,7 +89,7 @@
             <?php $image_column = get_sub_field('image');
             if( !empty($image_column) ): ?>
               <img src="<?php echo $image_column['url']; ?>" alt="<?php echo $image_column['alt']; ?>" />
-              <?php if( !empty(get_sub_field('caption')) ): ?>
+              <?php if( get_sub_field('caption') ): ?>
                 <div class="caption"><?php the_sub_field('caption'); ?></div>
               <?php endif; ?>
             <?php endif; ?>
