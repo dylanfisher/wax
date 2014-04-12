@@ -14,7 +14,7 @@
     h3 {
         @extend %ib;
         display: inline-block;
-        width: 16.66%;
+        width: 14.28571428571429%;
         font-size: 16px;
         text-align: center;
         vertical-align: middle;
@@ -34,7 +34,7 @@
     & > div {
         @extend %ib;
         display: inline-block;
-        width: 16.66%;
+        width: 14.28571428571429%;
         font-size: 16px;
         text-align: center;
         vertical-align: middle;
@@ -54,7 +54,7 @@
     h3 {
         @extend %ib;
         display: inline-block;
-        width: 16.66%;
+        width: 14.28571428571429%;
         font-size: 16px;
         text-align: center;
         vertical-align: middle;
@@ -76,4 +76,19 @@
 
 .cart-remove {
     color: red;
+}
+
+.cart-empty {
+    font-size: $font_small;
+    margin: 100px 0;
+    text-align: center;
+    list-style: none;
+}
+
+.cart-permalink.empty {
+    cursor: default !important;
+    &:hover {
+        outline: none !important;
+        cursor: default !important;
+    }
 }

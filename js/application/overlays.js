@@ -20,6 +20,7 @@ $(function(){
     $(document).keydown(function(e) {
       if(overlayLoaded === true) {
         if (e.keyCode == 27) {
+          e.preventDefault();
           closeOverlay();
         }
       }
@@ -79,4 +80,5 @@ function closeOverlay(){
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
   $('#featured-project').fadeIn();
+
 }

@@ -1734,7 +1734,7 @@ body {
 
 .cart-header h3 {
   display: inline-block;
-  width: 16.66%;
+  width: 14.28571428571429%;
   font-size: 16px;
   text-align: center;
   vertical-align: middle;
@@ -1751,7 +1751,7 @@ body {
 
 .cart-item > div {
   display: inline-block;
-  width: 16.66%;
+  width: 14.28571428571429%;
   font-size: 16px;
   text-align: center;
   vertical-align: middle;
@@ -1768,7 +1768,7 @@ body {
 
 .cart-footer h3 {
   display: inline-block;
-  width: 16.66%;
+  width: 14.28571428571429%;
   font-size: 16px;
   text-align: center;
   vertical-align: middle;
@@ -1787,6 +1787,22 @@ body {
 
 .cart-remove {
   color: red;
+}
+
+.cart-empty {
+  font-size: 16px;
+  margin: 100px 0;
+  text-align: center;
+  list-style: none;
+}
+
+.cart-permalink.empty {
+  cursor: default !important;
+}
+
+.cart-permalink.empty:hover {
+  outline: none !important;
+  cursor: default !important;
 }
 
 .features-item {
