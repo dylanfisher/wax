@@ -199,6 +199,7 @@ $(function(){
     //
 
     function activeFrameTransition(){
+        frames.removeClass('visuallyhidden');
         logo.addClass('transition').removeClass('active');
         $('html').css({'overflow-x': 'hidden'});
         frames.data('active', false);
@@ -206,6 +207,17 @@ $(function(){
     function frameAnimationComplete(){
         $('html').css({overflow: ''});
         logo.removeClass('transition');
+        var currentFrame = $('#frame-container').data().activeFrame;
+        if(currentFrame == 'one'){
+            $('#frame-two, #frame-three').addClass('visuallyhidden');
+            console.warn('frame one');
+        } else if(currentFrame == 'two') {
+            console.warn('frame two');
+            $('#frame-one, #frame-three').addClass('visuallyhidden');
+        } else {
+            console.warn('frame three');
+            $('#frame-one, #frame-two').addClass('visuallyhidden');
+        }
     }
     function frameAnimationCompleteRedraw(){
         redraw();
