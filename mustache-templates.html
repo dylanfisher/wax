@@ -104,7 +104,9 @@
         <div class="video-module">
           {{#video_module}}
             <div class="video-wrapper">
-            <iframe src="//player.vimeo.com/video/{{video}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {{#video}}
+              <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {{/video}}
             </div>
           {{/video_module}}
         </div>
@@ -126,19 +128,6 @@
         </div>
        {{/acf.image_column}}
     </div>
-  </div>
-
-  <div class="related-issues">
-    <h3>Related Issues</h3>
-    {{#acf.related_issues}}
-    <div class="related-issue" data-variantID="{{variant_id}}">
-      {{#shopify_item}}
-      <div class="item-price"></div>
-      <div class="add-to-cart">Add to Cart</div>
-      {{/shopify_item}}
-      <img src="{{image.url}}">
-    </div>
-    {{/acf.related_issues}}
   </div>
 </script>
 

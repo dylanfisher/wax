@@ -62,7 +62,9 @@
           // display each item
         ?>
         <div class="video-wrapper">
+        <?php if( get_sub_field('video') ): ?>
           <iframe src="//player.vimeo.com/video/<?php the_sub_field('video'); ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <?php endif; ?>
         </div>
         <?php endwhile; ?>
         </div>
@@ -100,21 +102,4 @@
   </div>
 <?php endif; ?>
 
-<?php if( have_rows('related_issues') ): ?>
-<div class="related-issues">
-  <h3 class="title center upper">Related Features</h3>
-  <ul>
-  <?php while( have_rows('related_issues') ): the_row();
-      // vars
-      $image = get_sub_field('image');
-  ?>
-      <li>
-          <h2><?php the_sub_field('title'); ?></h2>
-          <h3>[Add Subtitle Here]</h3>
-          <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
-      </li>
-  <?php endwhile; ?>
-  </ul>
-</div>
-<?php endif; ?>
 <?php include 'external-footer.php'; ?>
