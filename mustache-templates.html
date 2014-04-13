@@ -11,8 +11,8 @@
     <ul class="featured-projects-wrapper">
       {{#.}}
         <li data-source="{{acf.iframe_url}}">
-          <h2><a class="project-toggle" href="{{acf.iframe_url}}">{{title}}<br>
-          by {{acf.author}}</a></h2>
+          <h2><a class="project-toggle" href="{{acf.iframe_url}}">{{{title}}}<br>
+          by {{{acf.author}}}</a></h2>
           <div class="featured-project-description">
             {{{acf.description}}}
           </div>
@@ -40,11 +40,11 @@
     <div class="masonry">
       {{#acf.stockists}}
       <ul class="masonry-item">
-        <li>{{city}}</li>
+        <li>{{{city}}}</li>
         {{#stockist}}
           <li>
             <ul>
-              <li>{{stockist}}</li>
+              <li>{{{stockist}}}</li>
             </ul>
           </li>
         {{/stockist}}
@@ -55,11 +55,11 @@
     <div class="masonry">
       {{#acf.distribution}}
       <ul class="masonry-item">
-        <li>{{city}}</li>
+        <li>{{{city}}}</li>
         {{#distributor}}
           <li>
             <ul>
-              <li>{{distributor}}</li>
+              <li>{{{distributor}}}</li>
             </ul>
           </li>
         {{/distributor}}
@@ -77,9 +77,9 @@
 <!-- Features / Stories -->
   <div class="features-wrapper">
     <div class="content-wrapper">
-      <h2>{{title}}</h2>
+      <h2>{{{title}}}</h2>
       {{#acf.sub_title}}
-        <h3>{{acf.sub_title}}</h3>
+        <h3>{{{acf.sub_title}}}</h3>
       {{/acf.sub_title}}
 
       {{#acf.module}}
@@ -146,7 +146,7 @@
 <!-- Store Product Init Grid -->
   {{#.}}
     <div class="product" data-id="{{id}}">
-      <h2>{{title}}</h2>
+      <h2>{{{title}}}</h2>
       <h3 class="price">&#36;{{variants.0.price}} <a class="add-to-cart" href="#">Add to Cart</a></h3>
       <a href="#" class="image-container ajax-store" data-template="template-store-product">
         <img src="{{images.0.src}}">
@@ -167,9 +167,9 @@
       </div>
     </div>
     <div class="heading">
-      <h3>{{current_product.0.title}}</h3>
+      <h3>{{{current_product.0.title}}}</h3>
       <div class="price-cart">
-        <span class="price">&#36;{{current_product.0.variants.0.price}}</span>
+        <span class="price">&#36;{{{current_product.0.variants.0.price}}}</span>
         <a class="add-to-cart" href="#">Add to Cart</a>
       </div>
     </div>
@@ -197,9 +197,9 @@
         {{#.}}
         <li id="cart-item-{{index}}" class="cart-item" data-variant="{{variant_id}}">
           <div class="cart-image"><img src="{{image}}"></div>
-          <div class="cart-description">{{title}}</div>
+          <div class="cart-description">{{{title}}}</div>
           <div class="cart-qty"><form><input type="text" name="cart-qty" value="{{quantity}}"></form></div>
-          <div class="cart-price">{{price}}</div>
+          <div class="cart-price">{{{price}}}</div>
           <div class="cart-total"></div>
           <div><a class="cart-remove" href="#">Remove</a></div>
           <div><a class="cart-update" href="#">Update</a></div>

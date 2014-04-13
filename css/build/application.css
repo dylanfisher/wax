@@ -11,7 +11,7 @@
   width: 1px;
 }
 
-.blur, .overlay {
+.blur, .accordion-container li, .overlay {
   transform: translate3d(0, 0, 0);
 }
 
