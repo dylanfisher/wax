@@ -61,8 +61,30 @@ function getWeatherData($URL)
 		$description = $xml->channel->item->description;
 			
 	return $description;
-}			
+}
 
+function parseWeatherData($buoys)
+{
+  $data = getWeatherData();
+  echo $data;
+
+  $test = strstr($data, '<strong>');
+  $itemsToRemove = array('<strong>', '</strong>', '<br />');
+  $test = str_replace($itemsToRemove, '', $test);
+  $test = str_replace('&#176;', ' degrees ', $test);
+  $test = preg_replace('/^.+\n/', '', $test);
+  $test = preg_replace('/ {2}/', '', $test);
+  preg_match_all('/.*(?=:)/', $test, $keys);
+  preg_match_all('/: (.+)/', $test, $values);
+  $keys = array_filter($keys[0]);
+  $keys = str_replace(' ', '_', $keys);
+  $values = array_filter($values[0]);
+  $test = array_combine($keys, $values);
+  $test = str_replace(': ', '', $test);
+  $test = json_encode($test);
+
+  return $test;
+}
 
 function writeDate()
 {

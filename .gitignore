@@ -48,6 +48,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 private
+libs/cache
 .htaccess
 
 # Grunt files #
