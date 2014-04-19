@@ -41,6 +41,15 @@ $(function(){
       }
     });
 
+    $('#overlay-nav-site-title').on('click', function(e){
+        e.preventDefault();
+        if($(this).hasClass('compact')){
+          $('#overlay-container').animate({scrollTop: 0});
+        } else {
+          closeOverlay();
+        }
+    });
+
     //
     // All frames
     //

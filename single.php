@@ -1,5 +1,6 @@
 <?php include 'external-header.php'; ?>
 <div class="features-wrapper">
+  <h3>Features</h3>
   <div class="content-wrapper">
     <h2><?php the_title(); ?></h2>
     <?php if(get_field('sub_title')): ?>
@@ -101,5 +102,9 @@
     </div>
   </div>
 <?php endif; ?>
+
+<div id="overlay-footer" class="overlay-footer">
+    <?php include 'overlay-footer.php'; ?>
+</div>
 
 <?php include 'external-footer.php'; ?>

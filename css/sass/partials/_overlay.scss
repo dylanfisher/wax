@@ -48,6 +48,15 @@
   &.active {
     display: block;
   }
+  &.overlay-padding {
+    .overlay-close {
+      top: calc(10% + 20px);
+      right: 30px;
+    }
+    .overlay-nav-site-title {
+      display: none;
+    }
+  }
 }
 
 .external-layout-wrapper {
@@ -70,7 +79,7 @@
   @include set_background('close.png', '20px 20px', '0 0');
   width: 22px;
   height: 22px;
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   z-index: 21;
@@ -79,6 +88,16 @@
 .content-wrapper {
   padding-left: 15%;
   padding-right: 15%;
+  margin-top: $medium;
+}
+.overlay-wrapper {
+  padding: $xsmall 4%;
+  position: absolute;
+  width: 100%;
+  max-width: $content_max_width;
+  min-height: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
   h3 {
     text-transform: uppercase;
     text-align: center;
@@ -89,14 +108,18 @@
     }
   }
 }
-.overlay-content {
-  padding: $xsmall 4%;
-  margin-top: 130px;
-  position: absolute;
-  width: 100%;
-  max-width: $content_max_width;
-  min-height: 100%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  margin-bottom: $large;
+
+.overlay-footer {
+  display: none;
+  text-align: center;
+  position: relative;
+  margin-top: $large;
+  span {
+    margin: 0 10px;
+  }
+  .copyright {
+    position: absolute;
+    left: 0;
+    margin: 0;
+  }
 }

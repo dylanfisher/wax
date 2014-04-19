@@ -18,7 +18,7 @@ $about_permalink = get_permalink($about_id);
 <h1 id="nav-site-title" class="nav-site-title">
     <a href="/<?php echo $stagingURL; ?>" class="wax-logo-container">
         <div id="wax1" class="wax-logo wax-logo-1"></div>
-        <div id="wax2" class="wax-logo wax-logo-2 active"></div>
+        <div id="wax2" class="wax-logo wax-logo-2"></div>
         <div id="wax3" class="wax-logo wax-logo-3"></div>
     </a>
 </h1>

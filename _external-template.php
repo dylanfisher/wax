@@ -31,7 +31,9 @@ if ( $the_query->have_posts() ):
 <?php // CONTENT ENDS HERE ?>
 <div id="overlay-container" class="overlay-container external-layout">
   <div id="overlay-close" class="overlay-close"></div>
-  <div id="overlay-content" class="overlay-content">
+  <div id="overlay-content" class="overlay-content"></div>
+  <div id="overlay-footer" class="overlay-footer">
+      <?php include 'overlay-footer.php'; ?>
   </div>
 </div>
 <?php

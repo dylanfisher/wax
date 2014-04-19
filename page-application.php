@@ -30,6 +30,18 @@ Template Name: Page - Application
 </div>
 <div id="overlay-container" class="overlay-container">
     <div id="overlay-close" class="overlay-close"></div>
-    <div id="overlay-content" class="overlay-content"></div>
+    <h1 id="overlay-nav-site-title" class="overlay-nav-site-title nav-site-title">
+        <a href="/<?php echo $stagingURL; ?>" class="wax-logo-container">
+            <div id="wax1" class="wax-logo wax-logo-1"></div>
+            <div id="wax2" class="wax-logo wax-logo-2"></div>
+            <div id="wax3" class="wax-logo wax-logo-3"></div>
+        </a>
+    </h1>
+    <div class="overlay-wrapper">
+        <div id="overlay-content" class="overlay-content"></div>
+        <div id="overlay-footer" class="overlay-footer">
+            <?php include 'overlay-footer.php'; ?>
+        </div>
+    </div>
 </div>
 <?php get_footer() ?>

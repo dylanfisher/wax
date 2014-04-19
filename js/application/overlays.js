@@ -38,7 +38,7 @@ $(function(){
     // Add class to featured frame
     $('#frame-featured-show-overlay a').click(function(){
       $('#frame-featured').addClass('overlay-active');
-      $('#featured-project').fadeOut();
+      // $('#featured-project').fadeOut();
       $('#overlay-close').addClass('featured-overlay-close');
     });
 });
@@ -48,7 +48,7 @@ function assignDataValues(el, key, value){
   el.data(key, value);
 }
 
-function showOverlay(){
+function showOverlay(event){
   var container      = $('#overlay-container');
   var content        = $('#overlay-content');
   var frameContainer = $('#frame-container');
@@ -56,9 +56,16 @@ function showOverlay(){
   frameContainer.css({top: $(window).scrollTop() * -1});
   container.addClass('active');
   frameContainer.addClass('overlay-active');
-  container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
-    overlayLoaded = true;
-  });
+  if(event.hasClass('overlay-padding')){
+    container.addClass('overlay-padding');
+    container.transition({top: '10%'}, 400, 'easeInOutQuad', function(){
+      overlayLoaded = true;
+    });
+  } else {
+    container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+      overlayLoaded = true;
+    });
+  }
   container.css({overflow: 'auto'});
   container.scrollTop(0);
   showLoader(container);
@@ -80,5 +87,8 @@ function closeOverlay(){
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
   $('#featured-project').fadeIn();
+  if($('#overlay-container #overlay-footer').length){
+    $('#overlay-container #overlay-footer').hide();
+  }
 
 }

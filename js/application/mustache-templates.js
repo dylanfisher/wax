@@ -17,7 +17,7 @@ $(function(){
     // Check for pushState support, otherwise follow the link like normal
     if (typeof History.pushState !== "undefined") {
       e.preventDefault();
-      showOverlay();
+      showOverlay($(this));
 
       if($(this).attr('data-temp')){
         $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
@@ -35,6 +35,10 @@ $(function(){
                 height: 528
             });
           });
+        }
+
+        if($('#overlay-container #overlay-footer').length){
+          $('#overlay-container #overlay-footer').show();
         }
 
         if($('#overlay-content .masonry').length){

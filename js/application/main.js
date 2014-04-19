@@ -100,10 +100,29 @@ $(document).ready(function(){
   $('#frame-featured').css({background: $('html').attr('data-temp')});
 
   // Fade the iframe in on page load
-  showLoader($('#featured-project'));
-  $('#featured-project iframe').load(function(){
-    $('#featured-project .loading').remove();
-    $('#featured-project iframe').fadeIn(800);
+  // showLoader($('#featured-project'));
+  // $('#featured-project iframe').load(function(){
+  //   $('#featured-project iframe').show();
+  //   $('#featured-project .loading').remove();
+  // });
+
+  // Fade out the featured down arrow after a short delay
+  var logoDelay = window.setTimeout(function(){
+    $('.featured-project-arrow').removeClass('active');
+  }, 5000);
+
+  // Show the arrow when you hover over the bottom portion
+  $('.featured-project-wax-logo, .featured-project-arrow').hover(function(){
+    $('.featured-project-arrow').addClass('active');
+    clearTimeout(logoDelay);
+  }, function(){
+    $('.featured-project-arrow').removeClass('active');
+  });
+
+  // Scroll down when you click the bottom portion
+  $('.featured-project-wax-logo, .featured-project-arrow').click(function(){
+    var featuredHeight = $('#frame-featured').height();
+    $('html, body').animate({scrollTop: featuredHeight}, 'fast', transitEase);
   });
 
   // Clicking on the featured frame when it is fixed opens it back up
@@ -143,6 +162,7 @@ $(document).ready(function(){
   var lastScrollTop = 0;
   var compactPoint = 40;
   $(window).scroll(function(event){
+    // When overlay is NOT active
     if ( ! $('#frame-container.overlay-active').length ){
       var st = $(this).scrollTop();
       if (st > lastScrollTop && st > 0){
@@ -184,6 +204,20 @@ $(document).ready(function(){
       }
       lastScrollTop = st;
     }
+  });
+
+  // When overlay IS active
+  var overlayLastScrollTop = 0;
+  $('#overlay-container').scroll(function(){
+    var ost = $(this).scrollTop();
+    if (ost > overlayLastScrollTop && ost > 0 && ost > compactPoint){
+      // Down scroll
+      $('#overlay-nav-site-title').addClass('compact');
+    } else if (ost <= compactPoint){
+      // Up scroll
+      $('#overlay-nav-site-title').removeClass('compact');
+    }
+    overlayLastScrollTop = ost;
   });
 
   $('#nav-email a').click(function(e){

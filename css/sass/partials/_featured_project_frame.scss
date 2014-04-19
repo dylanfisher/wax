@@ -22,12 +22,15 @@
     &.overlay-active {
         position: fixed;
     }
+    .show-overlay a {
+        color: black;
+    }
     .featured-project {
         position: absolute;
         width: 100%;
         height: 100%;
         iframe {
-            display: none;
+            // display: none;
             width: 100%;
             height: 100%;
             border: 0;
@@ -40,10 +43,64 @@
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 2;
     }
     ul,
     li {
       list-style: none;
+    }
+}
+
+.featured-project-wax-logo {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+    z-index: 1;
+    cursor: pointer;
+    .wax-logo {
+        position: relative;
+        display: inline-block;
+        &.wax-logo-2,
+        &.wax-logo-3 {
+            margin-left: 6px;
+        }
+        &.wax-logo-1 {
+            @include set_background('logo-w.png', '34px 28px', '0 0');
+            width: 34px;
+            height: 28px;
+        }
+        &.wax-logo-2 {
+            @include set_background('logo-a.png', '34px 28px', '0 0');
+            width: 34px;
+            height: 28px;
+        }
+        &.wax-logo-3 {
+            @include set_background('logo-x.png', '34px 28px', '0 0');
+            width: 34px;
+            height: 28px;
+        }
+    }
+}
+
+.featured-project-arrow {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -7.5px;
+    bottom: 10px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 26px 15px 0 15px;
+    border-color: #000 transparent transparent transparent;
+    transition: opacity .6s;
+    cursor: pointer;
+    &.active {
+        opacity: 1;
     }
 }
 
