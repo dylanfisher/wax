@@ -8298,7 +8298,7 @@ $(document).ready(function(){
   });
 
   // Set featured frame to temperature background color
-  $('#frame-featured').css({background: $('html').attr('data-temp')});
+  // $('#frame-featured').css({background: $('html').attr('data-temp')});
 
   // Fade the iframe in on page load
   // showLoader($('#featured-project'));
@@ -8404,18 +8404,18 @@ $(document).ready(function(){
   });
 
   // When overlay IS active
-  var overlayLastScrollTop = 0;
-  $('#overlay-container').scroll(function(){
-    var ost = $(this).scrollTop();
-    if (ost > overlayLastScrollTop && ost > 0 && ost > compactPoint){
-      // Down scroll
-      $('#overlay-nav-site-title').addClass('compact');
-    } else if (ost <= compactPoint){
-      // Up scroll
-      $('#overlay-nav-site-title').removeClass('compact');
-    }
-    overlayLastScrollTop = ost;
-  });
+  // var overlayLastScrollTop = 0;
+  // $('#overlay-container').scroll(function(){
+  //   var ost = $(this).scrollTop();
+  //   if (ost > overlayLastScrollTop && ost > 0 && ost > compactPoint){
+  //     // Down scroll
+  //     $('#overlay-nav-site-title').addClass('compact');
+  //   } else if (ost <= compactPoint){
+  //     // Up scroll
+  //     $('#overlay-nav-site-title').removeClass('compact');
+  //   }
+  //   overlayLastScrollTop = ost;
+  // });
 
   $('#nav-email a').click(function(e){
     e.preventDefault();
@@ -8462,10 +8462,14 @@ $(window).resize(function(){
 
 function SetCaptionWidths(){
   $('.image-module .image-wrapper').each(function(){
-    var image = $(this).find('img');
-    var caption = $(this).find('.caption');
-    var width = image.width();
-    caption.css({width: width});
+    var that = this;
+    $(that).imagesLoaded(function(){
+      console.log('test');
+      var image = $(that).find('img');
+      var caption = $(that).find('.caption');
+      var width = image.width();
+      caption.css({width: width});
+    });
   });
 }
 
@@ -8485,6 +8489,7 @@ function SetVideoModuleHeights(){
 //
 
 var overlayLoaded  = false,
+    secondaryOverlayLoaded = false,
     scrollPos      = 0,
     siteUrl        = 'http://localhost:3000/wax/';
 
@@ -8502,32 +8507,43 @@ $(function(){
       showOverlay($(this));
 
       if($(this).attr('data-temp')){
-        $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
+        $('.overlay-container').css({backgroundColor: $('html').attr('data-temp')});
       }
 
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
-      template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
-        if($('#overlay-content .slide-outer-container').length){
-          showLoader($('#overlay-content .slide-outer-container'));
-          $('#overlay-content .slideshow').imagesLoaded(function(){
-            $('#overlay-content .slide-outer-container').find('.loading').remove();
-            $('#overlay-content .slideshow').slidesjs({
+      var templateContentEl;
+      if(overlayLoaded === true){
+        templateContentEl = $('#overlay-content-two');
+      } else {
+        templateContentEl = $('#overlay-content');
+      }
+
+      template($(this).data('request'), $(this).data('template'), templateContentEl, function(){
+        if($('.overlay-content .slide-outer-container').length){
+          showLoader($('.overlay-content .slide-outer-container'));
+          $('.overlay-content .slideshow').imagesLoaded(function(){
+            $('.overlay-content .slide-outer-container').find('.loading').remove();
+            $('.overlay-content .slideshow').slidesjs({
                 width: 840,
                 height: 528
             });
           });
         }
 
-        if($('#overlay-container #overlay-footer').length){
-          $('#overlay-container #overlay-footer').show();
+        if($('.overlay-container .overlay-footer').length){
+          $('.overlay-container .overlay-footer').show();
         }
 
-        if($('#overlay-content .masonry').length){
-          $('#overlay-content .masonry').isotope({
+        if($('.overlay-content .masonry').length){
+          $('.overlay-content .masonry').isotope({
             itemSelector: '.masonry-item',
             layoutMode: 'masonry'
           });
+        }
+
+        if($('.image-module').length){
+          SetCaptionWidths();
         }
 
         if($('.video-module iframe').length){
@@ -8569,7 +8585,6 @@ function template(request, templateName, $destination, callback){
     if (typeof(callback) === 'function') {
         callback();
     }
-    overlayLoaded = true;
 
   });
 }
@@ -8644,13 +8659,13 @@ $(function(){
     assignDataValues($('#frame-two'), 'originalTop', $('#frame-two').css('top'));
 
     // Close the overlay when the X is clicked
-    $(document).on('click', '#overlay-close', function(){
+    $(document).on('click', '.overlay-close', function(){
       closeOverlay();
     });
 
     // Close the overlay when escape key is pressed
     $(document).keydown(function(e) {
-      if(overlayLoaded === true) {
+      if(overlayLoaded === true || secondaryOverlayLoaded === true) {
         if (e.keyCode == 27) {
           e.preventDefault();
           closeOverlay();
@@ -8683,52 +8698,98 @@ function assignDataValues(el, key, value){
 function showOverlay(el){
   var container      = $('#overlay-container');
   var content        = $('#overlay-content');
+
+  var containerTwo      = $('#overlay-container-two');
+  var contentTwo        = $('#overlay-content-two');
+
   var frameContainer = $('#frame-container');
-  scrollPos = $(window).scrollTop();
-  frameContainer.css({top: $(window).scrollTop() * -1});
-  container.addClass('active');
-  frameContainer.addClass('overlay-active');
 
-console.log(el);
+  if(overlayLoaded === true && secondaryOverlayLoaded === false){
+    // Secondary overlay pushes up the first
 
-  if(el === undefined){
-    container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
-      overlayLoaded = true;
+    // scrollPos = $(window).scrollTop();
+    // frameContainer.css({top: $(window).scrollTop() * -1});
+    containerTwo.addClass('active');
+    // frameContainer.addClass('overlay-active');
+
+    // Slide the first overlay up and out of view
+    container.transition({top: '-100%'}, 400, 'easeInOutQuad', function(){
+      secondaryOverlayLoaded = true;
+      container.css({top: '100%'});
+      content.html('');
     });
-  } else if(el.hasClass('overlay-padding')){
-    container.addClass('overlay-padding');
-    container.transition({top: '10%'}, 400, 'easeInOutQuad', function(){
-      overlayLoaded = true;
+
+    containerTwo.find('.overlay-footer').hide();
+
+    // Slide the second overlay into view
+    containerTwo.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+      overlayLoaded = false;
     });
+
+    containerTwo.css({overflow: 'auto'});
+    containerTwo.scrollTop(0);
+    showLoader(containerTwo);
+
   } else {
-    container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
-      overlayLoaded = true;
-    });
-  }
+    // First overlay
 
-  container.css({overflow: 'auto'});
-  container.scrollTop(0);
-  showLoader(container);
+    if(secondaryOverlayLoaded === true){
+      secondaryOverlayLoaded = false;
+
+      container.find('.overlay-footer').hide();
+
+      containerTwo.transition({top: '-100%'}, 400, 'easeInOutQuad', function(){
+        overlayLoaded = true;
+        containerTwo.css({top: '100%'});
+        contentTwo.html('');
+      });
+    } else {
+      scrollPos = $(window).scrollTop();
+      frameContainer.css({top: $(window).scrollTop() * -1});
+      container.addClass('active');
+      frameContainer.addClass('overlay-active');
+    }
+
+    if(el === undefined){
+      container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+        overlayLoaded = true;
+      });
+    } else if(el.hasClass('overlay-padding')){
+      container.addClass('overlay-padding');
+      container.transition({top: '10%'}, 400, 'easeInOutQuad', function(){
+        overlayLoaded = true;
+      });
+    } else {
+      container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+        overlayLoaded = true;
+      });
+    }
+
+    container.css({overflow: 'auto'});
+    container.scrollTop(0);
+    showLoader(container);
+  }
 }
 
 function closeOverlay(){
-  var container      = $('#overlay-container');
-  var content        = $('#overlay-content');
+  var container      = $('.overlay-container');
+  var content        = $('.overlay-content');
   var frameContainer = $('#frame-container');
   $('#frame-container, #frame-featured').removeClass('overlay-active');
   container.transition({top: '100%'}, 400, 'easeInOutQuad', function(){
     content.html('');
-    container.removeClass('active');
-    $('#overlay-container').css({backgroundColor: ''});
+    container.removeClass('active overlay-padding');
+    $('.overlay-container').css({backgroundColor: ''});
     overlayLoaded = false;
+    secondaryOverlayLoaded = false;
   });
   container.css({overflow: 'hidden'});
   frameContainer.css({top: 0});
   $(window).scrollTop(scrollPos);
   History.pushState(null, null, siteUrl);
   $('#featured-project').fadeIn();
-  if($('#overlay-container #overlay-footer').length){
-    $('#overlay-container #overlay-footer').hide();
+  if($('.overlay-container .overlay-footer').length){
+    $('.overlay-container .overlay-footer').hide();
   }
 
 }

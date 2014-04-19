@@ -13,7 +13,7 @@ if ( $the_query->have_posts() ):
   <a class="ajax overlay-padding" data-request="get_posts/?cat=6&amp;count=-1" data-template="template-featured" href="<?php echo the_permalink(); ?>">Info</a>
 </div>
 <div id="featured-project" class="featured-project" data-url="<?php the_field('iframe_url'); ?>">
-    <div class="featured-project-overlay" style="background-color: <?php echo $bgcolor ?>;"></div>
+    <div class="featured-project-overlay"></div>
     <div class="featured-project-wax-logo">
       <div id="featured-wax1" class="wax-logo wax-logo-1"></div>
       <div id="featured-wax2" class="wax-logo wax-logo-2"></div>

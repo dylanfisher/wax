@@ -3,6 +3,9 @@
   <h3>Features</h3>
   <div class="content-wrapper">
     <h2><?php the_title(); ?></h2>
+    <?php if(get_field('byline')): ?>
+      <h3><?php the_field('byline'); ?></h3>
+    <?php endif; ?>
     <?php if(get_field('sub_title')): ?>
       <h3><?php the_field('sub_title'); ?></h3>
     <?php endif; ?>

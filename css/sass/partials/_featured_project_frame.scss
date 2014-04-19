@@ -3,7 +3,7 @@
     width: 100%;
     height: 100%;
     z-index: 20;
-    background-color: #fff;
+    background-color: #FFFF00;
     transition: margin .4s;
     &.featured-fix {
         position: fixed;
@@ -44,6 +44,7 @@
         width: 100%;
         height: 100%;
         z-index: 2;
+        background-color: #FFFF00;
     }
     ul,
     li {

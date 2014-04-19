@@ -97,7 +97,7 @@ $(document).ready(function(){
   });
 
   // Set featured frame to temperature background color
-  $('#frame-featured').css({background: $('html').attr('data-temp')});
+  // $('#frame-featured').css({background: $('html').attr('data-temp')});
 
   // Fade the iframe in on page load
   // showLoader($('#featured-project'));
@@ -203,18 +203,18 @@ $(document).ready(function(){
   });
 
   // When overlay IS active
-  var overlayLastScrollTop = 0;
-  $('#overlay-container').scroll(function(){
-    var ost = $(this).scrollTop();
-    if (ost > overlayLastScrollTop && ost > 0 && ost > compactPoint){
-      // Down scroll
-      $('#overlay-nav-site-title').addClass('compact');
-    } else if (ost <= compactPoint){
-      // Up scroll
-      $('#overlay-nav-site-title').removeClass('compact');
-    }
-    overlayLastScrollTop = ost;
-  });
+  // var overlayLastScrollTop = 0;
+  // $('#overlay-container').scroll(function(){
+  //   var ost = $(this).scrollTop();
+  //   if (ost > overlayLastScrollTop && ost > 0 && ost > compactPoint){
+  //     // Down scroll
+  //     $('#overlay-nav-site-title').addClass('compact');
+  //   } else if (ost <= compactPoint){
+  //     // Up scroll
+  //     $('#overlay-nav-site-title').removeClass('compact');
+  //   }
+  //   overlayLastScrollTop = ost;
+  // });
 
   $('#nav-email a').click(function(e){
     e.preventDefault();
@@ -261,10 +261,14 @@ $(window).resize(function(){
 
 function SetCaptionWidths(){
   $('.image-module .image-wrapper').each(function(){
-    var image = $(this).find('img');
-    var caption = $(this).find('.caption');
-    var width = image.width();
-    caption.css({width: width});
+    var that = this;
+    $(that).imagesLoaded(function(){
+      console.log('test');
+      var image = $(that).find('img');
+      var caption = $(that).find('.caption');
+      var width = image.width();
+      caption.css({width: width});
+    });
   });
 }
 

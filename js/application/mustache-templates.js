@@ -3,6 +3,7 @@
 //
 
 var overlayLoaded  = false,
+    secondaryOverlayLoaded = false,
     scrollPos      = 0,
     siteUrl        = 'http://localhost:3000/wax/';
 
@@ -20,32 +21,43 @@ $(function(){
       showOverlay($(this));
 
       if($(this).attr('data-temp')){
-        $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
+        $('.overlay-container').css({backgroundColor: $('html').attr('data-temp')});
       }
 
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
-      template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
-        if($('#overlay-content .slide-outer-container').length){
-          showLoader($('#overlay-content .slide-outer-container'));
-          $('#overlay-content .slideshow').imagesLoaded(function(){
-            $('#overlay-content .slide-outer-container').find('.loading').remove();
-            $('#overlay-content .slideshow').slidesjs({
+      var templateContentEl;
+      if(overlayLoaded === true){
+        templateContentEl = $('#overlay-content-two');
+      } else {
+        templateContentEl = $('#overlay-content');
+      }
+
+      template($(this).data('request'), $(this).data('template'), templateContentEl, function(){
+        if($('.overlay-content .slide-outer-container').length){
+          showLoader($('.overlay-content .slide-outer-container'));
+          $('.overlay-content .slideshow').imagesLoaded(function(){
+            $('.overlay-content .slide-outer-container').find('.loading').remove();
+            $('.overlay-content .slideshow').slidesjs({
                 width: 840,
                 height: 528
             });
           });
         }
 
-        if($('#overlay-container #overlay-footer').length){
-          $('#overlay-container #overlay-footer').show();
+        if($('.overlay-container .overlay-footer').length){
+          $('.overlay-container .overlay-footer').show();
         }
 
-        if($('#overlay-content .masonry').length){
-          $('#overlay-content .masonry').isotope({
+        if($('.overlay-content .masonry').length){
+          $('.overlay-content .masonry').isotope({
             itemSelector: '.masonry-item',
             layoutMode: 'masonry'
           });
+        }
+
+        if($('.image-module').length){
+          SetCaptionWidths();
         }
 
         if($('.video-module iframe').length){
@@ -87,7 +99,6 @@ function template(request, templateName, $destination, callback){
     if (typeof(callback) === 'function') {
         callback();
     }
-    overlayLoaded = true;
 
   });
 }
