@@ -8368,8 +8368,6 @@ $(document).ready(function(){
       var st = $(this).scrollTop();
       if (st > lastScrollTop && st > 0){
          // Down scroll
-         $('#frame-featured').removeClass('fixed show-more');
-         $('#fixed-nav, #nav-site-title').removeClass('show-more');
          if ($('#frame-featured.featured-fix').length){
            $('#frame-featured').addClass('not-fixed');
          }
@@ -8391,8 +8389,6 @@ $(document).ready(function(){
          if (st <= compactPoint){
             $('#fixed-nav, #nav-site-title').removeClass('compact');
             // Featured project frame gets a little bigger here and fixed nav moves down
-            $('#frame-featured').addClass('show-more');
-            $('#fixed-nav, #nav-site-title').addClass('show-more');
             if ($('#frame-container').data('activeFrame') == 'two' && ExternalLayout === false){
               $('#tertiary').fadeIn();
             }
