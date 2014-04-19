@@ -14,10 +14,10 @@ if ( $the_query->have_posts() ):
     <div class="content-wrapper">
       <h3>About</h3>
       <?php the_field('about'); ?>
+      <h3>Contact</h3>
+      <?php the_field('contact'); ?>
       <h3>Mailing List</h3>
       <?php the_field('mailing_list'); ?>
-      <h3>Submissions</h3>
-      <?php the_field('submissions'); ?>
     </div>
     <h3>Stockist</h3>
     <div class="masonry">
@@ -56,10 +56,6 @@ if ( $the_query->have_posts() ):
       </ul>
       <?php endwhile; ?>
     <?php endif; ?>
-    </div>
-    <div class="content-wrapper">
-      <h3>Contact</h3>
-      <?php the_field('contact'); ?>
     </div>
   </div>
 </div>

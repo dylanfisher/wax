@@ -57,9 +57,6 @@ if ( $the_query->have_posts() ):
                                 <?php echo get_the_title($p->ID); ?>
                             </a>
                         </h2>
-                    <?php if( get_field('sub_title', $p->ID) ) { ?>
-                        <h3><?php echo the_field('sub_title', $p->ID); ?></h3>
-                    <?php } ?>
                         <a class="ajax" data-request="get_post/?id=<?php echo $p->ID; ?>" data-template="template-story" href="<?php echo get_permalink($p->ID); ?>">
                             <?php
                             $image = get_field('featured_image', $p->ID);

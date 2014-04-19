@@ -48,7 +48,7 @@ function assignDataValues(el, key, value){
   el.data(key, value);
 }
 
-function showOverlay(event){
+function showOverlay(el){
   var container      = $('#overlay-container');
   var content        = $('#overlay-content');
   var frameContainer = $('#frame-container');
@@ -56,7 +56,14 @@ function showOverlay(event){
   frameContainer.css({top: $(window).scrollTop() * -1});
   container.addClass('active');
   frameContainer.addClass('overlay-active');
-  if(event.hasClass('overlay-padding')){
+
+console.log(el);
+
+  if(el === undefined){
+    container.transition({top: '0%'}, 400, 'easeInOutQuad', function(){
+      overlayLoaded = true;
+    });
+  } else if(el.hasClass('overlay-padding')){
     container.addClass('overlay-padding');
     container.transition({top: '10%'}, 400, 'easeInOutQuad', function(){
       overlayLoaded = true;
@@ -66,6 +73,7 @@ function showOverlay(event){
       overlayLoaded = true;
     });
   }
+
   container.css({overflow: 'auto'});
   container.scrollTop(0);
   showLoader(container);

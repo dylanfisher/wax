@@ -31,10 +31,10 @@
     <div class="content-wrapper">
       <h3>About</h3>
       {{{acf.about}}}
+      <h3>Contact</h3>
+      {{{acf.contact}}}
       <h3>Mailing List</h3>
       {{{acf.mailing_list}}}
-      <h3>Submissions</h3>
-      {{{acf.submissions}}}
     </div>
     <h3>Stockist</h3>
     <div class="masonry">
@@ -66,10 +66,6 @@
       </ul>
       {{/acf.distribution}}
     </div>
-    <div class="content-wrapper">
-      <h3>Contact</h3>
-      {{{acf.contact}}}
-    </div>
   </div>
 </script>
 
@@ -77,23 +73,23 @@
 <!-- Features / Stories -->
   <div class="features-wrapper">
     <h3>Features</h3>
-    <div class="content-wrapper">
-      <h2>{{{title}}}</h2>
-      {{#acf.sub_title}}
-        <h3>{{{acf.sub_title}}}</h3>
-      {{/acf.sub_title}}
+    <h2>{{{title}}}</h2>
+    {{#acf.sub_title}}
+      <h3>{{{acf.sub_title}}}</h3>
+    {{/acf.sub_title}}
 
-      {{#acf.module}}
+    {{#acf.module}}
 
-        <div class="image-module">
-          {{#image_module}}
-            <div class="image-wrapper">
-              <img src="{{image.url}}">
-              <div class="caption">{{{caption}}}</div>
-            </div>
-          {{/image_module}}
-        </div>
+      <div class="image-module">
+        {{#image_module}}
+          <div class="image-wrapper">
+            <img src="{{image.url}}">
+            <div class="caption">{{{caption}}}</div>
+          </div>
+        {{/image_module}}
+      </div>
 
+      <div class="content-wrapper">
         <div class="text-module">
           {{#text_module}}
             <div class="text-wrapper">
@@ -101,20 +97,20 @@
             </div>
           {{/text_module}}
         </div>
+      </div>
 
-        <div class="video-module">
-          {{#video_module}}
-            <div class="video-wrapper">
-            {{#video}}
-              <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            {{/video}}
-            </div>
-          {{/video_module}}
-        </div>
+      <div class="video-module">
+        {{#video_module}}
+          <div class="video-wrapper">
+          {{#video}}
+            <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          {{/video}}
+          </div>
+        {{/video_module}}
+      </div>
 
       {{/acf.module}}
 
-    </div>
   </div>
 
   <div class="two-column-module">
