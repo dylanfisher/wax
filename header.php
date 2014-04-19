@@ -12,6 +12,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo bloginfo('stylesheet_url'); ?>" />
         <link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo('template_url'); ?>/css/build/minified/application.css" />
         <script src="<?php echo get_bloginfo('template_url'); ?>/js/modernizr-2.6.2.min.js"></script>
+        <style type="text/css">
+            .page-template-page-about-php, .page-template-page-about-php .external-layout-wrapper { background-color: <?php echo $bgcolor; ?>; }
+        </style>
 <?php wp_head() // For plugins ?>
     </head>
     <body class="<?php sandbox_body_class() ?>">

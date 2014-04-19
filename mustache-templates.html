@@ -4,7 +4,6 @@
     <div class="content-wrapper">
       <div class="about-this-space">
         <h3>About This Space</h3>
-        <p>[This content is hard coded right now]</p>
         <p>WAX is a bi-annual print publication exploring the intersection of art, culture and surfing in and around New York City. We believe that beauty and meaning can be found on sidewalks, boardwalks, skyscrapers and beaches alike. We’re interested in exploring the rich history of New York surfing, its beaches and residents and in finding a pathway of cultural creativity on and off the break. WAX shares the stories of area surfers who are also artists, designers, authors and auteurs. Each issue is organized around a unique theme, debuting with Issue #1: Dialogues in Spring 2012.</p>
       </div>
     </div>
@@ -102,14 +101,16 @@
         </div>
       </div>
 
-      <div class="video-module">
-        {{#video_module}}
-          <div class="video-wrapper">
-          {{#video}}
-            <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-          {{/video}}
-          </div>
-        {{/video_module}}
+      <div class="content-wrapper">
+        <div class="video-module">
+          {{#video_module}}
+            <div class="video-wrapper">
+            {{#video}}
+              <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            {{/video}}
+            </div>
+          {{/video_module}}
+        </div>
       </div>
 
       {{/acf.module}}

@@ -6,10 +6,6 @@ html {
     width: 100%;
 }
 
-html, body {
-    background-color: #fff;
-}
-
 @keyframes slideDown {
   from { margin-top: -$nav_offset; }
   to { margin-top: 0; }
@@ -30,7 +26,6 @@ html, body {
     position: absolute;
     width: 100%;
     text-align: center;
-    margin-bottom: 100px;
     &.fixed {
         // @extend %visually_hidden;
         position: fixed;

@@ -14,17 +14,26 @@ Template Name: Page - Application
         <div id="frame-one-content" class="content">
             <?php include 'frame-one.php'; ?>
         </div>
+        <div class="page-footer">
+            <?php include 'overlay-footer.php'; ?>
+        </div>
     </div>
     <?php // FRAME TWO - FEATURES ?>
     <div id="frame-two" class="frame-two frame">
         <div id="frame-two-content" class="content">
             <?php include 'frame-two.php'; ?>
         </div>
+        <div class="page-footer">
+            <?php include 'overlay-footer.php'; ?>
+        </div>
     </div>
     <?php // FRAME THREE - STORE ?>
     <div id="frame-three" class="frame-three frame fixed">
         <div id="frame-three-content" class="content">
             <?php include 'frame-three.php'; ?>
+        </div>
+        <div class="page-footer">
+            <?php include 'overlay-footer.php'; ?>
         </div>
     </div>
 </div>
@@ -40,7 +49,7 @@ Template Name: Page - Application
     </h1>
     <div class="overlay-wrapper">
         <div id="overlay-content" class="overlay-content"></div>
-        <div id="overlay-footer" class="overlay-footer">
+        <div class="overlay-footer">
             <?php include 'overlay-footer.php'; ?>
         </div>
     </div>
@@ -57,7 +66,7 @@ Template Name: Page - Application
     </h1>
     <div class="overlay-wrapper">
         <div id="overlay-content-two" class="overlay-content"></div>
-        <div id="overlay-footer-two" class="overlay-footer">
+        <div class="overlay-footer">
             <?php include 'overlay-footer.php'; ?>
         </div>
     </div>

@@ -9,6 +9,7 @@
     <?php if(get_field('sub_title')): ?>
       <h3><?php the_field('sub_title'); ?></h3>
     <?php endif; ?>
+  </div>
 
 
 <?php // SINGLE COLUMN MODULE ?>
@@ -43,39 +44,43 @@
       <?php
       // check for Text Module (sub repeater)
       if( have_rows('text_module') ): ?>
-        <div class="text-module">
-        <?php 
-        // loop through rows (sub repeater)
-        while( have_rows('text_module') ): the_row();
-          // display each item
-        ?>
-          <div class="text-wrapper">
-            <?php the_sub_field('text'); ?>
+        <div class="content-wrapper">
+          <div class="text-module">
+          <?php 
+          // loop through rows (sub repeater)
+          while( have_rows('text_module') ): the_row();
+            // display each item
+          ?>
+            <div class="text-wrapper">
+              <?php the_sub_field('text'); ?>
+            </div>
+          <?php endwhile; ?>
           </div>
-        <?php endwhile; ?>
         </div>
       <?php endif; //if( get_sub_field('sub_module') ): ?>
 
       <?php
       // check for Video Module (sub repeater)
       if( have_rows('video_module') ): ?>
-        <div class="video-module">
-        <?php 
-        // loop through rows (sub repeater)
-        while( have_rows('video_module') ): the_row();
-          // display each item
-        ?>
-        <div class="video-wrapper">
-        <?php if( get_sub_field('video') ): ?>
-          <iframe src="//player.vimeo.com/video/<?php the_sub_field('video'); ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <?php endif; ?>
-        </div>
-        <?php endwhile; ?>
+        <div class="content-wrapper">
+          <div class="video-module">
+          <?php 
+          // loop through rows (sub repeater)
+          while( have_rows('video_module') ): the_row();
+            // display each item
+          ?>
+          <div class="video-wrapper">
+          <?php if( get_sub_field('video') ): ?>
+            <iframe src="//player.vimeo.com/video/<?php the_sub_field('video'); ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          <?php endif; ?>
+          </div>
+          <?php endwhile; ?>
+          </div>
         </div>
       <?php endif; //if( get_sub_field('sub_module') ): ?>
 
   <?php endwhile; // while( has_sub_field('to-do_lists') ): ?>
-  </div>
+
   <?php endif; // if( get_field('to-do_lists') ): ?>
 
 

@@ -2,6 +2,8 @@
 // Toggle hiding and showing of overlays, and blurring of background
 //
 
+var CurrentOverlay;
+
 $(function(){
   var featuredProjectOpen = false,
       aboutOpen           = false,
@@ -60,6 +62,8 @@ function showOverlay(el){
   if(overlayLoaded === true && secondaryOverlayLoaded === false){
     // Secondary overlay pushes up the first
 
+    CurrentOverlay = containerTwo;
+
     // scrollPos = $(window).scrollTop();
     // frameContainer.css({top: $(window).scrollTop() * -1});
     containerTwo.addClass('active');
@@ -85,6 +89,8 @@ function showOverlay(el){
 
   } else {
     // First overlay
+
+    CurrentOverlay = container;
 
     if(secondaryOverlayLoaded === true){
       secondaryOverlayLoaded = false;

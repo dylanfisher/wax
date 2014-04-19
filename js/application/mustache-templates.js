@@ -21,7 +21,7 @@ $(function(){
       showOverlay($(this));
 
       if($(this).attr('data-temp')){
-        $('.overlay-container').css({backgroundColor: $('html').attr('data-temp')});
+        CurrentOverlay.css({backgroundColor: $('html').attr('data-temp')});
       }
 
       // ajax call to our API and appropriate mustache template

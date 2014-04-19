@@ -352,9 +352,8 @@ function sandbox_content($limit) {
 }
 
 // Add Custom Image Sizes
-/* 
-add_image_size( 'custom-image-size-name', 300, 300, true ); // Custom Image - Name, Width, Height, Hard Crop boolean
- */
+// add_image_size( 'custom-image-size-name', 300, 300, true ); // Custom Image - Name, Width, Height, Hard Crop boolean
+// add_image_size( 'custom-image-size-name', 300, 300, true ); // Custom Image - Name, Width, Height, Hard Crop boolean
 
 // Open external links in new windows
 /* function sandbox_autoblank($text) {
