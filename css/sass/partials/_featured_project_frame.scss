@@ -28,7 +28,7 @@
         }
     }
     .show-overlay a {
-        @extend %button-outline;
+        @extend %link-outline;
         font-size: $font_medium;
         color: black;
     }

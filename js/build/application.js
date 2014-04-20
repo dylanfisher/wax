@@ -7879,6 +7879,7 @@ $(function(){
         if($(this).hasClass('compact')){
           $('html, body').animate({scrollTop: 0});
         } else {
+          $('#primary a').removeClass('active');
           setFrameTwoActive();
         }
         e.preventDefault();
@@ -8075,6 +8076,11 @@ $(function(){
         } else {
             $('#frame-one, #frame-two').addClass('visuallyhidden');
         }
+
+        if(window.location.hash.length){
+            var jumpLinkPos = $(window.location.hash).offset().top;
+            $('html, body').animate({scrollTop: jumpLinkPos}, 'fast', easing);
+        }
     }
     function frameAnimationCompleteRedraw(){
         redraw();
@@ -8103,6 +8109,7 @@ function redraw(){
         $('.force-redraw').remove();
     }, 10);
 }
+
 //
 // Isotope config
 //
@@ -8323,7 +8330,9 @@ $(document).ready(function(){
   // Scroll down when you click the bottom portion
   $('.featured-project-wax-logo, .featured-project-arrow').click(function(){
     var featuredHeight = $('#frame-featured').height();
-    $('html, body').animate({scrollTop: featuredHeight}, 'fast', transitEase);
+    $('html, body').animate({scrollTop: featuredHeight}, 'fast', transitEase, function(){
+      $('html, body').scrollTop(0);
+    });
   });
 
   // Clicking on the featured frame when it is fixed opens it back up
@@ -8422,6 +8431,19 @@ $(document).ready(function(){
     $('#mailing-list-form').stop().slideToggle(400, transitEase);
   });
 
+  // Close the mailing list form when clicking outside of the box
+  $('html').click(function(e){
+    if($(e.target).closest('#mailing-list-form, #nav-email').length === 0){
+      $('#mailing-list-form').stop().slideUp(400, transitEase);
+    }
+  });
+
+  // Submit form when button is clicked
+  $(document).on('click', '.email-button', function(){
+    $(this).closest('form').submit();
+    $('#mailing-list-form').stop().slideUp(400, transitEase);
+  });
+
   //
   // UI interactions
   //
@@ -8464,7 +8486,6 @@ function SetCaptionWidths(){
   $('.image-module .image-wrapper').each(function(){
     var that = this;
     $(that).imagesLoaded(function(){
-      console.log('test');
       var image = $(that).find('img');
       var caption = $(that).find('.caption');
       var width = image.width();
@@ -8484,6 +8505,7 @@ function SetVideoModuleHeights(){
     $(this).css('height', newHeight);
   });
 }
+
 //
 // Mustache templates
 //

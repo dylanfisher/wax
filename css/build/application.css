@@ -125,10 +125,26 @@ a img:hover {
   outline: 1px solid;
 }
 
-.cart-permalink {
+.issue-head > div .add-to-cart, .add-to-cart {
   padding: 2px 10px;
   border: 0;
   outline: 1px solid;
+}
+.issue-head > div .add-to-cart:hover, .add-to-cart:hover {
+  outline: 1px solid;
+  border: 0;
+  background: #000;
+  color: #fff;
+  outline-color: #000;
+}
+.issue-head > div .add-to-cart:active, .add-to-cart:active {
+  background: #fff;
+  color: #000;
+  outline-color: #000;
+}
+
+.issue-head > div .add-to-cart {
+  padding: 6px 10px;
 }
 
 @font-face {
@@ -795,7 +811,7 @@ h2, h3 {
 }
 
 .accordion-content {
-  margin: 1em 0;
+  margin: 32px 0 16px;
 }
 
 .accordion-head {
@@ -838,6 +854,11 @@ h2, h3 {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+}
+
+.jump-link {
+  position: absolute;
+  margin-top: -70px;
 }
 
 html {
@@ -1093,14 +1114,20 @@ html {
   display: inline-block;
   vertical-align: middle;
 }
+.mailing-list-button:hover {
+  border: 0 !important;
+  outline: 0 !important;
+}
 .mailing-list-button img {
   width: 28px;
   vertical-align: baseline;
-  margin-bottom: 2px;
+  margin: -5px -10px;
+  padding: 8px 10px 7px;
+  box-sizing: content-box;
 }
 .mailing-list-button img:hover {
-  border: none;
-  outline: none;
+  margin: -5px -10px;
+  padding: 8px 10px 7px;
 }
 
 .mailing-list-form {
@@ -1112,6 +1139,8 @@ html {
   right: 0;
   top: 40px;
   padding: 0 15px;
+  text-align: left;
+  box-shadow: 2px 2px 5px #00;
 }
 .mailing-list-form .email-button {
   border: 1px solid #FFF;
@@ -1128,7 +1157,7 @@ html {
   padding: 6px 8px;
 }
 .mailing-list-form form {
-  text-align: right;
+  text-align: left;
   margin-top: 20px;
 }
 
@@ -1355,7 +1384,7 @@ html {
 .external-layout-wrapper {
   box-shadow: none;
   max-width: 1200px;
-  padding: 16px 0;
+  padding: 16px 4%;
   position: static;
   top: 0;
   display: block;
@@ -1406,7 +1435,6 @@ html {
   transform: translate(-50%, 0);
 }
 .overlay-wrapper h3 {
-  text-transform: uppercase;
   text-align: center;
   margin-bottom: 32px;
   margin-top: 64px;
@@ -1464,6 +1492,9 @@ html {
 .features-wrapper h3 {
   text-align: center;
 }
+.features-wrapper h3 {
+  margin-top: 0;
+}
 
 .image-module {
   text-align: center;
@@ -1502,11 +1533,41 @@ html {
   border-bottom: 1px solid;
 }
 
+.feature-mailing-list {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: transparent;
+  display: block;
+  position: static;
+}
+.feature-mailing-list form {
+  text-align: center;
+}
+.feature-mailing-list input {
+  width: calc(100% - 135px);
+  padding: 6px 8px;
+  display: inline-block;
+  border: 1px solid #000;
+  margin-right: 10px;
+}
+.feature-mailing-list .email-button {
+  color: #000;
+  border-color: #000;
+}
+.feature-mailing-list .email-button:hover {
+  color: #fff;
+  background: #000;
+}
+
 .issue {
   width: 60%;
   max-width: 1200px;
   margin: 20px auto 112px;
   position: relative;
+}
+.issue .accordion-content h2 {
+  margin-bottom: 16px;
 }
 
 .issue-slides {
@@ -1533,6 +1594,9 @@ html {
 .issue-head > div:last-child {
   text-align: right;
 }
+.issue-head .issue-title {
+  font-size: 21px;
+}
 .issue-head .issue-title span {
   text-transform: uppercase;
 }
@@ -1543,6 +1607,7 @@ html {
 
 .product-container {
   max-width: 1200px;
+  min-height: 400px;
   margin: 0 auto;
 }
 .product-container .product {
@@ -1730,7 +1795,7 @@ html {
   transition: transform 0s !important;
 }
 .features-item h2 {
-  margin-bottom: 0.6em;
+  margin-bottom: 16px;
 }
 .features-item h3 {
   margin-bottom: 1.4em;
@@ -1768,6 +1833,12 @@ html {
 .finds-wrapper .image {
   display: inline-block;
   margin: 10px;
+}
+
+.text-module h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
 }
 
 .slideshow {

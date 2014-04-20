@@ -28,6 +28,7 @@ $(function(){
         if($(this).hasClass('compact')){
           $('html, body').animate({scrollTop: 0});
         } else {
+          $('#primary a').removeClass('active');
           setFrameTwoActive();
         }
         e.preventDefault();
@@ -223,6 +224,11 @@ $(function(){
             $('#frame-one, #frame-three').addClass('visuallyhidden');
         } else {
             $('#frame-one, #frame-two').addClass('visuallyhidden');
+        }
+
+        if(window.location.hash.length){
+            var jumpLinkPos = $(window.location.hash).offset().top;
+            $('html, body').animate({scrollTop: jumpLinkPos}, 'fast', easing);
         }
     }
     function frameAnimationCompleteRedraw(){

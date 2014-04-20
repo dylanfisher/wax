@@ -11,6 +11,7 @@ if ( $the_query->have_posts() ):
         $the_query->the_post();
 ?>
 <div class="issue product" data-id="<?php the_field('product_id'); ?>">
+    <div id="<?php echo basename(get_permalink()); ?>" class="jump-link"></div>
         <?php if( have_rows('slideshow') ): ?>
     <div class="slide-outer-container">
         <div class="issue-slides">
@@ -47,7 +48,7 @@ if ( $the_query->have_posts() ):
             <ul>
             <?php while( have_rows('related_issues') ): the_row(); ?>
 
-            <?php 
+            <?php
             $posts = get_sub_field('related_issue');
             if( $posts ): ?>
                 <?php foreach( $posts as $p ): // variable must NOT be called $post (IMPORTANT) ?>

@@ -8,7 +8,7 @@
     margin: 0 auto $large;
     transition: transform 0s !important; // override isotope transition time
     h2 {
-        margin-bottom: 0.6em;
+        margin-bottom: $xsmall;
     }
     h3 {
         margin-bottom: 1.4em;
@@ -48,5 +48,13 @@
     .image {
         display: inline-block;
         margin: 10px;
+    }
+}
+
+.text-module {
+    h3 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: $font_small;
     }
 }

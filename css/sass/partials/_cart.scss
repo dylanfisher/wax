@@ -90,10 +90,6 @@
     list-style: none;
 }
 
-.cart-permalink {
-    @extend %button-outline-no-hover;   
-}
-
 .cart-permalink.empty {
     cursor: default !important;
     outline: none;

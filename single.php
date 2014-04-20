@@ -15,14 +15,14 @@
 <?php // SINGLE COLUMN MODULE ?>
 
 <?php if( have_rows('module') ): ?>
-  <?php 
+  <?php
   // loop through rows (parent repeater)
   while( have_rows('module') ): the_row();
 
       // check for Image Module (sub repeater)
       if( have_rows('image_module') ): ?>
         <div class="image-module">
-        <?php 
+        <?php
         // loop through rows (sub repeater)
         while( have_rows('image_module') ): the_row();
         ?>
@@ -46,7 +46,7 @@
       if( have_rows('text_module') ): ?>
         <div class="content-wrapper">
           <div class="text-module">
-          <?php 
+          <?php
           // loop through rows (sub repeater)
           while( have_rows('text_module') ): the_row();
             // display each item
@@ -64,7 +64,7 @@
       if( have_rows('video_module') ): ?>
         <div class="content-wrapper">
           <div class="video-module">
-          <?php 
+          <?php
           // loop through rows (sub repeater)
           while( have_rows('video_module') ): the_row();
             // display each item
@@ -110,6 +110,16 @@
     </div>
   </div>
 <?php endif; ?>
+
+<div class="content-wrapper">
+  <div class="mailing-list-form feature-mailing-list">
+      <form action="http://waxmag.createsend.com/t/j/s/nwtd/" method="post">
+          <input name="cm-nwtd-nwtd" type="email" placeholder="Join our mailing list" required />
+          <div class="email-button">Submit</div>
+          <button class="visuallyhidden" type="submit"></button>
+      </form>
+  </div>
+</div>
 
 <div class="page-footer">
     <?php include 'overlay-footer.php'; ?>

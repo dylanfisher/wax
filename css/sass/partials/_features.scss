@@ -7,6 +7,9 @@
   h3 {
     text-align: center;
   }
+  h3 {
+    margin-top: 0;
+  }
 }
 
 .image-module {
@@ -50,5 +53,32 @@
   }
   a {
     border-bottom: 1px solid;
+  }
+}
+
+.feature-mailing-list {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: transparent;
+  display: block;
+  position: static;
+  form {
+    text-align: center;
+  }
+  input {
+    width: calc(100% - 135px);
+    padding: 6px 8px;
+    display: inline-block;
+    border: 1px solid #000;
+    margin-right: 10px;
+  }
+  .email-button {
+    color: #000;
+    border-color: #000;
+    &:hover {
+      color: #fff;
+      background: #000;
+    }
   }
 }

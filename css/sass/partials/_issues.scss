@@ -7,6 +7,11 @@
     max-width: $content_max_width;
     margin: 20px auto $large;
     position: relative;
+    .accordion-content {
+        h2 {
+            margin-bottom: $xsmall;
+        }
+    }
 }
 .issue-slides {
     margin: 0 auto;
@@ -31,8 +36,12 @@
         &:last-child {
             text-align: right;
         }
+        .add-to-cart {
+            @extend %button-outline-padding-small-no-hover;
+        }
     }
     .issue-title {
+        font-size: $font_medium;
         span {
             text-transform: uppercase;
         }

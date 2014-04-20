@@ -1,6 +1,7 @@
 .product-container {
     @extend %ibfix;
     max-width: $content_max_width;
+    min-height: 400px;
     margin: 0 auto;
     .product {
         @extend %ib;
