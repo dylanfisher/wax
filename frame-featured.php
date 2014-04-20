@@ -20,7 +20,7 @@ if ( $the_query->have_posts() ):
       <div id="featured-wax3" class="wax-logo wax-logo-3"></div>
     </div>
     <div class="featured-project-arrow active"></div>
-    <!-- <iframe src="<?php the_field('iframe_url'); ?>"></iframe> -->
+    <iframe src="<?php the_field('iframe_url'); ?>"></iframe>
 </div>
 <?php
     endwhile;
