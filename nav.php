@@ -32,7 +32,7 @@ $about_permalink = get_permalink($about_id);
         <h3 id="nav-cart" class="nav-cart"><a id="nav-cart-permalink" class="cart-permalink" data-request="store_cart" data-template="template-cart" href="http://store.readwax.com/"><span id="cart-item-count"></span></a></h3>
         <h3 id="nav-finds" class="nav-finds"><a href="#" data-temp="true">Finds</a></h3>
         <h3 id="nav-about" class="nav-about"><a class="ajax" data-request="get_post/?id=<?php echo $about_post[0]->ID; ?>" data-template="template-about" data-temp="true" href="<?php echo $about_permalink; ?>">About</a></h3>
-        <h3 id="nav-email" class="nav-email"><a class="mailing-list-button" href="#"><img src="<?php echo get_bloginfo('template_url'); ?>/images/retina/mail.png"></a></h3>
+        <h3 id="nav-email" class="nav-email"><a class="mailing-list-button" href="#"><img src="<?php echo get_bloginfo('template_url'); ?>/images/retina/wax_mail_icon.png"></a></h3>
         <div id="mailing-list-form" class="mailing-list-form">
             <p>Subscribe to our mailing list:</p>
             <form action="http://waxmag.createsend.com/t/j/s/nwtd/" method="post">

@@ -70,6 +70,11 @@
   margin-top: 130px;
   margin-left: auto;
   margin-right: auto;
+  &.overlay-active {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
   .overlay-content {
     margin-top: 0;
   }
@@ -91,7 +96,7 @@
   margin-top: $medium;
 }
 .overlay-wrapper {
-  padding: $xsmall 0;
+  padding: $xsmall 4%;
   position: absolute;
   width: 100%;
   max-width: $content_max_width;

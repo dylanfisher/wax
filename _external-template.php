@@ -29,7 +29,7 @@ if ( $the_query->have_posts() ):
 <div class="external-layout-wrapper">
 </div>
 <?php // CONTENT ENDS HERE ?>
-<div id="overlay-container" class="overlay-container external-layout">
+<div id="overlay-container" class="overlay-container">
   <div id="overlay-close" class="overlay-close"></div>
   <div id="overlay-content" class="overlay-content"></div>
   <div id="overlay-footer" class="overlay-footer">

@@ -15,14 +15,31 @@ if (file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile))) {
 ob_start(); // start the output buffer
 // End Cache Head
 
+require_once 'temp/global_vars.php';
+require_once 'temp/global_fns.php';
 
-include '../private/api-keys.php';
+$data = getWeatherData($buoys[0]);
+// echo $data;
 
-// LAT/LONG = NEW YORK HARBOR ENTRANCE - 15 NM SE OF BREEZY POINT , NY
-// $marine_weather = file_get_contents('http://api.worldweatheronline.com/free/v1/marine.ashx?q=40.442603%2C-73.867264&format=json&includelocation=yes&key=' . $worldWeatherApi);
-$local_weather = file_get_contents('http://api.worldweatheronline.com/free/v1/weather.ashx?q=40.442603%2C-73.867264&format=json&includelocation=yes&key=' . $worldWeatherApi);
+$test = strstr($data, '<strong>');
+$itemsToRemove = array('<strong>', '</strong>', '<br />');
+$test = str_replace($itemsToRemove, '', $test);
+$test = str_replace('&#176;', ' degrees ', $test);
+$test = preg_replace('/^.+\n/', '', $test);
+$test = preg_replace('/ {2}/', '', $test);
+preg_match_all('/.*(?=:)/', $test, $keys);
+preg_match_all('/: (.+)/', $test, $values);
+$keys = array_filter($keys[0]);
+$keys = str_replace(' ', '_', $keys);
+$values = array_filter($values[0]);
+$test = array_combine($keys, $values);
+$test = str_replace(': ', '', $test);
+$test = json_encode($test);
 
-echo $local_weather;
+echo $test;
+
+
+echo time();
 
 
 // Start Cache Footer

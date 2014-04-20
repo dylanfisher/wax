@@ -8510,6 +8510,11 @@ $(function(){
         CurrentOverlay.css({backgroundColor: $('html').attr('data-temp')});
       }
 
+      if($(this).attr('data-overlay-disable')){
+        console.log('true');
+        $('#frame-featured').addClass('disable-mouse');
+      }
+
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
       var templateContentEl;
@@ -8754,6 +8759,10 @@ function showOverlay(el){
       frameContainer.css({top: $(window).scrollTop() * -1});
       container.addClass('active');
       frameContainer.addClass('overlay-active');
+
+      if($('.external-layout-wrapper').length){
+        $('.external-layout-wrapper').addClass('overlay-active');
+      }
     }
 
     if(el === undefined){
@@ -8797,6 +8806,10 @@ function closeOverlay(){
   if($('.overlay-container .overlay-footer').length){
     $('.overlay-container .overlay-footer').hide();
   }
+  if($('.external-layout-wrapper').length){
+    $('.external-layout-wrapper').removeClass('overlay-active');
+  }
+  $('#frame-featured').removeClass('disable-mouse');
 
 }
 //
@@ -9026,8 +9039,8 @@ $(function(){
     // ajax call to our API and appropriate mustache template
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
-          width: 840,
-          height: 528
+          width: 600,
+          height: 400
       });
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));

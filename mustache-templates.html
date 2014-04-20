@@ -2,25 +2,23 @@
 <!-- Featured project info -->
   <div class="featured-info-wrapper">
     <div class="content-wrapper">
+
+    <div class="current-featured-project">
+      {{#.}}
+        <h2>{{{title}}}</h2>
+        <h2>{{{acf.author}}}</h2>
+        <div class="featured-project-description">
+          {{{acf.description}}}
+        </div>
+      {{/.}}
+    </div>
+
       <div class="about-this-space">
         <h3>About This Space</h3>
         <p>WAX is a bi-annual print publication exploring the intersection of art, culture and surfing in and around New York City. We believe that beauty and meaning can be found on sidewalks, boardwalks, skyscrapers and beaches alike. We’re interested in exploring the rich history of New York surfing, its beaches and residents and in finding a pathway of cultural creativity on and off the break. WAX shares the stories of area surfers who are also artists, designers, authors and auteurs. Each issue is organized around a unique theme, debuting with Issue #1: Dialogues in Spring 2012.</p>
       </div>
     </div>
-    <ul class="featured-projects-wrapper">
-      {{#.}}
-        <li data-source="{{acf.iframe_url}}">
-          <h2><a class="project-toggle" href="{{acf.iframe_url}}">{{{title}}}<br>
-          by {{{acf.author}}}</a></h2>
-          <div class="featured-project-description">
-            {{{acf.description}}}
-          </div>
-          <a class="project-toggle" href="{{acf.iframe_url}}">
-            <img src="{{{acf.featured_image.url}}}">
-          </a>
-        </li>
-      {{/.}}
-    </ul>
+
   </div>
 </script>
 
@@ -156,55 +154,59 @@
         {{/current_product.0.images}}
       </div>
     </div>
-    <div class="heading">
-      <h3>{{{current_product.0.title}}}</h3>
-      <div class="price-cart">
-        <span class="price">&#36;{{{current_product.0.variants.0.price}}}</span>
-        <a class="add-to-cart" href="#">Add to Cart</a>
+    <div class="product-viewer-content-wrapper">
+      <div class="heading">
+        <h3>{{{current_product.0.title}}}</h3>
+        <div class="price-cart">
+          <span class="price">&#36;{{{current_product.0.variants.0.price}}}</span>
+          <a class="add-to-cart" href="#">Add to Cart</a>
+        </div>
       </div>
-    </div>
-    <div class="product-description">
-      <p>{{{current_product.0.body_html}}}</p>
+      <div class="product-description">
+        <p>{{{current_product.0.body_html}}}</p>
+      </div>
     </div>
   </div>
 </script>
 
 <script id="template-cart" type="text/template">
 <!-- Cart -->
-  <h2 class="cart-title">Cart</h2>
-  <div class="cart-table">
-    <div class="cart-header">
-      <h3>Item</h3>
-      <h3>Description</h3>
-      <h3>QTY</h3>
-      <h3>Price</h3>
-      <h3>Total</h3>
-      <h3>Remove</h3>
-      <h3>Update</h3>
-    </div>
-    <div class="cart-body">
-      <ul>
-        {{#.}}
-        <li id="cart-item-{{index}}" class="cart-item" data-variant="{{variant_id}}">
-          <div class="cart-image"><img src="{{image}}"></div>
-          <div class="cart-description">{{{title}}}</div>
-          <div class="cart-qty"><form><input type="text" name="cart-qty" value="{{quantity}}"></form></div>
-          <div class="cart-price">{{{price}}}</div>
-          <div class="cart-total"></div>
-          <div><a class="cart-remove" href="#">Remove</a></div>
-          <div><a class="cart-update" href="#">Update</a></div>
-        </li>
-        {{/.}}
-      </ul>
-    </div>
-    <div class="cart-footer">
-      <h3></h3>
-      <h3></h3>
-      <h3></h3>
-      <h3>Total</h3>
-      <h3 id="cart-total"></h3>
-      <h3></h3>
-      <h3><a id="cart-permalink" class="cart-permalink" href="http://store.readwax.com/">Checkout</a></h3>
+  <div class="cart-wrapper">
+    <h2 class="cart-title">Cart</h2>
+    <div class="cart-table">
+      <div class="cart-header">
+        <h3>Item</h3>
+        <h3>Description</h3>
+        <h3>QTY</h3>
+        <h3>Price</h3>
+        <h3>Total</h3>
+        <h3>Remove</h3>
+        <h3>Update</h3>
+      </div>
+      <div class="cart-body">
+        <ul>
+          {{#.}}
+          <li id="cart-item-{{index}}" class="cart-item" data-variant="{{variant_id}}">
+            <div class="cart-image"><img src="{{image}}"></div>
+            <div class="cart-description">{{{title}}}</div>
+            <div class="cart-qty"><form><input type="text" name="cart-qty" value="{{quantity}}"></form></div>
+            <div class="cart-price">{{{price}}}</div>
+            <div class="cart-total"></div>
+            <div><a class="cart-remove" href="#">Remove</a></div>
+            <div><a class="cart-update" href="#">Update</a></div>
+          </li>
+          {{/.}}
+        </ul>
+      </div>
+      <div class="cart-footer">
+        <h3></h3>
+        <h3></h3>
+        <h3></h3>
+        <h3>Total</h3>
+        <h3 id="cart-total"></h3>
+        <h3></h3>
+        <h3><a id="cart-permalink" class="cart-permalink" href="http://store.readwax.com/">Checkout</a></h3>
+      </div>
     </div>
   </div>
   </script>

@@ -107,6 +107,10 @@ function showOverlay(el){
       frameContainer.css({top: $(window).scrollTop() * -1});
       container.addClass('active');
       frameContainer.addClass('overlay-active');
+
+      if($('.external-layout-wrapper').length){
+        $('.external-layout-wrapper').addClass('overlay-active');
+      }
     }
 
     if(el === undefined){
@@ -150,5 +154,9 @@ function closeOverlay(){
   if($('.overlay-container .overlay-footer').length){
     $('.overlay-container .overlay-footer').hide();
   }
+  if($('.external-layout-wrapper').length){
+    $('.external-layout-wrapper').removeClass('overlay-active');
+  }
+  $('#frame-featured').removeClass('disable-mouse');
 
 }

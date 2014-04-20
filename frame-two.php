@@ -14,8 +14,8 @@ if ( $the_query->have_posts() ):
     <h2>
         <a class="ajax" data-request="get_post/?id=<?php echo get_the_ID(); ?>" data-template="template-story" href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
     </h2>
-        <?php if( get_field('sub_title') ) { ?>
-    <h3><?php echo the_field('sub_title'); ?></h3>
+        <?php if( get_field('byline') ) { ?>
+    <h3><?php echo the_field('byline'); ?></h3>
         <?php } ?>
     <a class="ajax" data-request="get_post/?id=<?php echo get_the_ID(); ?>" data-template="template-story" href="<?php echo get_permalink(); ?>">
         <?php

@@ -26,7 +26,7 @@ if ( $the_query->have_posts() ):
 
     <div class="issue-head">
         <div>
-            <a class="accordion-head more-info" href="#">More Information</a>
+            <a class="accordion-head more-info" href="#">More Info</a>
         </div>
         <div>
             <div class="issue-title">

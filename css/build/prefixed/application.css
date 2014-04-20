@@ -63,6 +63,7 @@ a img:hover {
 .featured-projects-wrapper,
 .issue-head,
 .product-container,
+.product-viewer-inner-content,
 .cart-header,
 .cart-body ul,
 .cart-footer {
@@ -73,6 +74,8 @@ a img:hover {
 .issue-head > div,
 .product-container .product,
 .product-viewer,
+.product-viewer .slide-outer-container,
+.product-viewer-content-wrapper,
 .cart-header h3,
 .cart-item > div,
 .cart-footer h3 {
@@ -97,7 +100,7 @@ a img:hover {
   border-top: 5px inset rgba(0, 0, 0, 0);
 }
 
-.accordion-head:hover:before {
+.accordion-head:before {
   content: " ";
   position: absolute;
   right: 0;
@@ -107,7 +110,7 @@ a img:hover {
   background-color: #000;
 }
 
-.accordion-head:hover:after {
+.accordion-head:after {
   right: -1px;
   margin-right: -4px;
   border-right: 6px inset rgba(0, 0, 0, 0);
@@ -121,7 +124,7 @@ a img:hover {
   width: 0;
 }
 
-.accordion-head.active:hover:before {
+.accordion-head.active:before {
   content: " ";
   position: absolute;
   right: 0;
@@ -132,7 +135,7 @@ a img:hover {
   background-color: #000;
 }
 
-.accordion-head.active:hover:after {
+.accordion-head.active:after {
   right: -1px;
   margin-right: -4px;
   border-right: 6px inset rgba(0, 0, 0, 0);
@@ -145,6 +148,21 @@ a img:hover {
   position: absolute;
   top: 100%;
   width: 0;
+}
+
+.frame-featured .show-overlay a {
+  padding: 2px 10px;
+}
+
+.frame-featured .show-overlay a:hover {
+  border: 0;
+  outline: 1px solid;
+}
+
+.cart-permalink {
+  padding: 2px 10px;
+  border: 0;
+  outline: 1px solid;
 }
 
 @font-face {
@@ -809,7 +827,7 @@ h3 {
 .issue h3,
 .overlay-content h3,
 .features-wrapper h3 {
-  font-size: 22px;
+  font-size: 21px;
   margin-bottom: 1.4em;
 }
 
@@ -866,7 +884,7 @@ h3 {
 }
 
 .accordion-container h2 {
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .accordion-container h3 {
@@ -895,15 +913,13 @@ h3 {
 .accordion-head {
   position: absolute;
   bottom: 0;
-}
-
-.accordion-head:hover {
+  border-bottom: 1px solid;
   bottom: -1px;
   padding-right: 15px;
   margin-right: -15px;
 }
 
-.accordion-head.active:hover {
+.accordion-head.active {
   bottom: -1px;
 }
 
@@ -931,6 +947,7 @@ h3 {
 }
 
 .caption {
+  font-size: 13px;
   margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
@@ -1250,8 +1267,9 @@ html {
 }
 
 .mailing-list-button img {
-  width: 20px;
+  width: 28px;
   vertical-align: baseline;
+  margin-bottom: 2px;
 }
 
 .mailing-list-button img:hover {
@@ -1332,7 +1350,12 @@ html {
   position: fixed;
 }
 
+.frame-featured.disable-mouse .show-overlay {
+  pointer-events: none;
+}
+
 .frame-featured .show-overlay a {
+  font-size: 21px;
   color: black;
 }
 
@@ -1470,6 +1493,15 @@ html {
   margin-bottom: 64px;
 }
 
+.current-featured-project h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.featured-project-description {
+  margin: 32px 0;
+}
+
 .frame-featured .overlay {
   position: fixed;
 }
@@ -1545,6 +1577,13 @@ html {
   margin-right: auto;
 }
 
+.external-layout-wrapper.overlay-active {
+  position: fixed;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
 .external-layout-wrapper .overlay-content {
   margin-top: 0;
 }
@@ -1574,7 +1613,7 @@ html {
 }
 
 .overlay-wrapper {
-  padding: 16px 0;
+  padding: 16px 4%;
   position: absolute;
   width: 100%;
   max-width: 1200px;
@@ -1737,7 +1776,7 @@ html {
 
 .issue-head h2,
 .issue-head h3 {
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .product-container {
@@ -1790,7 +1829,12 @@ html {
 .product-viewer {
   position: relative;
   min-height: 400px;
-  background-color: #F1F0F1;
+  background-color: #000;
+  color: #fff;
+}
+
+.product-viewer a {
+  color: #fff;
 }
 
 .product-viewer .overlay-close {
@@ -1799,9 +1843,22 @@ html {
   top: 20px;
 }
 
+.product-viewer .slide-outer-container {
+  width: 50%;
+  display: inline-block;
+  margin-bottom: 0;
+  padding-right: 16px;
+}
+
 .product-viewer-content {
   padding: 32px 112px 32px;
-  margin: 0 112px 64px;
+}
+
+.product-viewer-content-wrapper {
+  padding-left: 16px;
+  width: 50%;
+  display: inline-block;
+  text-align: left;
 }
 
 .product-viewer-inner-content {
@@ -1817,25 +1874,20 @@ html {
   margin-bottom: 32px;
 }
 
-.product-viewer-inner-content .heading div,
-.product-viewer-inner-content .heading h3 {
-  text-transform: uppercase;
-  display: inline-block;
-  position: absolute;
-}
-
 .product-viewer-inner-content .heading .learn-more {
   left: 0;
 }
 
-.product-viewer-inner-content .heading h3 {
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-}
-
 .product-viewer-inner-content .heading .price-cart {
   right: 0;
+}
+
+.product-viewer-inner-content .slidesjs-pagination-item a {
+  background: #fff;
+}
+
+.product-viewer-inner-content .slidesjs-pagination-item a.active:before {
+  border-color: #fff;
 }
 
 .product-description {
@@ -1857,6 +1909,7 @@ html {
 }
 
 .cart-header h3 {
+  margin: 0;
   display: inline-block;
   width: 14.28571428571429%;
   font-size: 16px;
@@ -1922,6 +1975,7 @@ html {
 
 .cart-permalink.empty {
   cursor: default !important;
+  outline: none;
 }
 
 .cart-permalink.empty:hover {
@@ -1960,7 +2014,7 @@ html {
 }
 
 .frame-two .grid-view h2 {
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .frame-two .grid-view h3 {
@@ -2185,7 +2239,7 @@ a img.aligncenter {
 }
 
 .wp-caption p.wp-caption-text {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 17px;
   margin-top: 16px;
 }

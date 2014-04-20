@@ -184,8 +184,8 @@ $(function(){
     // ajax call to our API and appropriate mustache template
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
       $('.product-viewer-content .slideshow').slidesjs({
-          width: 840,
-          height: 528
+          width: 600,
+          height: 400
       });
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));

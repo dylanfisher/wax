@@ -111,7 +111,7 @@
   </div>
 <?php endif; ?>
 
-<div id="overlay-footer" class="overlay-footer">
+<div class="page-footer">
     <?php include 'overlay-footer.php'; ?>
 </div>
 

@@ -24,6 +24,11 @@ $(function(){
         CurrentOverlay.css({backgroundColor: $('html').attr('data-temp')});
       }
 
+      if($(this).attr('data-overlay-disable')){
+        console.log('true');
+        $('#frame-featured').addClass('disable-mouse');
+      }
+
       // ajax call to our API and appropriate mustache template
       // console.log($(this).data('template'));
       var templateContentEl;

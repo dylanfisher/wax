@@ -41,7 +41,7 @@ if ( $the_query->have_posts() ):
 <?php echo $colorboxes; ?>
 </div>
 <?php // CONTENT ENDS HERE ?>
-<div id="overlay-container" class="overlay-container external-layout hide">
+<div id="overlay-container" class="overlay-container hide">
   <div id="overlay-close" class="overlay-close"></div>
   <div id="overlay-content" class="overlay-content">
   </div>

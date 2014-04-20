@@ -1,3 +1,7 @@
+.cart-wrapper {
+
+}
+
 .cart-title {
     text-align: center;
     margin-bottom: $medium;
@@ -13,6 +17,7 @@
     padding-bottom: $xsmall;
     h3 {
         @extend %ib;
+        margin: 0;
         display: inline-block;
         width: 14.28571428571429%;
         font-size: 16px;
@@ -85,8 +90,13 @@
     list-style: none;
 }
 
+.cart-permalink {
+    @extend %button-outline-no-hover;   
+}
+
 .cart-permalink.empty {
     cursor: default !important;
+    outline: none;
     &:hover {
         outline: none !important;
         cursor: default !important;

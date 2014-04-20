@@ -73,17 +73,14 @@
 .accordion-head {
     position: absolute;
     bottom: 0;
-    &:hover {
-        @extend %arrow-down;
-        bottom: -1px;
-        padding-right: 15px;
-        margin-right: -15px;
-    }
+    @extend %arrow-down;
+    border-bottom: 1px solid;
+    bottom: -1px;
+    padding-right: 15px;
+    margin-right: -15px;
     &.active {
-        &:hover {
-            @extend %arrow-up;
-            bottom: -1px;
-        }
+        @extend %arrow-up;
+        bottom: -1px;
     }
 }
 
@@ -103,6 +100,7 @@
 }
 
 .caption {
+  font-size: $font_xsmall;
   margin-top: $xsmall;
   margin-left: auto;
   margin-right: auto;
