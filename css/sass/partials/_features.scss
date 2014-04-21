@@ -81,4 +81,11 @@
       background: #000;
     }
   }
+  .about-wrapper & {
+    width: 75%;
+    max-width: none;
+    input {
+      background: transparent;
+    }
+  }
 }

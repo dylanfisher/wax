@@ -44,42 +44,44 @@ if ( $the_query->have_posts() ):
         <div class="accordion-content">
         <?php the_field('content'); ?>
         <?php if( have_rows('related_issues') ): ?>
-            <h3 class="title center upper">Related Features</h3>
-            <ul>
-            <?php while( have_rows('related_issues') ): the_row(); ?>
+            <div class="related-features">
+                <h3 class="title center upper">Related Features</h3>
+                <ul>
+                <?php while( have_rows('related_issues') ): the_row(); ?>
 
-            <?php
-            $posts = get_sub_field('related_issue');
-            if( $posts ): ?>
-                <?php foreach( $posts as $p ): // variable must NOT be called $post (IMPORTANT) ?>
-                    <li>
-                        <h2>
+                <?php
+                $posts = get_sub_field('related_issue');
+                if( $posts ): ?>
+                    <?php foreach( $posts as $p ): // variable must NOT be called $post (IMPORTANT) ?>
+                        <li>
+                            <h2>
+                                <a class="ajax" data-request="get_post/?id=<?php echo $p->ID; ?>" data-template="template-story" href="<?php echo get_permalink($p->ID); ?>">
+                                    <?php echo get_the_title($p->ID); ?>
+                                </a>
+                            </h2>
                             <a class="ajax" data-request="get_post/?id=<?php echo $p->ID; ?>" data-template="template-story" href="<?php echo get_permalink($p->ID); ?>">
-                                <?php echo get_the_title($p->ID); ?>
+                                <?php
+                                $image = get_field('featured_image', $p->ID);
+                                if( !empty($image) ):
+                                    // vars
+                                    $url = $image['url'];
+                                    $title = $image['title'];
+                                    // Set image size
+                                    $size = 'large';
+                                    $imageSize = $image['sizes'][ $size ];
+                                    $width = $image['sizes'][ $size . '-width' ];
+                                    $height = $image['sizes'][ $size . '-height' ];
+                                ?>
+                                <img src="<?php echo $imageSize; ?>" alt="<?php echo $title; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
+                                <?php endif; ?>
                             </a>
-                        </h2>
-                        <a class="ajax" data-request="get_post/?id=<?php echo $p->ID; ?>" data-template="template-story" href="<?php echo get_permalink($p->ID); ?>">
-                            <?php
-                            $image = get_field('featured_image', $p->ID);
-                            if( !empty($image) ):
-                                // vars
-                                $url = $image['url'];
-                                $title = $image['title'];
-                                // Set image size
-                                $size = 'large';
-                                $imageSize = $image['sizes'][ $size ];
-                                $width = $image['sizes'][ $size . '-width' ];
-                                $height = $image['sizes'][ $size . '-height' ];
-                            ?>
-                            <img src="<?php echo $imageSize; ?>" alt="<?php echo $title; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
-                            <?php endif; ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
-            <?php endwhile; ?>
-            </ul>
+                <?php endwhile; ?>
+                </ul>
+            </div>
         <?php endif; ?>
         </div>
     </div>

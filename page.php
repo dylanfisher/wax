@@ -1,4 +1,7 @@
 <?php get_header();
+
+// IS THIS BEING USED???
+
 $args = array(
     'category_name' => 'about',
     'posts_per_page' => 1

@@ -1,3 +1,6 @@
+    <div class="page-footer">
+        <?php include 'overlay-footer.php'; ?>
+    </div>
 </div>
 <?php // Overlay container primary ?>
 <div id="overlay-container" class="overlay-container">

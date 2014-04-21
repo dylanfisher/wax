@@ -54,18 +54,8 @@
     .title {
         margin: $medium 0;
     }
-    ul {
-        @extend %clearfix;
-        text-align: center;
-        list-style: none;
-    }
-    li {
-        @extend %hardware_accel;
-        float: left;
-        width: 33.33%;
-        padding: 0 20px;
-    }
 }
+
 .accordion-content {
     margin: $small 0 $xsmall;
 }
@@ -81,6 +71,33 @@
     &.active {
         @extend %arrow-up;
         bottom: -1px;
+    }
+}
+
+.related-features {
+    .content-wrapper & {
+        margin-bottom: $large;
+    }
+    h2 {
+        font-size: $font_medium;
+        margin-bottom: $xsmall;
+    }
+    h3 {
+        font-size: $font_small;
+    }
+    .title {
+        margin: $medium 0;
+    }
+    ul {
+        @extend %clearfix;
+        text-align: center;
+        list-style: none;
+    }
+    li {
+        @extend %hardware_accel;
+        float: left;
+        width: 33.33%;
+        padding: 0 20px;
     }
 }
 

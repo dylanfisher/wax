@@ -75,6 +75,7 @@ $(function(){
     } else {
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');
+        $('#frame-one, #frame-three').addClass('visuallyhidden');
     }
 
     nav.on('click', function(e){

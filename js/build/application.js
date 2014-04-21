@@ -7926,6 +7926,7 @@ $(function(){
     } else {
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');
+        $('#frame-one, #frame-three').addClass('visuallyhidden');
     }
 
     nav.on('click', function(e){
@@ -8601,7 +8602,7 @@ function template(request, templateName, $destination, callback){
       templateData = CartData;
     } else {
       templateData = x;
-      console.log('template function request type failed');
+      console.log('template function request type unknown');
     }
     console.log(templateData);
 
@@ -8634,6 +8635,7 @@ var showLoader = function(el){
   var animation = '<div class="loading"></div>';
   el.prepend(animation);
 };
+
 $(function(){
   var pixels;
   var numboxes;
@@ -8866,8 +8868,8 @@ $(function(){
     });
 
     $('.issue .issue-slides').slidesjs({
-        width: 840,
-        height: 500,
+        width: 862,
+        height: 574,
         callback: {
             start: function(number) {
                 $(window).trigger('scroll');
@@ -8875,6 +8877,7 @@ $(function(){
         }
     });
 })();
+
 //
 // Store / Products
 //

@@ -93,7 +93,7 @@ function template(request, templateName, $destination, callback){
       templateData = CartData;
     } else {
       templateData = x;
-      console.log('template function request type failed');
+      console.log('template function request type unknown');
     }
     console.log(templateData);
 

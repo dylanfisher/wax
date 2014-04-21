@@ -1,5 +1,5 @@
 <?php include 'external-header.php'; ?>
-<?php 
+<?php
 $args = array(
     'category_name' => 'about',
     'posts_per_page' => 1
@@ -18,8 +18,15 @@ if ( $the_query->have_posts() ):
       <?php the_field('contact'); ?>
       <h3>Mailing List</h3>
       <?php the_field('mailing_list'); ?>
+      <div class="mailing-list-form feature-mailing-list">
+          <form action="http://waxmag.createsend.com/t/j/s/nwtd/" method="post">
+              <input name="cm-nwtd-nwtd" type="email" required />
+              <div class="email-button">Submit</div>
+              <button class="visuallyhidden" type="submit"></button>
+          </form>
+      </div>
     </div>
-    <h3>Stockist</h3>
+    <h3>Stockists</h3>
     <div class="masonry">
     <?php if( have_rows('stockists') ): ?>
       <?php while( have_rows('stockists') ): the_row(); ?>

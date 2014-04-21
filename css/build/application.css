@@ -11,7 +11,7 @@
   width: 1px;
 }
 
-.blur, .accordion-container li, .overlay {
+.blur, .related-features li, .overlay {
   transform: translate3d(0, 0, 0);
 }
 
@@ -20,14 +20,14 @@
   transform: translateZ(0) scale(1, 1);
 }
 
-.accordion-container ul, .two-column-module {
+.related-features ul, .two-column-module {
   *zoom: 1;
 }
-.accordion-container ul:before, .two-column-module:before, .accordion-container ul:after, .two-column-module:after {
+.related-features ul:before, .two-column-module:before, .related-features ul:after, .two-column-module:after {
   content: " ";
   display: table;
 }
-.accordion-container ul:after, .two-column-module:after {
+.related-features ul:after, .two-column-module:after {
   clear: both;
 }
 
@@ -800,15 +800,6 @@ h2, h3 {
 .accordion-container .title {
   margin: 64px 0;
 }
-.accordion-container ul {
-  text-align: center;
-  list-style: none;
-}
-.accordion-container li {
-  float: left;
-  width: 33.33%;
-  padding: 0 20px;
-}
 
 .accordion-content {
   margin: 32px 0 16px;
@@ -824,6 +815,29 @@ h2, h3 {
 }
 .accordion-head.active {
   bottom: -1px;
+}
+
+.content-wrapper .related-features {
+  margin-bottom: 112px;
+}
+.related-features h2 {
+  font-size: 21px;
+  margin-bottom: 16px;
+}
+.related-features h3 {
+  font-size: 16px;
+}
+.related-features .title {
+  margin: 64px 0;
+}
+.related-features ul {
+  text-align: center;
+  list-style: none;
+}
+.related-features li {
+  float: left;
+  width: 33.33%;
+  padding: 0 20px;
 }
 
 .isotope-hidden {
@@ -1558,6 +1572,13 @@ html {
 .feature-mailing-list .email-button:hover {
   color: #fff;
   background: #000;
+}
+.about-wrapper .feature-mailing-list {
+  width: 75%;
+  max-width: none;
+}
+.about-wrapper .feature-mailing-list input {
+  background: transparent;
 }
 
 .issue {
