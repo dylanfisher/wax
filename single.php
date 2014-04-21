@@ -163,8 +163,4 @@
   </div>
 </div>
 
-<div class="page-footer">
-    <?php include 'overlay-footer.php'; ?>
-</div>
-
 <?php include 'external-footer.php'; ?>

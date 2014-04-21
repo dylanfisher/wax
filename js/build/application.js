@@ -1071,13 +1071,13 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
         prevButton = $("<a>", {
           "class": "slidesjs-previous slidesjs-navigation",
           href: "#",
-          title: "Previous",
+          title: "",
           text: ""
         }).appendTo($element);
         nextButton = $("<a>", {
           "class": "slidesjs-next slidesjs-navigation",
           href: "#",
-          title: "Next",
+          title: "",
           text: ""
         }).appendTo($element);
       }

@@ -13,6 +13,9 @@
         h3 {
             margin-top: $xsmall;
         }
+        .add-to-cart-container {
+            margin-top: $small;
+        }
     }
     .image-container {
         margin-top: $small;
@@ -47,10 +50,12 @@
     min-height: 400px;
     background-color: #000;
     color: #fff;
+    margin-bottom: 0 $large $medium;
     a {
         color: #fff;
     }
     .overlay-close {
+        @include set_background('close-white.png', '20px 20px', '0 0');
         position: absolute;
         right: 20px;
         top: 20px;
@@ -62,9 +67,16 @@
         margin-bottom: 0;
         padding-right: $xsmall;
     }
+    .add-to-cart {
+        &:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+    }
 }
 .product-viewer-content {
-    padding: $small $large $small;
+    padding: $medium;
 }
 .product-viewer-content-wrapper {
     @extend %ib;
@@ -86,13 +98,13 @@
     }
     .heading {
         min-height: 1.5em;
-        margin-bottom: $small;
         .learn-more {
             left: 0;
         }
-        .price-cart {
-            right: 0;
-        }
+    }
+    .price-cart {
+        position: absolute;
+        bottom: 33px;
     }
     .slidesjs-pagination-item a {
         background: #fff;
