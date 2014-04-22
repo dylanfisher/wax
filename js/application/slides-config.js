@@ -13,7 +13,6 @@ $(function(){
     });
 
     $('.issue .issue-slides').slick({
-        slide: 'img',
         arrows: false,
         dots: true,
         draggable: false,
@@ -27,3 +26,14 @@ $(function(){
     });
 
 });
+
+// Initiate slides
+function StoreSlideshowSlick(){
+    $('.product-viewer-content .slideshow').slick({
+        arrows: false,
+        dots: true,
+        draggable: false,
+        easing: 'easeInOutQuad',
+        lazyLoad: 'ondemand'
+    });
+}

@@ -19,7 +19,9 @@ if ( $the_query->have_posts() ):
                 // vars
                 $image = get_sub_field('image');
             ?>
-            <img data-lazy="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+            <div>
+                <img data-lazy="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+            </div>
             <?php endwhile; ?>
         </div>
     </div>

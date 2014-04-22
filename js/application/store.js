@@ -184,14 +184,7 @@ $(function(){
     // ajax call to our API and appropriate mustache template
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
 
-      $('.product-viewer-content .slideshow').slick({
-          slide: 'img',
-          arrows: false,
-          dots: true,
-          draggable: false,
-          easing: 'easeInOutQuad',
-          lazyLoad: 'ondemand'
-      });
+      StoreSlideshowSlick();
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));
       obj = obj[0];
