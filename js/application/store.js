@@ -7,7 +7,7 @@ var StoreData,
 
 $(function(){
   showLoader($('#product-grid'));
-  
+
   // Initialize the store product grid via shopify json
   getProducts($('#product-container'), function(){
     template('store_products/', 'template-store-product-init', $('#product-grid'), function(){
@@ -183,9 +183,14 @@ $(function(){
 
     // ajax call to our API and appropriate mustache template
     template('store_products/', 'template-store-product', $('.product-viewer-content'), function(){
-      $('.product-viewer-content .slideshow').slidesjs({
-          width: 600,
-          height: 400
+
+      $('.product-viewer-content .slideshow').slick({
+          slide: 'img',
+          arrows: false,
+          dots: true,
+          draggable: false,
+          easing: 'easeInOutQuad',
+          lazyLoad: 'ondemand'
       });
 
       var obj = getObjects(StoreData, 'id', $('#product-viewer').data('id'));

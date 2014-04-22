@@ -106,11 +106,15 @@
         position: absolute;
         bottom: 33px;
     }
-    .slidesjs-pagination-item a {
-        background: #fff;
-    }
-    .slidesjs-pagination-item a.active:before {
-        border-color: #fff;
+    .slick-dots {
+        li {
+            button {
+                background: #fff;
+            }
+            &.slick-active button:before {
+                border-color: #fff;
+            }
+        }
     }
 }
 .product-description {
