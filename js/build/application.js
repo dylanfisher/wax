@@ -9512,9 +9512,12 @@ typeof JSON!="object"&&(JSON={}),function(){"use strict";function f(e){return e<
 
 $(function(){
   if($('.external-layout-wrapper .slide-outer-container').length){
-    $('.external-layout-wrapper .slideshow').slidesjs({
-        width: 840,
-        height: 528,
+    $('.external-layout-wrapper .slideshow').slick({
+        arrows: false,
+        dots: true,
+        draggable: false,
+        easing: 'easeInOutQuad',
+        lazyLoad: 'ondemand'
     });
   }
 
@@ -9525,6 +9528,7 @@ $(function(){
     });
   }
 });
+
 //
 // Control the animations/transitions of the frame container
 //
@@ -10228,9 +10232,12 @@ $(function(){
           showLoader($('.overlay-content .slide-outer-container'));
           $('.overlay-content .slideshow').imagesLoaded(function(){
             $('.overlay-content .slide-outer-container').find('.loading').remove();
-            $('.overlay-content .slideshow').slidesjs({
-                width: 840,
-                height: 528
+            $('.overlay-content .slideshow').slick({
+                arrows: false,
+                dots: true,
+                draggable: false,
+                easing: 'easeInOutQuad',
+                lazyLoad: 'ondemand'
             });
           });
         }
@@ -10535,14 +10542,6 @@ $(function(){
 //
 
 $(function(){
-
-    $('#project-slides').slidesjs({ // What is this?
-        width: 840,
-        height: 528,
-        start: function(number) {
-            $(window).trigger('scroll'); // Dirty fix to force lazy loaded images
-        }
-    });
 
     $('.issue .issue-slides').slick({
         arrows: false,

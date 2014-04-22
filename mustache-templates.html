@@ -90,7 +90,7 @@
       <div class="image-module">
         {{#image_module}}
           <div class="image-wrapper">
-            <img src="{{image.url}}">
+            <img src="{{image.sizes.features-overlay}}" width="{{image.sizes.features-overlay-width}}" height="{{image.sizes.features-overlay-height}}">
             <div class="caption">{{{caption}}}</div>
           </div>
         {{/image_module}}
@@ -129,7 +129,7 @@
     <div class="column2 column">
       {{#acf.image_column}}
         <div class="image-wrapper">
-          <img src="{{image.url}}"/ alt="{{image.alt}}">
+          <img src="{{image.sizes.features-overlay-two-column}}"/ alt="{{image.alt}}" width="{{image.sizes.features-overlay-two-column-width}}" height="{{image.sizes.features-overlay-two-column-height}}">
           <div class="caption">{{{caption}}}</div>
         </div>
        {{/acf.image_column}}

@@ -4,9 +4,12 @@
 
 $(function(){
   if($('.external-layout-wrapper .slide-outer-container').length){
-    $('.external-layout-wrapper .slideshow').slidesjs({
-        width: 840,
-        height: 528,
+    $('.external-layout-wrapper .slideshow').slick({
+        arrows: false,
+        dots: true,
+        draggable: false,
+        easing: 'easeInOutQuad',
+        lazyLoad: 'ondemand'
     });
   }
 

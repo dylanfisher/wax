@@ -1608,6 +1608,7 @@ html {
 
 .overlay-container.overlay-padding .overlay-close,
 .overlay-padding.external-layout-wrapper .overlay-close {
+  top: 14%;
   top: -webkit-calc(10% + 20px);
   top: calc(10% + 20px);
   right: 30px;
@@ -1804,6 +1805,7 @@ html {
 }
 
 .feature-mailing-list input {
+  width: 80%;
   width: -webkit-calc(100% - 135px);
   width: calc(100% - 135px);
   padding: 6px 8px;
@@ -2406,7 +2408,7 @@ a img.aligncenter {
 }
 
 .slick-loading .slick-list {
-  background: white url(../../../images/ajax-loader.gif) center center no-repeat;
+  background: white url(../../../images/loading.gif) center center no-repeat;
 }
 
 .slick-list.dragging {
@@ -2563,10 +2565,12 @@ a img.aligncenter {
 .slick-dots li {
   position: relative;
   display: inline-block;
-  height: 20px;
-  width: 20px;
-  margin: 0px 1px;
+  margin: 0px 5px;
   padding: 0px;
+}
+
+.slick-dots li:last-child {
+  margin-right: 0;
 }
 
 .slick-dots li button {

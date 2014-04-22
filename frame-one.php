@@ -18,9 +18,15 @@ if ( $the_query->have_posts() ):
             <?php while( have_rows('slideshow') ): the_row();
                 // vars
                 $image = get_sub_field('image');
+                $url = $image['url'];
+                $alt = $image['alt'];
+                $size = 'issue-slider';
+                $slider_img = $image['sizes'][ $size ];
+                $width = $image['sizes'][ $size . '-width' ];
+                $height = $image['sizes'][ $size . '-height' ];
             ?>
             <div>
-                <img data-lazy="<?php echo $image['url']; ?>" alt="<?php echo $image['title'] ?>">
+                <img data-lazy="<?php echo $slider_img; ?>" alt="<?php echo $alt; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
             </div>
             <?php endwhile; ?>
         </div>

@@ -4,14 +4,6 @@
 
 $(function(){
 
-    $('#project-slides').slidesjs({ // What is this?
-        width: 840,
-        height: 528,
-        start: function(number) {
-            $(window).trigger('scroll'); // Dirty fix to force lazy loaded images
-        }
-    });
-
     $('.issue .issue-slides').slick({
         arrows: false,
         dots: true,

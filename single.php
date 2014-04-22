@@ -1,4 +1,6 @@
-<?php include 'external-header.php'; ?>
+<?php // This single.php template is used for all external facing pages
+include 'external-header.php';
+?>
 <div class="features-wrapper">
   <h3>Features</h3>
   <div class="content-wrapper">
@@ -30,8 +32,15 @@
         <?php
           // display each item
           $image = get_sub_field('image');
+          $url = $image['url'];
+          $alt = $image['alt'];
+          $size = 'features-overlay';
+          $features_img = $image['sizes'][ $size ];
+          $width = $image['sizes'][ $size . '-width' ];
+          $height = $image['sizes'][ $size . '-height' ];
+
           if( !empty($image) ): ?>
-            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+            <img src="<?php echo $features_img; ?>" alt="<?php echo $alt; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
             <?php if( get_sub_field('caption') ): ?>
               <div class="caption"><?php the_sub_field('caption'); ?></div>
             <?php endif; ?>
@@ -97,9 +106,16 @@
       <?php if( have_rows('image_column') ): ?>
         <?php while( have_rows('image_column') ): the_row(); ?>
           <div class="image-wrapper">
-            <?php $image_column = get_sub_field('image');
+            <?php
+            $image_column = get_sub_field('image');
+            $url = $image_column['url'];
+            $size = 'features-overlay-two-column';
+            $features_img_two_column = $image_column['sizes'][ $size ];
+            $width = $image_column['sizes'][ $size . '-width' ];
+            $height = $image_column['sizes'][ $size . '-height' ];
+
             if( !empty($image_column) ): ?>
-              <img src="<?php echo $image_column['url']; ?>" alt="<?php echo $image_column['alt']; ?>" />
+              <img src="<?php echo $features_img_two_column; ?>" alt="<?php echo $image_column['alt']; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
               <?php if( get_sub_field('caption') ): ?>
                 <div class="caption"><?php the_sub_field('caption'); ?></div>
               <?php endif; ?>

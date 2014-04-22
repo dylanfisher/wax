@@ -39,7 +39,7 @@ $slick-dot-character: '\2022' !default;
     }
 
     .slick-loading & {
-        background: #fff url(#{$slick-loader-path}ajax-loader.gif) center center no-repeat;
+        background: #fff url(#{$slick-loader-path}loading.gif) center center no-repeat;
     }
 
     &.dragging {
@@ -187,10 +187,11 @@ $slick-dot-character: '\2022' !default;
     li {
         position: relative;
         display: inline-block;
-        height: 20px;
-        width: 20px;
-        margin: 0px 1px;
+        margin: 0px 5px;
         padding: 0px;
+        &:last-child {
+            margin-right: 0;
+        }
         button {
             border: 0;
             background: transparent;

@@ -39,7 +39,7 @@ if ( $the_query->have_posts() ):
             $url = $image['url'];
             $title = $image['title'];
             // Set image size
-            $size = 'large';
+            $size = 'features-list';
             $imageSize = $image['sizes'][ $size ];
             $width = $image['sizes'][ $size . '-width' ];
             $height = $image['sizes'][ $size . '-height' ];
