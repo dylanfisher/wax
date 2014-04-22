@@ -10170,7 +10170,7 @@ function SetCaptionWidths(){
       var image = $(that).find('img');
       var caption = $(that).find('.caption');
       var width = image.width();
-      caption.css({width: width});
+      caption.fadeIn().css({width: width});
     });
   });
 }

@@ -42,7 +42,7 @@ include 'external-header.php';
           if( !empty($image) ): ?>
             <img src="<?php echo $features_img; ?>" alt="<?php echo $alt; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
             <?php if( get_sub_field('caption') ): ?>
-              <div class="caption"><?php the_sub_field('caption'); ?></div>
+              <div class="caption hide"><?php the_sub_field('caption'); ?></div>
             <?php endif; ?>
           <?php endif; ?>
           </div>
@@ -117,7 +117,7 @@ include 'external-header.php';
             if( !empty($image_column) ): ?>
               <img src="<?php echo $features_img_two_column; ?>" alt="<?php echo $image_column['alt']; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
               <?php if( get_sub_field('caption') ): ?>
-                <div class="caption"><?php the_sub_field('caption'); ?></div>
+                <div class="caption hide"><?php the_sub_field('caption'); ?></div>
               <?php endif; ?>
             <?php endif; ?>
           </div>
