@@ -1,5 +1,14 @@
 <?php
 
+// Set cookie after first visit
+add_action( 'init', 'sandbox_daily_cookies' );
+function sandbox_daily_cookies(){
+    if (!isset($_COOKIE['WAX_passport'])) {
+        // If cookie is not set, stamp the visitor's passport
+        setcookie('WAX_passport', 'true', strtotime('+1 day'));
+    }
+}
+
 // URL routing for pushState
 add_action( 'template_redirect', 'sandbox_pushState_route' );
 function sandbox_pushState_route(){
@@ -357,6 +366,10 @@ add_image_size( 'issue-slider', 860, 582, false ); // Issue page carousels
 add_image_size( 'features-list', 900, 600, false ); // Features page list of stories
 add_image_size( 'features-overlay', 1032, 800, false ); // Individual feature pages (one column template)
 add_image_size( 'features-overlay-two-column', 498, 600, false ); // Individual feature pages (two column template)
+
+// Change jpeg quality to a lower number
+add_filter( 'jpeg_quality', 'jpeg_full_quality' );
+function jpeg_full_quality( $quality ) { return 80; }
 
 // Open external links in new windows
 /* function sandbox_autoblank($text) {
