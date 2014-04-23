@@ -367,10 +367,6 @@ add_image_size( 'features-list', 900, 600, false ); // Features page list of sto
 add_image_size( 'features-overlay', 1032, 800, false ); // Individual feature pages (one column template)
 add_image_size( 'features-overlay-two-column', 498, 600, false ); // Individual feature pages (two column template)
 
-// Change jpeg quality to a lower number
-add_filter( 'jpeg_quality', 'jpeg_full_quality' );
-function jpeg_full_quality( $quality ) { return 80; }
-
 // Open external links in new windows
 /* function sandbox_autoblank($text) {
 $return = str_replace('href=', 'target="_blank" href=', $text);
