@@ -55,24 +55,19 @@ $(function(){
     // All frames
     //
 
-    // Check to see if issues or store is active based on the pathname.
-    // Also do our cookie check to see if visitor has been to the site
-    // before, and if they have, skip the net art frame.
+    // Check to see if issues or store is active based on the pathname
     var url = window.location.pathname;
     if(url.indexOf('issues') != -1){
-        // FRAME ONE
         $('html').css('overflow-x', 'hidden');
         nav.find('a').removeClass('active');
         setFrameOneActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
-    } else if(url.indexOf('features') != -1 || getCookie('WAX_passport') === "true"){
-        // FRAME TWO
+    } else if(url.indexOf('features') != -1){
         $('html').css('overflow-x', 'hidden');
         nav.find('a').removeClass('active');
         setFrameTwoActive();
         $('html, body').animate({scrollTop: winY}, 100, 'linear');
     } else if(url.indexOf('store') != -1){
-        // FRAME THREE
         $('html').css('overflow-x', 'hidden');
         nav.find('a').removeClass('active');
         setFrameThreeActive();
@@ -81,26 +76,6 @@ $(function(){
         frameTwo.data('active', true);
         container.data('activeFrame', 'two');
         $('#frame-one, #frame-three').addClass('visuallyhidden');
-    }
-
-    function getCookie(name) {
-        var dc = document.cookie;
-        var prefix = name + "=";
-        var begin = dc.indexOf("; " + prefix);
-        var end;
-        if (begin == -1) {
-            begin = dc.indexOf(prefix);
-            if (begin !== 0) return null;
-        }
-        else
-        {
-            begin += 2;
-            end = document.cookie.indexOf(";", begin);
-            if (end == -1) {
-            end = dc.length;
-            }
-        }
-        return unescape(dc.substring(begin + prefix.length, end));
     }
 
     nav.on('click', function(e){
