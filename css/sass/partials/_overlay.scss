@@ -48,7 +48,9 @@
   &.active {
     display: block;
   }
+  // For when the overlay has extra room at the top to show the content beneath
   &.overlay-padding {
+    min-height: 90%;
     .overlay-close {
       top: 14%;
       top: calc(10% + 20px);

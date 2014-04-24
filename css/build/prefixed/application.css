@@ -1623,6 +1623,11 @@ html {
   display: block;
 }
 
+.overlay-container.overlay-padding,
+.overlay-padding.external-layout-wrapper {
+  min-height: 90%;
+}
+
 .overlay-container.overlay-padding .overlay-close,
 .overlay-padding.external-layout-wrapper .overlay-close {
   top: 14%;
