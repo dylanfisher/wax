@@ -8,8 +8,18 @@ if ( $the_query->have_posts() ):
     while ( $the_query->have_posts() ):
         $the_query->the_post();
 
+// Check if we are running locally
+$localHost = array(
+    '127.0.0.1',
+    '::1'
+);
+$stagingVarURL = 'http://readwax.com/wp-content/themes/wax/libs/weather-vars.php';
+if(in_array($_SERVER['REMOTE_ADDR'], $localHost)){
+    $stagingVarURL = 'http://localhost:3000/wax/wp-content/themes/wax/libs/weather-vars.php';
+}
+
 // Retreive all of our weather variables
-$weatherVars = file_get_contents('http://localhost:3000/wax/wp-content/themes/wax/libs/weather-vars.php');
+$weatherVars = file_get_contents($stagingVarURL);
 $weatherVars = json_decode($weatherVars);
 // print_r($weatherVars);
 $windDirection = $weatherVars->Wind_Direction;

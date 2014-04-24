@@ -5,12 +5,12 @@
 var overlayLoaded  = false,
     secondaryOverlayLoaded = false,
     scrollPos      = 0,
-    siteUrl        = 'http://localhost:3000/wax/';
+    siteUrl        = 'http://readwax.com/';
 
 if (document.location.hostname == 'localhost'){
   siteUrl = 'http://localhost:3000/wax/';
 } else {
-  siteUrl = 'http://readwax.com/dev/';
+  siteUrl = 'http://readwax.com/';
 }
 
 $(function(){

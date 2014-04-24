@@ -5,7 +5,7 @@ $localHost = array(
     '127.0.0.1',
     '::1'
 );
-$stagingURL = 'dev';
+$stagingURL = '';
 if(in_array($_SERVER['REMOTE_ADDR'], $localHost)){
     $stagingURL = 'wax';
 }

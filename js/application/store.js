@@ -225,7 +225,7 @@ $(function(){
       if (document.location.hostname == 'localhost'){
         iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
       } else {
-        iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
+        iframeSrc = '/wp-content/themes/wax/buy-button.php';
       }
 
       // Append each item as a list

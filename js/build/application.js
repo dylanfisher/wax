@@ -9893,11 +9893,11 @@ $(function(){
     failure_limit: Math.max($imgs.length - 1, 0)
   });
 });
-var sitePath      = '/wax/';
+var sitePath      = '/';
 if (document.location.hostname == 'localhost'){
   sitePath = '/wax/';
 } else {
-  sitePath = '/dev/';
+  sitePath = '/';
 }
 
 var PrimaryNavHeight = $('#primary').height() + ($('#fixed-nav').position().top * 2);
@@ -10198,12 +10198,12 @@ function SetVideoModuleHeights(){
 var overlayLoaded  = false,
     secondaryOverlayLoaded = false,
     scrollPos      = 0,
-    siteUrl        = 'http://localhost:3000/wax/';
+    siteUrl        = 'http://readwax.com/';
 
 if (document.location.hostname == 'localhost'){
   siteUrl = 'http://localhost:3000/wax/';
 } else {
-  siteUrl = 'http://readwax.com/dev/';
+  siteUrl = 'http://readwax.com/';
 }
 
 $(function(){
@@ -10818,7 +10818,7 @@ $(function(){
       if (document.location.hostname == 'localhost'){
         iframeSrc = '/wax/wp-content/themes/wax/buy-button.php';
       } else {
-        iframeSrc = '/dev/wp-content/themes/wax/buy-button.php';
+        iframeSrc = '/wp-content/themes/wax/buy-button.php';
       }
 
       // Append each item as a list

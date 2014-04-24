@@ -1,8 +1,8 @@
-var sitePath      = '/wax/';
+var sitePath      = '/';
 if (document.location.hostname == 'localhost'){
   sitePath = '/wax/';
 } else {
-  sitePath = '/dev/';
+  sitePath = '/';
 }
 
 var PrimaryNavHeight = $('#primary').height() + ($('#fixed-nav').position().top * 2);
