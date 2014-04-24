@@ -106,15 +106,31 @@
 }
 
 .loading {
-    @include set_background('loading.gif', '100px 18px', '0 0');
-    width: 100px;
-    height: 18px;
+    @include set_background('loading.png', '116px 28px', '0 0');
+    background-repeat: repeat !important;
+    width: 116px;
+    height: 28px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 16px;
+    animation: loadingAnim 3s linear infinite;
+    .product-row & {
+        @include set_background('loading-white.png', '116px 28px', '0 0');
+    }
 }
+
+// Loading animation
+@-webkit-keyframes loadingAnim {
+  from{
+      background-position: 0 0;
+  }
+  to{
+      background-position:-116px 0;
+  }
+}
+
 
 .caption {
   font-size: $font_xsmall;

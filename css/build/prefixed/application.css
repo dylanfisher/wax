@@ -983,21 +983,45 @@ h3 {
 }
 
 .loading {
-  background: url("../../../images/loading.gif") no-repeat 0 0;
-  width: 100px;
-  height: 18px;
+  background: url("../../../images/loading.png") no-repeat 0 0;
+  background-repeat: repeat !important;
+  width: 116px;
+  height: 28px;
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-size: 16px;
+  -webkit-animation: loadingAnim 3s linear infinite;
+  animation: loadingAnim 3s linear infinite;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 192dpi) {
   .loading {
-    background: url("../../../images/retina/loading.gif") no-repeat 0 0 !important;
-    background-size: 100px 18px !important;
+    background: url("../../../images/retina/loading.png") no-repeat 0 0 !important;
+    background-size: 116px 28px !important;
+  }
+}
+
+.product-row .loading {
+  background: url("../../../images/loading-white.png") no-repeat 0 0;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 192dpi) {
+  .product-row .loading {
+    background: url("../../../images/retina/loading-white.png") no-repeat 0 0 !important;
+    background-size: 116px 28px !important;
+  }
+}
+
+@-webkit-keyframes loadingAnim {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -116px 0;
   }
 }
 
