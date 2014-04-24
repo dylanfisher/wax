@@ -2297,6 +2297,13 @@ a img.aligncenter {
     transform: translate(0, 0) !important;
   }
 
+  .features-item h2,
+  .features-wrapper h2,
+  .issue h2,
+  .overlay-content h2 {
+    font-size: 32px;
+  }
+
   .nav-site-title {
     position: relative;
     display: inline-block;
