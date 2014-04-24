@@ -87,38 +87,42 @@
 
     {{#acf.module}}
 
-      <div class="image-module">
-        {{#image_module}}
-          <div class="image-wrapper">
-            <img src="{{image.sizes.features-overlay}}" width="{{image.sizes.features-overlay-width}}" height="{{image.sizes.features-overlay-height}}">
-            <div class="caption hide">{{{caption}}}</div>
+      {{#image_module.0.image}}
+        <div class="image-module">
+          {{#image_module}}
+            <div class="image-wrapper">
+              <img src="{{image.sizes.features-overlay}}" width="{{image.sizes.features-overlay-width}}" height="{{image.sizes.features-overlay-height}}">
+              <div class="caption hide">{{{caption}}}</div>
+            </div>
+          {{/image_module}}
+        </div>
+      {{/image_module.0.image}}
+
+      {{#text_module.0.text}}
+        <div class="content-wrapper">
+          <div class="text-module">
+            {{#text_module}}
+              <div class="text-wrapper">
+                {{{text}}}
+              </div>
+            {{/text_module}}
           </div>
-        {{/image_module}}
-      </div>
-
-      <div class="content-wrapper">
-        <div class="text-module">
-          {{#text_module}}
-            <div class="text-wrapper">
-              {{{text}}}
-            </div>
-          {{/text_module}}
         </div>
-      </div>
+      {{/text_module.0.text}}
 
-      <div class="content-wrapper">
-        <div class="video-module">
-          {{#video_module}}
-            <div class="video-wrapper">
-            {{#video}}
-              <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            {{/video}}
-            </div>
-          {{/video_module}}
+      {{#video_module.0.video}}
+        <div class="content-wrapper">
+          <div class="video-module">
+              <div class="video-wrapper">
+              {{#video}}
+                <iframe src="//player.vimeo.com/video/{{.}}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              {{/video}}
+              </div>
+          </div>
         </div>
-      </div>
+      {{/video_module.0.video}}
 
-      {{/acf.module}}
+    {{/acf.module}}
 
   </div>
 
