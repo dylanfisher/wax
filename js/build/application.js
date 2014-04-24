@@ -10965,11 +10965,12 @@ $(function(){
     showOverlay();
     loadPosts();
     e.preventDefault();
+    $('#overlay-content').prepend('<h3>Finds</h3>');
     $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
   });
 
   var loadPosts = function(){
-    var url = sitePath + 'wp-content/themes/wax/libs/tumblr-scrape.php?pg=' + page; 
+    var url = sitePath + 'wp-content/themes/wax/libs/tumblr-scrape.php?pg=' + page;
     $('#overlay-content').append($('<div class="finds-wrapper">').load(url, function(){
       $('#overlay-container .loading').remove();
     }));
