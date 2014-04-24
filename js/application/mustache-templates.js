@@ -26,7 +26,7 @@ $(function(){
       }
 
       if($(this).attr('data-overlay-disable')){
-        console.log('true');
+        // console.log('true');
         $('#frame-featured').addClass('disable-mouse');
       }
 
@@ -108,7 +108,7 @@ function template(request, templateName, $destination, callback){
       templateData = x;
       console.log('template function request type unknown');
     }
-    console.log(templateData);
+    // console.log(templateData);
 
     var template = document.getElementById(templateName).innerHTML,
         output   = Mustache.render(template, templateData);
