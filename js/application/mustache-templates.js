@@ -21,6 +21,7 @@ $(function(){
       showOverlay($(this));
 
       if($(this).attr('data-temp')){
+        $('.overlay-container .overlay-close').after('<div class="temp-degrees"><a href="http://readwax.com/temps.php" target="_blank">' + $('html').attr('data-temp-degrees') + '<span>&#176;</span>F</a></div>');
         CurrentOverlay.css({backgroundColor: $('html').attr('data-temp')});
       }
 

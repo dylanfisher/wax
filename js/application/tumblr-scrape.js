@@ -6,7 +6,12 @@ $(function(){
     showOverlay();
     loadPosts();
     e.preventDefault();
+
+    // Manually prepend all the header stuff because this doesn't use the mustache ajax call. not very DRY at all
     $('#overlay-content').prepend('<h3>Finds</h3>');
+
+    $('.overlay-container .overlay-close').after('<div class="temp-degrees"><a href="http://readwax.com/temps.php" target="_blank">' + $('html').attr('data-temp-degrees') + '<span>&#176;</span>F</a></div>');
+
     $('#overlay-container').css({backgroundColor: $('html').attr('data-temp')});
   });
 

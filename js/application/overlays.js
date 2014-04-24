@@ -157,6 +157,9 @@ function closeOverlay(){
   if($('.external-layout-wrapper').length){
     $('.external-layout-wrapper').removeClass('overlay-active');
   }
+  if($('.overlay-container .temp-degrees').length){
+    $('.overlay-container .temp-degrees').remove();
+  }
   $('#frame-featured').removeClass('disable-mouse');
 
 }

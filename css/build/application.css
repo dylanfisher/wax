@@ -1416,6 +1416,14 @@ html {
   display: none;
 }
 
+.temp-degrees {
+  position: fixed;
+  right: 100px;
+  top: 17px;
+  font-size: 23px;
+  z-index: 21;
+}
+
 .external-layout-wrapper {
   box-shadow: none;
   max-width: 1200px;
