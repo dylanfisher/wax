@@ -12,7 +12,7 @@ if ( $the_query->have_posts() ):
 <div id="frame-featured-show-overlay" class="show-overlay">
   <a class="ajax overlay-padding" data-request="get_posts/?cat=6&amp;count=-1" data-template="template-featured" data-overlay-disable="true" href="<?php echo the_permalink(); ?>">Info</a>
 </div>
-<div id="featured-project" class="featured-project" data-url="<?php the_field('iframe_url'); ?>">
+<div id="featured-project" class="featured-project" data-url="<?php the_field('iframe_url'); ?>?degrees=152&knots=7">
     <div class="featured-project-overlay"></div>
     <div class="featured-project-wax-logo">
       <div id="featured-wax1" class="wax-logo wax-logo-1"></div>
@@ -20,7 +20,7 @@ if ( $the_query->have_posts() ):
       <div id="featured-wax3" class="wax-logo wax-logo-3"></div>
     </div>
     <div class="featured-project-arrow active"></div>
-    <iframe src="<?php the_field('iframe_url'); ?>"></iframe>
+    <iframe src="<?php the_field('iframe_url'); ?>?degrees=152&knots=7"></iframe>
 </div>
 <?php
     endwhile;
