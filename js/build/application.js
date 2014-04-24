@@ -10269,11 +10269,11 @@ $(function(){
 
         // Check if the footer is being pushed off the screen
         var overlayHeight = CurrentOverlay.find('.overlay-content').height();
-        console.log(overlayHeight);
-        console.log(CurrentOverlay.height());
-        if(overlayHeight < CurrentOverlay.height()){
-          CurrentOverlay.find('.overlay-footer').addClass('extended-space');
-        }
+        CurrentOverlay.imagesLoaded(function(){
+          if(overlayHeight < CurrentOverlay.height()){
+            CurrentOverlay.find('.overlay-footer').addClass('extended-space');
+          }
+        });
 
       });
     }
