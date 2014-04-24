@@ -1,0 +1,11 @@
+#tinymce.wp-editor .intro-text {
+    font-size: 21px;
+    text-align: left;
+    text-transform: none;
+}
+#tinymce.wp-editor .section-header {
+  text-transform: uppercase;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

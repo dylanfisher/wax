@@ -402,57 +402,47 @@ function sandbox_remove_dashboard_widgets(){
 add_action('wp_dashboard_setup', 'sandbox_remove_dashboard_widgets' );
 
 //
-// AJAX Functions
+// Custom TinyMCE styles
 //
 
-// add_action('wp_ajax_nopriv_do_ajax', 'sandbox_our_ajax_function');
-// add_action('wp_ajax_do_ajax', 'sandbox_our_ajax_function');
-// function sandbox_our_ajax_function(){
+// Callback function to insert 'styleselect' into the $buttons array
+function sandbox_mce_buttons_2( $buttons ) {
+    array_unshift( $buttons, 'styleselect' );
+    return $buttons;
+}
+// Register our callback to the appropriate filter
+add_filter('mce_buttons_2', 'sandbox_mce_buttons_2');
 
-//    // the first part is a SWTICHBOARD that fires specific functions
-//    // according to the value of Query Var 'fn'
+// Callback function to filter the MCE settings. Add custom styles to this array
+function sandbox_mce_before_init_insert_formats( $init_array ) {
+    // Define the style_formats array
+    $style_formats = array(
+        // Each array child is a format with it's own settings
+        array(
+            'title' => 'Intro',
+            'block' => 'div',
+            'classes' => 'intro-text',
+            'wrapper' => true,
+        ),
+        array(
+            'title' => 'Section Header',
+            'block' => 'div',
+            'classes' => 'section-header',
+            'wrapper' => true,
+        ),
+    );
+    // Insert the array, JSON ENCODED, into 'style_formats'
+    $init_array['style_formats'] = json_encode( $style_formats );
 
-//      switch($_REQUEST['fn']){
-//           case 'get_latest_posts':
-//                $output = ajax_get_latest_posts($_REQUEST['category']);
-//           break;
-//           case 'get_single_post':
-//                $output = ajax_get_single_post($_REQUEST['id']);
-//           break;
-//           default:
-//               $output = 'No function specified, check your jQuery.ajax() call';
-//           break;
+    return $init_array;
+}
+// Attach callback to 'tiny_mce_before_init'
+add_filter( 'tiny_mce_before_init', 'sandbox_mce_before_init_insert_formats' );
 
-//      }
-
-//    // at this point, $output contains some sort of valuable data!
-//    // Now, convert $output to JSON and echo it to the browser
-//    // That way, we can recapture it with jQuery and run our success function
-
-//           $output=json_encode($output);
-//          if(is_array($output)){
-//         print_r($output);
-//          }
-//          else{
-//         echo $output;
-//          }
-//          die;
-
-// }
-
-// function sandbox_ajax_get_latest_posts($category){
-//      $posts = get_posts(
-//          'category='.$category,
-//          'posts_per_page'.'1'
-//          );
-//      return $posts;
-// }
-
-// function sandbox_ajax_get_single_post($id){
-//      $posts = get_post(
-//          $id
-//     );
-//      return $posts;
-// }
+// Add a custom style sheet for our TinyMCE styles within the admin editor screen
+function sandbox_mce_add_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
+}
+add_action( 'init', 'sandbox_mce_add_editor_styles' );
 
 ?>
