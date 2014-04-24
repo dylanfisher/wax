@@ -77,13 +77,15 @@
 <!-- Features / Stories -->
   <div class="features-wrapper">
     <h3>Features</h3>
-    <h2>{{{title}}}</h2>
-    {{#acf.byline}}
-      <h3 class="byline">{{{acf.byline}}}</h3>
-    {{/acf.byline}}
-    {{#acf.sub_title}}
-      <h3 class="sub-title">{{{acf.sub_title}}}</h3>
-    {{/acf.sub_title}}
+    <div class="content-wrapper">
+      <h2>{{{title}}}</h2>
+      {{#acf.byline}}
+        <h3 class="byline">{{{acf.byline}}}</h3>
+      {{/acf.byline}}
+      {{#acf.sub_title}}
+        <h3 class="sub-title">{{{acf.sub_title}}}</h3>
+      {{/acf.sub_title}}
+    </div>
 
     {{#acf.module}}
 
