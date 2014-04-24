@@ -1600,7 +1600,7 @@ html {
 
 .issue {
   width: 60%;
-  max-width: 1200px;
+  max-width: 860px;
   margin: 20px auto 112px;
   position: relative;
 }
@@ -1761,7 +1761,7 @@ html {
 
 .cart-title {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 64px !important;
 }
 
 .cart-table {

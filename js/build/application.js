@@ -10519,6 +10519,7 @@ function closeOverlay(){
   $('#frame-featured').removeClass('disable-mouse');
 
 }
+
 //
 // Pushstate handling
 //
@@ -10614,6 +10615,11 @@ $(function(){
     // ajax call to our API and appropriate mustache template
     template($(this).data('request'), $(this).data('template'), $('#overlay-content'), function(){
       cartInit();
+
+      if($('.overlay-container .overlay-footer').length){
+        $('.overlay-container .overlay-footer').show();
+      }
+
       if($('.cart-item').length < 1){
         // Cart is empty
         $('#overlay-content .cart-body ul').prepend('<li class="cart-empty">Your cart is empty.</li>');
