@@ -6,7 +6,6 @@
     width: $content_width;
     max-width: $content_max_width;
     margin: 0 auto $large;
-    transition: transform 0s !important; // override isotope transition time
     h2 {
         margin-bottom: $xsmall;
     }

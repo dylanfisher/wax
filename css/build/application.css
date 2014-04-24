@@ -1860,7 +1860,6 @@ html {
   width: 60%;
   max-width: 1200px;
   margin: 0 auto 112px;
-  transition: transform 0s !important;
 }
 .features-item h2 {
   margin-bottom: 16px;

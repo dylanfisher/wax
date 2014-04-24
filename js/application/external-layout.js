@@ -16,7 +16,8 @@ $(function(){
   if($('.external-layout-wrapper .masonry').length){
     $('.external-layout-wrapper .masonry').isotope({
       itemSelector: '.masonry-item',
-      layoutMode: 'masonry'
+      layoutMode: 'masonry',
+      transitionDuration: 0
     });
   }
 });

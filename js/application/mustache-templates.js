@@ -60,7 +60,8 @@ $(function(){
         if($('.overlay-content .masonry').length){
           $('.overlay-content .masonry').isotope({
             itemSelector: '.masonry-item',
-            layoutMode: 'masonry'
+            layoutMode: 'masonry',
+            transitionDuration: 0
           });
         }
 

@@ -2145,8 +2145,6 @@ html {
   width: 60%;
   max-width: 1200px;
   margin: 0 auto 112px;
-  -webkit-transition: -webkit-transform 0s !important;
-  transition: transform 0s !important;
 }
 
 .features-item h2 {

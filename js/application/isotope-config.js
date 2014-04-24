@@ -14,7 +14,8 @@ $(function(){
       layoutMode: 'vertical',
       vertical: {
         horizontalAlignment: 0.5
-      }
+      },
+      transitionDuration: 0
     });
     // add/remove classes to hide/revealing items
     var itemReveal = Isotope.Item.prototype.reveal;
@@ -42,7 +43,8 @@ $(function(){
         layoutMode: 'vertical',
         vertical: {
           horizontalAlignment: 0.5
-        }
+        },
+        transitionDuration: 0
       });
     });
   });
@@ -60,7 +62,8 @@ $(function(){
         masonry: {
           isFitWidth: true,
           gutter: 40
-        }
+        },
+        transitionDuration: 0
       });
     });
   });
