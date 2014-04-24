@@ -2468,6 +2468,7 @@ a img.aligncenter {
   float: left;
   height: 100%;
   min-height: 1px;
+  cursor: pointer;
   display: none;
 }
 
