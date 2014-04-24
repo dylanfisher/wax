@@ -12,7 +12,7 @@
         left: 50%;
         transform: translate(-50%, 0);
         text-align: center;
-        margin: 20px 0;
+        margin-bottom: 20px;
         .wax-logo {
             margin: 0 !important;
         }
@@ -20,8 +20,13 @@
 
     .fixed-nav {
         position: relative;
+        h2 {
+            display: block;
+            margin-bottom: 10px;
+        }
         .secondary {
             position: relative;
+            right: auto;
             margin-top: 20px;
         }
         .tertiary {

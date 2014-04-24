@@ -2634,7 +2634,7 @@ a img.aligncenter {
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     text-align: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
   }
 
   .nav-site-title .wax-logo {
@@ -2645,8 +2645,14 @@ a img.aligncenter {
     position: relative;
   }
 
+  .fixed-nav h2 {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   .fixed-nav .secondary {
     position: relative;
+    right: auto;
     margin-top: 20px;
   }
 
