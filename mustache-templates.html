@@ -88,14 +88,19 @@
     {{#acf.module}}
 
       {{#image_module.0.image}}
-        <div class="image-module">
-          {{#image_module}}
-            <div class="image-wrapper">
-              <img src="{{image.sizes.features-overlay}}" width="{{image.sizes.features-overlay-width}}" height="{{image.sizes.features-overlay-height}}">
-              <div class="caption hide">{{{caption}}}</div>
+        {{#image_module}}
+          {{#big_image}}
+            <div class="image-module large">
+          {{/big_image}}
+          {{^big_image}}
+            <div class="image-module">
+          {{/big_image}}
+                <div class="image-wrapper">
+                  <img src="{{image.sizes.features-overlay}}" width="{{image.sizes.features-overlay-width}}" height="{{image.sizes.features-overlay-height}}">
+                  <div class="caption hide">{{{caption}}}</div>
+                </div>
             </div>
-          {{/image_module}}
-        </div>
+        {{/image_module}}
       {{/image_module.0.image}}
 
       {{#text_module.0.text}}

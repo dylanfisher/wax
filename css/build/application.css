@@ -607,7 +607,7 @@ h1, h2, h3, h4, h5, h6 {
 img {
   vertical-align: middle;
   max-width: 100%;
-  max-height: 800px;
+  max-height: 600px;
   width: auto;
   height: auto;
 }
@@ -1521,6 +1521,13 @@ html {
 
 .image-module {
   text-align: center;
+}
+.image-module img {
+  max-width: 900px;
+}
+.image-module .large img {
+  max-width: 100%;
+  max-height: 800px;
 }
 
 .text-module a {
