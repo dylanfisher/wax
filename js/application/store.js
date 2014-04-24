@@ -60,9 +60,6 @@ $(function(){
       var overlayHeight = CurrentOverlay.find('.overlay-content').height();
       if(overlayHeight < CurrentOverlay.height()){
         CurrentOverlay.find('.overlay-footer').addClass('extended-space');
-        console.log('test 1');
-      } else {
-        console.log('test 2');
       }
 
     });

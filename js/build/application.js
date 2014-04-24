@@ -10268,12 +10268,12 @@ $(function(){
         }
 
         // Check if the footer is being pushed off the screen
-        var overlayHeight = CurrentOverlay.find('.overlay-content').height();
-        CurrentOverlay.imagesLoaded(function(){
-          if(overlayHeight < CurrentOverlay.height()){
-            CurrentOverlay.find('.overlay-footer').addClass('extended-space');
-          }
-        });
+        // var overlayHeight = CurrentOverlay.find('.overlay-content').height();
+        // CurrentOverlay.imagesLoaded(function(){
+        //   if(overlayHeight < CurrentOverlay.height()){
+        //     CurrentOverlay.find('.overlay-footer').addClass('extended-space');
+        //   }
+        // });
 
       });
     }
@@ -10653,9 +10653,6 @@ $(function(){
       var overlayHeight = CurrentOverlay.find('.overlay-content').height();
       if(overlayHeight < CurrentOverlay.height()){
         CurrentOverlay.find('.overlay-footer').addClass('extended-space');
-        console.log('test 1');
-      } else {
-        console.log('test 2');
       }
 
     });
