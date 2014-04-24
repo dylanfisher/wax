@@ -10011,9 +10011,7 @@ $(document).ready(function(){
   // Scroll down when you click the bottom portion
   $('.featured-project-wax-logo, .featured-project-arrow').click(function(){
     var featuredHeight = $('#frame-featured').height();
-    $('html, body').animate({scrollTop: featuredHeight}, 'fast', transitEase, function(){
-      $('html, body').scrollTop(0);
-    });
+    $('html, body').animate({scrollTop: featuredHeight}, 0, 'linear');
   });
 
   // Clicking on the featured frame when it is fixed opens it back up
