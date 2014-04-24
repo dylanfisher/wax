@@ -10,6 +10,7 @@
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-27225017-1');ga('send','pageview');
     </script>
+    <script src="<?php echo get_bloginfo('template_url'); ?>/private/mint/?js" type="text/javascript"></script>
 <?php wp_footer() ?>
 
 </body>

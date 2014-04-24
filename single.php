@@ -2,7 +2,6 @@
 include 'external-header.php';
 ?>
 <div class="features-wrapper">
-  <h3>Features</h3>
   <div class="content-wrapper">
     <h2><?php the_title(); ?></h2>
     <?php if(get_field('byline')): ?>
