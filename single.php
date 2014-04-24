@@ -2,6 +2,7 @@
 include 'external-header.php';
 ?>
 <div class="features-wrapper">
+  <h3>Features</h3>
   <div class="content-wrapper">
     <h2><?php the_title(); ?></h2>
     <?php if(get_field('byline')): ?>
@@ -26,8 +27,14 @@ include 'external-header.php';
         <?php
         // loop through rows (sub repeater)
         while( have_rows('image_module') ): the_row();
+
+        if(get_sub_field('big_image')) {
+          $big_image = 'large';
+        } else {
+          $big_image = '';
+        }
         ?>
-          <div class="image-wrapper">
+          <div class="image-wrapper <?php echo $big_image ?>">
         <?php
           // display each item
           $image = get_sub_field('image');
