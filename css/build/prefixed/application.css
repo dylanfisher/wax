@@ -1670,6 +1670,11 @@ html {
   margin-top: 64px;
 }
 
+.features-wrapper .content-wrapper {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
 .overlay-wrapper {
   padding: 16px 4%;
   position: absolute;

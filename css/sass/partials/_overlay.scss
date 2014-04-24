@@ -95,6 +95,10 @@
   padding-left: 15%;
   padding-right: 15%;
   margin-top: $medium;
+  .features-wrapper & {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }
 .overlay-wrapper {
   padding: $xsmall 4%;
