@@ -9998,7 +9998,7 @@ $(document).ready(function(){
   // Fade out the featured down arrow after a short delay
   var logoDelay = window.setTimeout(function(){
     $('.featured-project-arrow').removeClass('active');
-  }, 5000);
+  }, 10000);
 
   // Show the arrow when you hover over the bottom portion
   $('.featured-project-wax-logo, .featured-project-arrow').hover(function(){
