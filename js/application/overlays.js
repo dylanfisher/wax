@@ -131,6 +131,7 @@ function showOverlay(el){
     container.css({overflow: 'auto'});
     container.scrollTop(0);
     showLoader(container);
+
   }
 }
 
@@ -159,6 +160,9 @@ function closeOverlay(){
   }
   if($('.overlay-container .temp-degrees').length){
     $('.overlay-container .temp-degrees').remove();
+  }
+  if($('.overlay-container .overlay-footer').length){
+    $('.overlay-container .overlay-footer').removeClass('extended-space');
   }
   $('#frame-featured').removeClass('disable-mouse');
 

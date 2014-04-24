@@ -74,6 +74,12 @@ $(function(){
           SetVideoModuleHeights();
         }
 
+        // Check if the footer is being pushed off the screen
+        var overlayHeight = CurrentOverlay.find('.overlay-content').height();
+        if(overlayHeight < CurrentOverlay.height()){
+          CurrentOverlay.find('.overlay-footer').addClass('extended-space');
+        }
+
       });
     }
   });

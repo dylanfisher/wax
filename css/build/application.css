@@ -1518,6 +1518,22 @@ html {
   position: relative;
   padding-top: 112px;
   padding-bottom: 16px;
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  margin-bottom: -112px;
+}
+.overlay-footer.extended-space, .extended-space.page-footer {
+  margin-bottom: 0;
+}
+.external-layout-wrapper .overlay-footer, .external-layout-wrapper .page-footer {
+  position: relative;
+}
+.frame .overlay-footer, .frame .page-footer {
+  margin-bottom: -112px;
 }
 .overlay-footer span, .page-footer span {
   margin: 0 10px;

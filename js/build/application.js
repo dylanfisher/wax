@@ -10267,6 +10267,14 @@ $(function(){
           SetVideoModuleHeights();
         }
 
+        // Check if the footer is being pushed off the screen
+        var overlayHeight = CurrentOverlay.find('.overlay-content').height();
+        console.log(overlayHeight);
+        console.log(CurrentOverlay.height());
+        if(overlayHeight < CurrentOverlay.height()){
+          CurrentOverlay.find('.overlay-footer').addClass('extended-space');
+        }
+
       });
     }
   });
@@ -10496,6 +10504,7 @@ function showOverlay(el){
     container.css({overflow: 'auto'});
     container.scrollTop(0);
     showLoader(container);
+
   }
 }
 
@@ -10524,6 +10533,9 @@ function closeOverlay(){
   }
   if($('.overlay-container .temp-degrees').length){
     $('.overlay-container .temp-degrees').remove();
+  }
+  if($('.overlay-container .overlay-footer').length){
+    $('.overlay-container .overlay-footer').removeClass('extended-space');
   }
   $('#frame-featured').removeClass('disable-mouse');
 
@@ -10636,6 +10648,13 @@ $(function(){
       } else {
         $('#overlay-content .cart-empty').remove();
       }
+
+      // Check if the footer is being pushed off the screen
+      var overlayHeight = CurrentOverlay.find('.overlay-content').height();
+      if(overlayHeight < CurrentOverlay.height()){
+        CurrentOverlay.find('.overlay-footer').addClass('extended-space');
+      }
+
     });
   });
 

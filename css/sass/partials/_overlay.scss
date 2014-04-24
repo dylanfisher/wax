@@ -134,6 +134,22 @@
   position: relative;
   padding-top: $large;
   padding-bottom: $xsmall;
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  margin-bottom: -112px;
+  &.extended-space {
+    margin-bottom: 0;
+  }
+  .external-layout-wrapper & {
+    position: relative;
+  }
+  .frame & {
+    margin-bottom: -112px;
+  }
   span {
     margin: 0 10px;
   }
