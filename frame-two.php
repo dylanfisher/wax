@@ -31,7 +31,6 @@ if ( $the_query->have_posts() ):
         <?php if( get_field('byline') ) { ?>
     <h3><?php echo the_field('byline'); ?></h3>
         <?php } ?>
-    <a class="ajax" data-request="get_post/?id=<?php echo get_the_ID(); ?>" data-template="template-story" href="<?php echo get_permalink(); ?>">
         <?php // Featured image
         $image = get_field('featured_image');
         if( !empty($image) ):
@@ -44,9 +43,10 @@ if ( $the_query->have_posts() ):
             $width = $image['sizes'][ $size . '-width' ];
             $height = $image['sizes'][ $size . '-height' ];
         ?>
+    <a class="ajax" data-request="get_post/?id=<?php echo get_the_ID(); ?>" data-template="template-story" href="<?php echo get_permalink(); ?>">
         <img src="<?php echo $imageSize; ?>" alt="<?php echo $title; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
-        <?php endif; ?>
     </a>
+        <?php endif; ?>
     <?php // Featured video
     $video = get_field('featured_video');
     if( !empty($video) ):
