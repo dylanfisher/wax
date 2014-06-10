@@ -32,7 +32,7 @@ if ( $the_query->have_posts() ):
     <h3><?php echo the_field('byline'); ?></h3>
         <?php } ?>
     <a class="ajax" data-request="get_post/?id=<?php echo get_the_ID(); ?>" data-template="template-story" href="<?php echo get_permalink(); ?>">
-        <?php
+        <?php // Featured image
         $image = get_field('featured_image');
         if( !empty($image) ):
             // vars
@@ -47,6 +47,14 @@ if ( $the_query->have_posts() ):
         <img src="<?php echo $imageSize; ?>" alt="<?php echo $title; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" />
         <?php endif; ?>
     </a>
+    <?php // Featured video
+    $video = get_field('featured_video');
+    if( !empty($video) ):
+    ?>
+    <div class="video-module featured-video">
+      <iframe src="//player.vimeo.com/video/<?php echo $video ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="393" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+    <?php endif; ?>
 </div>
 <?php
     endwhile;
