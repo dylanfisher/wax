@@ -27,6 +27,10 @@ function sandbox_pushState_route(){
   }
 }
 
+// Increase default image compression level
+add_filter( 'jpeg_quality', 'sandbox_jpeg_full_quality' );
+function sandbox_jpeg_full_quality( $quality ) { return 98; }
+
 ///////////////////////////////////
 //    BEGIN SANDBOX FUNCTIONS    //
 ///////////////////////////////////
