@@ -10570,7 +10570,7 @@ $(function(){
         dots: true,
         draggable: false,
         easing: 'easeInOutQuad',
-        lazyLoad: 'ondemand'
+        lazyLoad: 'progressive'
     });
 
     // Advance to next slide on click
