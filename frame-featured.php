@@ -15,7 +15,7 @@ $localHost = array(
 );
 $stagingVarURL = 'http://readwax.com/wp-content/themes/wax/libs/weather-vars.php';
 if(in_array($_SERVER['REMOTE_ADDR'], $localHost)){
-    $stagingVarURL = 'http://localhost:3000/wax/wp-content/themes/wax/libs/weather-vars.php';
+    $stagingVarURL = 'http://localhost:8888/wax/wp-content/themes/wax/libs/weather-vars.php';
 }
 
 // Retreive all of our weather variables
@@ -32,7 +32,7 @@ $averageWavePeriod = $weatherVars->Average_Period;
 ?>
 
 <div id="frame-featured-show-overlay" class="show-overlay">
-  <a class="ajax overlay-padding" data-request="get_posts/?cat=6&amp;count=-1" data-template="template-featured" data-overlay-disable="true" href="<?php echo the_permalink(); ?>">Info</a>
+  <a class="ajax overlay-padding" data-request="get_posts/?cat=6&amp;count=1" data-template="template-featured" data-overlay-disable="true" href="<?php echo the_permalink(); ?>">Info</a>
 </div>
 <div id="featured-project" class="featured-project" data-url="<?php the_field('iframe_url'); ?>?degrees=<?php echo $windDirection ?>&knots=<?php echo $windSpeed ?>">
     <div class="featured-project-overlay"></div>

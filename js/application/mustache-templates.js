@@ -8,7 +8,7 @@ var overlayLoaded  = false,
     siteUrl        = 'http://readwax.com/';
 
 if (document.location.hostname == 'localhost'){
-  siteUrl = 'http://localhost:3000/wax/';
+  siteUrl = 'http://localhost:8888/wax/';
 } else {
   siteUrl = 'http://readwax.com/';
 }

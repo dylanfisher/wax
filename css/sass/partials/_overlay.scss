@@ -45,6 +45,7 @@
   z-index: 20;
   background-color: #fff;
   box-shadow: 0px -6px 15px 0px rgba(50, 50, 50, 0.30);
+  transform: translate3d(0,0,0);
   &.active {
     display: block;
   }
@@ -52,8 +53,7 @@
   &.overlay-padding {
     min-height: 90%;
     .overlay-close {
-      top: 14%;
-      top: calc(10% + 20px);
+      top: 40px;
       right: 30px;
     }
     .overlay-nav-site-title {
